@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load form_tags %}
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center">Создать Поставщика</h1>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_name">Имя</label>
+                {{ supplier_form.name|add_class:"form-control" }}
+                {% if supplier_form.name.errors %}
+                    <div class="text-danger">{{ supplier_form.name.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_city">Город</label>
+                {{ supplier_form.city|add_class:"form-control" }}  <!-- Поле для города -->
+                {% if supplier_form.city.errors %}
+                    <div class="text-danger">{{ supplier_form.city.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Создать</button>
+            <a href="{% url 'supplier_list' %}" class="btn btn-secondary btn-block mt-2">Отмена</a>
+        </form>
+        <div class="text-center mt-3">
+            <a href="{% url 'supplier_list' %}" class="btn btn-secondary">Назад к списку поставщиков</a>
+        </div>
+    </div>
+{% endblock %}

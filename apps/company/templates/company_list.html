@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Список компаний</h1>
+    <a href="{% url 'create_company' %}" class="btn btn-primary mb-3">Создать компанию</a>
+    <ul class="list-group">
+        {% for company in companies %}
+            <li class="list-group-item">
+                <a href="{% url 'company_detail' company.id %}" class="d-block text-decoration-none text-dark">
+                    {{ company.name }}
+                </a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Нет доступных компаний.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+    .list-group-item {
+        transition: background-color 0.3s ease; /* Плавный переход для фона */
+    }
+
+    .list-group-item:hover {
+        background-color: #f8f9fa; /* Светло-серый фон при наведении */
+    }
+
+    .list-group-item a {
+        display: block; /* Делает ссылку блочным элементом */
+        padding: 10px; /* Добавляет отступы для удобства */
+        color: inherit; /* Убирает цвет ссылки, чтобы использовать цвет текста */
+    }
+
+    .list-group-item a:hover {
+        color: #007bff; /* Цвет текста при наведении */
+    }
+</style>
+{% endblock %}

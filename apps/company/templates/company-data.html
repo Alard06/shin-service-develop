@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+     <a href="{% url 'company_detail' company_id=company.id %}" class="btn btn-secondary mb-3">Назад</a>
+        <h2>Данные</h2>
+        <ul class="nav nav-tabs" id="dataTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="special-tires-tab" data-toggle="tab" href="#special-tires" role="tab"
+                   aria-controls="special-tires" aria-selected="true">Специальные шины</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tires-tab" data-toggle="tab" href="#tires" role="tab"
+                   aria-controls="tires" aria-selected="false">Шины</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="disk-tab" data-toggle="tab" href="#disk" role="tab"
+                   aria-controls="disk" aria-selected="false">Диски</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="moto-tab" data-toggle="tab" href="#moto" role="tab"
+                   aria-controls="moto" aria-selected="false">Мотошины</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="truck-tab" data-toggle="tab" href="#truck" role="tab"
+                   aria-controls="truck" aria-selected="false">Грузовые шины</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="truck-disk-tab" data-toggle="tab" href="#truckdisk" role="tab"
+                   aria-controls="truck-disk" aria-selected="false">Грузовые диски</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="tires_data">
+            <div class="tab-pane fade show active" id="special-tires" role="tabpanel"
+                 aria-labelledby="special-tires-tab">
+                <h2>Специальные шины</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Модель</th>
+                        <th>ОПТ</th>
+                        <th>Цена</th>
+                        <th>Остаток</th>
+                        <th>Доставка</th>
+                        <th>Поставщик</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tire in special_tires %}
+                    <tr>
+                        <td>{{ tire.special_tire.id_special }}</td>
+                        <td>{{ tire.special_tire.full_title }}</td>
+                        <td>{{ tire.input_price }}</td>
+                        <td>{{ tire.price }}</td>
+                        <td>{{ tire.quantity }}</td>
+                        <td>{{ tire.delivery_period_days }}</td>
+                        <td>{{ tire.supplier.name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">Нет специальных шин для отображения.</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="tires" role="tabpanel" aria-labelledby="tires-tab">
+                <h2>Шины</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Модель</th>
+                        <th>ОПТ</th>
+                        <th>Цена</th>
+                        <th>Остаток</th>
+                        <th>Доставка</th>
+                        <th>Поставщик</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tire in tires %}
+                    <tr>
+                        <td>{{ tire.tire.id_tire }}</td>
+                        <td>{{ tire.tire.full_title }}</td>
+                        <td>{{ tire.input_price }}</td>
+                        <td>{{ tire.price }}</td>
+                        <td>{{ tire.quantity }}</td>
+                        <td>{{ tire.delivery_period_days }}</td>
+                        <td>{{ tire.supplier.name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">Нет шин для отображения.</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="disk" role="tabpanel" aria-labelledby="disk-tab">
+                <h2>Диски</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Модель</th>
+                        <th>ОПТ</th>
+                        <th>Цена</th>
+                        <th>Остаток</th>
+                        <th>Доставка</th>
+                        <th>Поставщик</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for disk in disks %}
+                    <tr>
+                        <td>{{ disk.disk.id_disk }}</td>
+                        <td>{{ disk.disk.full_title }}</td>
+                        <td>{{ disk.input_price }}</td>
+                        <td>{{ disk.price }}</td>
+                        <td>{{ disk.quantity }}</td>
+                        <td>{{ disk.delivery_period_days }}</td>
+                        <td>{{ disk.supplier.name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">Нет шин для отображения.</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" id="moto" role="tabpanel" aria-labelledby="moto-tab">
+                <h2>Мотошины</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Модель</th>
+                        <th>ОПТ</th>
+                        <th>Цена</th>
+                        <th>Остаток</th>
+                        <th>Доставка</th>
+                        <th>Поставщик</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for shina in moto %}
+                    <tr>
+                        <td>{{ shina.moto_tire.id_moto }}</td>
+                        <td>{{ shina.moto_tire.full_title }}</td>
+                        <td>{{ shina.input_price }}</td>
+                        <td>{{ shina.price }}</td>
+                        <td>{{ shina.quantity }}</td>
+                        <td>{{ shina.delivery_period_days }}</td>
+                        <td>{{ shina.supplier.name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">Нет шин для отображения.</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="truck" role="tabpanel" aria-labelledby="truck-tab">
+                <h2>Грузовые шины</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Модель</th>
+                        <th>ОПТ</th>
+                        <th>Цена</th>
+                        <th>Остаток</th>
+                        <th>Доставка</th>
+                        <th>Поставщик</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for truck in trucks %}
+                    <tr>
+                        <td>{{ truck.truck_tire.id_truck }}</td>
+                        <td>{{ truck.truck_tire.full_title }}</td>
+                        <td>{{ truck.input_price }}</td>
+                        <td>{{ truck.price }}</td>
+                        <td>{{ truck.quantity }}</td>
+                        <td>{{ truck.delivery_period_days }}</td>
+                        <td>{{ truck.supplier.name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">Нет шин для отображения.</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="truckdisk" role="tabpanel" aria-labelledby="truck-disk-tab">
+                <h2>Грузовые диски</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Модель</th>
+                        <th>ОПТ</th>
+                        <th>Цена</th>
+                        <th>Остаток</th>
+                        <th>Доставка</th>
+                        <th>Поставщик</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for truck in trucks_disk %}
+                    <tr>
+                        <td>{{ truck.truck_disk.id_disk }}</td>
+                        <td>{{ truck.truck_disk.full_title }}</td>
+                        <td>{{ truck.input_price }}</td>
+                        <td>{{ truck.price }}</td>
+                        <td>{{ truck.quantity }}</td>
+                        <td>{{ truck.delivery_period_days }}</td>
+                        <td>{{ truck.supplier.name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">Нет дисков для отображения.</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+    {% endblock %}

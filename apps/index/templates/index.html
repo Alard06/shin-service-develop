@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center">Новости сайта</h1>
+        <div class="row">
+            {% for update in updates %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ update.title }}</h5>
+                            <p class="card-text">{{ update.text }}</p>
+                            <p class="card-text"><small class="text-muted">{{ update.created_at|date:"d M Y H:i" }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">Нет обновлений для отображения.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

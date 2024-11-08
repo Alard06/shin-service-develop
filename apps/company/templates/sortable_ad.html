@@ -1,0 +1,58 @@
+{% block content %}
+<div class="container mt-4">
+    <h2>Выбор порядка создания объявления</h2>
+    <form id="ad-order-form" method="post" action="{% url 'save_ad_order' company.id %}">
+        {% csrf_token %}
+        <div id="sortable-fields">
+            <div class="sortable-item" data-field="unique_description">Уникальное описание</div>
+            <div class="sortable-item" data-field="supplier_article">Артикул поставщика</div>
+            <div class="sortable-item" data-field="sizes">Размеры</div>
+            <div class="sortable-item" data-field="tire_description">Описание шины</div>
+            <div class="sortable-item" data-field="tags">Теги под запросы</div>
+            <div class="sortable-item" data-field="promotion">Акция у компании</div>
+        </div>
+        <input type="hidden" name="order" id="order-input">
+        <button type="submit" class="btn btn-primary mt-3">Сохранить порядок</button>
+    </form>
+</div>
+
+<!-- Include jQuery and jQuery UI -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#sortable-fields").sortable({
+            items: '.sortable-item', // Ensure only sortable items are draggable
+            update: function(event, ui) {
+                // Update the hidden input with the new order
+                var order = $(this).sortable('toArray', { attribute: 'data-field' });
+                $('#order-input').val(order.join(',')); // Join the order into a string
+            }
+        });
+        $("#sortable-fields").disableSelection(); // Prevent text selection while dragging
+    });
+</script>
+
+
+
+<style>
+    #sortable-fields {
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 300px;
+        min-height: 50px; /* Ensures the area is visible */
+    }
+    .sortable-item {
+        padding: 8px;
+        margin: 5px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        cursor: move; /* Indicates that the item is draggable */
+    }
+    .sortable-item:hover {
+        background-color: #e0e0e0; /* Highlight on hover */
+    }
+</style>
+
+{% endblock %}

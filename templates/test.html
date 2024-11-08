@@ -1,0 +1,43 @@
+<div class="container mt-4">    
+    <div class="form-group">
+        <label for="protector">Протектор:</label>
+        <select class="form-control" id="protector" name="protector">
+            <option value="" {% if not company.protector %}selected{% endif %}>Выберите протектор</option>
+            <option value="all_season" {% if company.protector == 'all_season' %}selected{% endif %}>Всесезонный</option>
+            <option value="summer" {% if company.protector == 'summer' %}selected{% endif %}>Лето</option>
+            <option value="winter" {% if company.protector == 'winter' %}selected{% endif %}>Зима</option>
+            <option value="winter_spikes" {% if company.protector == 'winter_spikes' %}selected{% endif %}>Зима/Шипы</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+
+    <h2>Выбор порядка создания объявления</h2>
+    <form id="ad-order-form" method="post" action="{% url 'save_ad_order' company.id %}">
+        {% csrf_token %}
+        <div id="sortable-fields">
+            <div class="sortable-item" data-field="unique_description">Уникальное описание</div>
+            <div class="sortable-item" data-field="supplier_article">Артикул поставщика</div>
+            <div class="sortable-item" data-field="sizes">Размеры</div>
+            <div class="sortable-item" data-field="tire_description">Описание шины</div>
+            <div class="sortable-item" data-field="tags">Теги под запросы</div>
+            <div class="sortable-item" data-field="promotion">Акция у компании</div>
+        </div>
+        <input type="hidden" name="order" id="order-input">
+        <button type="submit" class="btn btn-primary mt-3">Сохранить порядок</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#sortable-fields").sortable({
+            update: function(event, ui) {
+                // Update the hidden input with the new order
+                var order = $(this).sortable('toArray', { attribute: 'data-field' });
+                $('#order-input').val(order.join(','));
+            }
+        });
+        $("#sortable-fields").disableSelection();
+    });
+</script>

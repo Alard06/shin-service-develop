@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center">Файл успешно загружен!</h1>
+        <div class="text-center mt-4">
+            <a href="{% url 'upload_file' %}" class="btn btn-primary">Загрузить еще файл</a>
+            <a href="{% url 'supplier_list' %}" class="btn btn-secondary">Назад к списку поставщиков</a>
+        </div>
+    </div>
+{% endblock %}

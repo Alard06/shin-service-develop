@@ -1,0 +1,46 @@
+{% extends 'base.html' %}  {# Расширяем базовый шаблон #}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center">Редактировать Поставщика: {{ company_supplier.supplier.name }}</h1>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_article_number">Номер артикула</label>
+                {{ form.article_number|add_class:"form-control" }}  {# Используем фильтр для добавления класса #}
+                {% if form.article_number.errors %}
+                    <div class="text-danger">{{ form.article_number.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label>Приоритет</label>
+                <div>
+                    {% for value, display in form.priority.field.choices %}
+                        <div class="form-check">
+                            <input type="radio" name="priority" value="{{ value }}" id="priority_{{ value }}" class="form-check-input"
+                                   {% if value|stringformat:"i" == company_supplier.priority|stringformat:"i" %}checked{% endif %}>
+                            <label class="form-check-label" for="priority_{{ value }}">{{ display }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Визуальный приоритет</label>
+                <div>
+                    {% for value, display in form.visual_priority.field.choices %}
+                        <div class="form-check">
+                            <input type="radio" name="visual_priority" value="{{ value }}" id="visual_priority_{{ value }}" class="form-check-input"
+                                   {% if value|stringformat:"i" == company_supplier.visual_priority|stringformat:"i" %}checked{% endif %}>
+                            <label class="form-check-label" for="visual_priority_{{ value }}">{{ display }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Сохранить изменения</button>
+            <a href="{% url 'supplier_list' %}" class="btn btn-secondary btn-block mt-2">Отмена</a>
+        </form>
+        <div class="text-center mt-3">
+            <a href="{% url 'supplier_list' %}" class="btn btn-secondary">Назад к списку поставщиков</a>
+        </div>
+    </div>
+{% endblock %}
