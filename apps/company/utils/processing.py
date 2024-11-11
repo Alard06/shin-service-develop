@@ -611,7 +611,7 @@ def process_truck_disks(root, truck_disks, company_id):
         if best_supplier:
             create_supplier_element(truck_disk_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    is_truck_tire=True)
+                                    is_truck_disk=True)
 
 
 def process_moto(root, moto, company_id):
@@ -853,7 +853,7 @@ def price_rozn(price: str, company_id, best_price):
 
 def create_supplier_element(parent_element, articuls, best_supplier, best_price, total_quantity,
                             best_delivery_period_days, company_id, product_supplier=None, is_disk=False,
-                            is_truck_tire=False,
+                            is_truck_tire=False, is_truck_disk=False,
                             moto=False, special=False):
     presence_status = 'В наличии' if best_delivery_period_days == 0 else 'Под заказ'
     tire_type = None
@@ -861,8 +861,10 @@ def create_supplier_element(parent_element, articuls, best_supplier, best_price,
         tire_type = 'Мотошины'
     elif is_truck_tire:
         tire_type = 'Грузовая и LT'
+    elif is_truck_disk:
+        tire_type = 'Грузовая и LT'
     elif is_disk:
-        tire_type = 'Грузовые диски'
+        tire_type = 'Диск'
     elif special:
         tire_type = 'Специальные'
     else:
