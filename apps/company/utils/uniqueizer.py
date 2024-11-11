@@ -148,7 +148,6 @@ def process_tires(tires_element, company, season=False):
         offer['supplier-sale'] = supplier.get('sale')
         offer['supplier-year'] = ' '  # #TODO: Add year if available
 
-    # Construct the supplier description based on ad_order
     ad_order = company.ad_order.split(',') if company.ad_order else []
     description_parts = []
     for field in ad_order:

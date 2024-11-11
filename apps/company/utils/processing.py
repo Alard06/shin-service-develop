@@ -407,6 +407,15 @@ def process_tires(root, tires, company_id):
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id)
 
 
+def get_drill(result) -> str:
+    if result.boltcount != "" and result.pcd != "":
+        product_boltcount_res = result.boltcount.replace(",", ".").strip("0").strip(".")
+        product_pcd_res = result.pcd.replace(",", ".").strip("0").strip(".")
+        if product_boltcount_res == "" and product_pcd_res == "":
+            return ""
+        return f"{product_boltcount_res}x{product_pcd_res}"
+    return ""
+
 def process_disks(root, disks, company_id):
     disks_elements = ET.SubElement(root, 'disks')
     for disk_id, data in disks.items():
@@ -438,7 +447,7 @@ def process_disks(root, disks, company_id):
                                      autobrand='',
                                      pcd=data['product'].pcd,
                                      boltcount=str(data['product'].boltcount) if data['product'].boltcount else '',
-                                     drill='',
+                                     drill=get_drill(data['product']),
                                      outfit=str(data['product'].outfit) if data['product'].outfit else '',
                                      dia=str(data['product'].dia) if data['product'].dia else '',
                                      color=data['product'].color,
@@ -458,7 +467,6 @@ def process_disks(root, disks, company_id):
                                      Countries='',
                                      runflat="",
                                      ProtectorType='',
-                                     Type=str(data['product'].type) if data['product'].type else ''
                                      )
 
         sorted_suppliers = sort_suppliers(data['suppliers'], company_id)
@@ -759,6 +767,7 @@ def process_suppliers(sorted_suppliers, product, company_id, is_disk=False,
     return articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier  # Ensure product_supplier is returned
 
 
+
 def process_special_tires(root, special_tires, company_id):
     special_root = ET.SubElement(root, 'specialTires')
     for special_tire_id, data in special_tires.items():
@@ -833,10 +842,13 @@ def process_special_tires(root, special_tires, company_id):
                                     special=True)
 
 
-def price_rozn(price: str, company_id):
-    price = float(price.replace(',', '.'))
-    price_multiplier = Company.objects.get(id=company_id).price_multiplier
-    return price * price_multiplier
+def price_rozn(price: str, company_id, best_price):
+    if price:
+        print(price)
+        price = float(price.replace(',', '.'))
+        price_multiplier = Company.objects.get(id=company_id).price_multiplier
+        return str(price * price_multiplier) # TODO проверить с нулем
+    return str(best_price)
 
 
 def create_supplier_element(parent_element, articuls, best_supplier, best_price, total_quantity,
@@ -861,8 +873,8 @@ def create_supplier_element(parent_element, articuls, best_supplier, best_price,
                                      quantity=str(total_quantity),
                                      price=best_price,
                                      inputPrice=product_supplier.input_price if product_supplier else '',
-                                     price_rozn=best_price if best_supplier else price_rozn(
-                                         product_supplier.input_price, company_id),
+                                     price_rozn= product_supplier.price_rozn if product_supplier.price_rozn else price_rozn(
+                                         product_supplier.input_price, company_id, best_price),
                                      deliveryPeriodDays=str(
                                          best_delivery_period_days) if best_delivery_period_days is not None else '',
                                      tireType=tire_type,

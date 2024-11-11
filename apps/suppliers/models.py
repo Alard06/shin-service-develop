@@ -74,6 +74,7 @@ class TireSupplier(models.Model):
     articul = models.CharField(max_length=100)
     price = models.CharField(max_length=100)
     input_price = models.CharField(max_length=100)  # TODO
+    price_rozn = models.CharField(max_length=100, null=True, blank=True)
     quantity = models.IntegerField()
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
@@ -114,6 +115,7 @@ class DiskSupplier(models.Model):
     articul = models.CharField(max_length=100)  # Артикул поставщика
     price = models.CharField(max_length=100)
     input_price = models.CharField(max_length=100)  # Закупочная цена
+    price_rozn = models.CharField(max_length=100, null=True, blank=True)
     quantity = models.CharField(max_length=100)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)  # Внешний ключ на таблицу Supplier
     city = models.ForeignKey(City, on_delete=models.CASCADE)  # Внешний ключ на таблицу City
@@ -156,6 +158,7 @@ class TruckTireSupplier(models.Model):
     articul = models.CharField(max_length=100)  # Артикул поставщика
     price = models.CharField(max_length=100)  # Цена
     input_price = models.CharField(max_length=100)  # Закупочная цена
+    price_rozn = models.CharField(max_length=100, null=True, blank=True)
     quantity = models.IntegerField()  # Количество
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)  # Внешний ключ на таблицу Supplier
     city = models.ForeignKey(City, on_delete=models.CASCADE)  # Внешний ключ на таблицу City
@@ -197,6 +200,7 @@ class TruckDiskSupplier(models.Model):
     articul = models.CharField(max_length=100)  # Артикул поставщика
     price = models.CharField(max_length=100)  # Цена
     input_price = models.CharField(max_length=100)  # Закупочная цена
+    price_rozn = models.CharField(max_length=100, null=True, blank=True)
     quantity = models.IntegerField()  # Количество
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)  # Внешний ключ на таблицу Supplier
     city = models.ForeignKey(City, on_delete=models.CASCADE)  # Внешний ключ на таблицу City
@@ -241,6 +245,7 @@ class SpecialTireSupplier(models.Model):
     articul = models.CharField(max_length=100)  # Артикул поставщика
     price = models.CharField(max_length=100)  # Цена
     input_price = models.CharField(max_length=100)  # Закупочная цена
+    price_rozn = models.CharField(max_length=100, null=True, blank=True)
     quantity = models.IntegerField()  # Количество
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)  # Внешний ключ на таблицу Supplier
     city = models.ForeignKey(City, on_delete=models.CASCADE)  # Внешний ключ на таблицу City
@@ -284,6 +289,7 @@ class MotoTireSupplier(models.Model):
     articul = models.CharField(max_length=100)  # Артикул поставщика
     price = models.CharField(max_length=100)
     input_price = models.CharField(max_length=100)  # Закупочная цена
+    price_rozn = models.CharField(max_length=100, null=True, blank=True)
     quantity = models.IntegerField()  # Количество
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)  # Внешний ключ на таблицу Supplier
     city = models.ForeignKey(City, on_delete=models.CASCADE)  # Внешний ключ на таблицу City

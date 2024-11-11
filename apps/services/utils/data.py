@@ -60,6 +60,7 @@ async def tires_elements(suppliers, cities, file_path):
             articul = supplier.get('articul')
             price = supplier.get('price')
             input_price = supplier.get('inputPrice')
+            price_rozn = supplier.get('price_rozn')
             quantity = supplier.get('quantity')
             supplier_title = supplier.get('supplierTitle')
             city_name = supplier.get('city')
@@ -84,6 +85,7 @@ async def tires_elements(suppliers, cities, file_path):
                         'articul': articul,
                         'price': price,
                         'input_price': input_price,
+                        'price_rozn':price_rozn,
                         'quantity': quantity,
                         'supplier': supplier_obj,
                         'city': city_obj,
@@ -116,6 +118,7 @@ async def tires_elements(suppliers, cities, file_path):
                     articul=supplier_data['articul'],
                     price=supplier_data['price'],
                     input_price=supplier_data['input_price'],
+                    price_rozn=supplier_data['price_rozn'],
                     quantity=supplier_data['quantity'],
                     supplier=supplier_data['supplier'],
                     city=supplier_data['city'],
@@ -207,6 +210,7 @@ async def trucks_disks_elements(suppliers, cities, root):
                 articul = supplier.get('articul')
                 price = supplier.get('price')
                 input_price = supplier.get('inputPrice')
+                price_rozn = supplier.get('price_rozn')
                 quantity = supplier.get('quantity')
                 supplier_title = supplier.get('supplierTitle')
                 city_name = supplier.get('city')
@@ -232,6 +236,7 @@ async def trucks_disks_elements(suppliers, cities, root):
                             articul=articul,
                             price=price,
                             input_price=input_price,
+                            price_rozn=price_rozn,
                             quantity=quantity,
                             supplier=supplier_obj,
                             city=city_obj,
@@ -305,6 +310,7 @@ async def disks_elements(suppliers, cities, root):
                 articul = supplier.get('articul')
                 price = supplier.get('price')
                 input_price = supplier.get('inputPrice')
+                price_rozn = supplier.get('price_rozn')
                 quantity = supplier.get('quantity')
                 supplier_title = supplier.get('supplierTitle')
                 city_name = supplier.get('city')
@@ -329,6 +335,7 @@ async def disks_elements(suppliers, cities, root):
                             disk=disk_obj,
                             articul=articul,
                             price=price,
+                            price_rozn=price_rozn,
                             input_price=input_price,
                             quantity=quantity,
                             supplier=supplier_obj,
@@ -405,6 +412,7 @@ async def truck_tires_element(suppliers, cities, root):
                 articul = supplier.get('articul')
                 price = supplier.get('price')
                 input_price = supplier.get('inputPrice')
+                price_rozn = supplier.get('price_rozn')
                 quantity = supplier.get('quantity')
                 supplier_title = supplier.get('supplierTitle')
                 city_name = supplier.get('city')
@@ -429,6 +437,7 @@ async def truck_tires_element(suppliers, cities, root):
                             truck_tire=truck_tire_obj,
                             articul=articul,
                             price=price,
+                            price_rozn=price_rozn,
                             input_price=input_price,
                             quantity=quantity,
                             supplier=supplier_obj,
@@ -506,6 +515,7 @@ async def special_tires_element(suppliers, cities, root):
                 articul = supplier.get('articul')
                 price = supplier.get('price')
                 input_price = supplier.get('inputPrice')
+                price_rozn = supplier.get('price_rozn')
                 quantity = supplier.get('quantity')
                 supplier_title = supplier.get('supplierTitle')
                 city_name = supplier.get('city')
@@ -530,6 +540,7 @@ async def special_tires_element(suppliers, cities, root):
                             special_tire=special_tire_obj,
                             articul=articul,
                             price=price,
+                            price_rozn=price_rozn,
                             input_price=input_price,
                             quantity=quantity,
                             supplier=supplier_obj,
@@ -607,6 +618,7 @@ async def moto_tires_element(suppliers, cities, root):
                 articul = supplier.get('articul')
                 price = supplier.get('price')
                 input_price = supplier.get('inputPrice')
+                price_rozn = supplier.get('price_rozn')
                 quantity = supplier.get('quantity')
                 supplier_title = supplier.get('supplierTitle')
                 city_name = supplier.get('city')
@@ -631,6 +643,7 @@ async def moto_tires_element(suppliers, cities, root):
                             moto_tire=moto_tire_obj,
                             articul=articul,
                             price=price,
+                            price_rozn=price_rozn,
                             input_price=input_price,
                             quantity=quantity,
                             supplier=supplier_obj,
