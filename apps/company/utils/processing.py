@@ -1,3 +1,4 @@
+import math
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import pandas as pd
@@ -28,7 +29,7 @@ headers = [
 
 def get_available_products_for_company(company_id, types, availability, format):
     # Получаем всех поставщиков, связанных с данной компанией через CompanySupplier
-
+    print(availability, types)
     suppliers = Supplier.objects.filter(companysupplier__company_id=company_id)
 
     # Инициализируем словарь для группировки доступных продуктов
@@ -168,10 +169,16 @@ def get_available_products_for_company(company_id, types, availability, format):
     save_tires_to_xml_availability(grouped_products, company_id, types, format)
     return grouped_products
 
+from datetime import datetime, timezone
 
 def save_tires_to_xml_availability(grouped_products, company_id, types, format):
     # Создаем корневой элемент
-    root = ET.Element("root")
+    # Получаем текущее время в UTC
+    current_date = datetime.now(timezone.utc)
+
+    # Форматируем дату в нужный формат
+    formatted_date = current_date.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+    root = ET.Element("root", date=formatted_date)
     # Обрабатываем шины
     if 'tires' in types:
         if len(grouped_products['tires']) != 0:
@@ -416,6 +423,7 @@ def get_drill(result) -> str:
         return f"{product_boltcount_res}x{product_pcd_res}"
     return ""
 
+
 def process_disks(root, disks, company_id):
     disks_elements = ET.SubElement(root, 'disks')
     for disk_id, data in disks.items():
@@ -427,12 +435,13 @@ def process_disks(root, disks, company_id):
                                      product=data['product'].product,
                                      fullTitle=data['product'].full_title,
                                      headline=get_headline(data, 'disks'),
-                                     measurement=get_measurement(data['product'].width),
+                                     # measurement=get_measurement(data['product'].width),
+                                     measurement="",
                                      recommendedPrice='',
                                      model=data['product'].model,
-                                     width=data['product'].width,
+                                     width=(data['product'].width).replace(',', '.'),
                                      height='',
-                                     diameter=data['product'].diameter,
+                                     diameter="{:.2f}".format(float(data['product'].diameter)),
                                      season='',
                                      spike='',
                                      lightduty="",
@@ -445,11 +454,11 @@ def process_disks(root, disks, company_id):
                                      fr='',
                                      xl='',
                                      autobrand='',
-                                     pcd=data['product'].pcd,
+                                     pcd="{:.2f}".format(float((data['product'].pcd).replace(',', '.'))),
                                      boltcount=str(data['product'].boltcount) if data['product'].boltcount else '',
                                      drill=get_drill(data['product']),
-                                     outfit=str(data['product'].outfit) if data['product'].outfit else '',
-                                     dia=str(data['product'].dia) if data['product'].dia else '',
+                                     outfit="{:.2f}".format(float((data['product'].outfit).replace(',','.'))) if data['product'].outfit else '',
+                                     dia="{:.2f}".format(float((data['product'].dia).replace(',', '.'))) if data['product'].dia else '',
                                      color=data['product'].color,
                                      type=data['product'].type,
                                      numberOfPlies='',
@@ -466,7 +475,7 @@ def process_disks(root, disks, company_id):
                                      Note='',
                                      Countries='',
                                      runflat="",
-                                     ProtectorType='',
+                                     ProtectorType=''
                                      )
 
         sorted_suppliers = sort_suppliers(data['suppliers'], company_id)
@@ -767,7 +776,6 @@ def process_suppliers(sorted_suppliers, product, company_id, is_disk=False,
     return articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier  # Ensure product_supplier is returned
 
 
-
 def process_special_tires(root, special_tires, company_id):
     special_root = ET.SubElement(root, 'specialTires')
     for special_tire_id, data in special_tires.items():
@@ -847,45 +855,59 @@ def price_rozn(price: str, company_id, best_price):
         print(price)
         price = float(price.replace(',', '.'))
         price_multiplier = Company.objects.get(id=company_id).price_multiplier
-        return str(price * price_multiplier) # TODO проверить с нулем
-    return str(best_price)
+        return str(price_rozn_pow(price * price_multiplier))  # TODO проверить с нулем
+    return str(price_rozn_pow(best_price))
+
+
+def price_rozn_pow(price_rozn):
+    price_rozn = str(price_rozn).replace(',', '.')
+    if price_rozn:
+        return math.ceil(float(price_rozn))
+    return ''
 
 
 def create_supplier_element(parent_element, articuls, best_supplier, best_price, total_quantity,
                             best_delivery_period_days, company_id, product_supplier=None, is_disk=False,
                             is_truck_tire=False, is_truck_disk=False,
                             moto=False, special=False):
-    presence_status = 'В наличии' if best_delivery_period_days == 0 else 'Под заказ'
+    presence_status = 'В наличии' if int(best_delivery_period_days) == 0 else 'Под заказ'
+    stock = 'Наличие' if int(best_delivery_period_days) == 0 else 'Под заказ'
     tire_type = None
     if moto:
         tire_type = 'Мотошины'
     elif is_truck_tire:
         tire_type = 'Грузовая и LT'
     elif is_truck_disk:
-        tire_type = 'Грузовая и LT'
+        tire_type = 'Грузовые диски'
     elif is_disk:
         tire_type = 'Диск'
     elif special:
         tire_type = 'Специальные'
     else:
         tire_type = 'Обычная'
+
+    sale = 'yes'
+    if product_supplier.sale == 'False':
+        sale = 'no'
     supplier_element = ET.SubElement(parent_element, "supplier",
                                      articul=", ".join([el for el, _ in groupby(articuls)]),
-                                     supplierTitle=articuls[0] or '',
+                                     supplierTitle=articuls[0],
                                      quantity=str(total_quantity),
-                                     price=best_price,
-                                     inputPrice=product_supplier.input_price if product_supplier else '',
-                                     price_rozn= product_supplier.price_rozn if product_supplier.price_rozn else price_rozn(
+                                     price=str(price_rozn_pow(best_price.replace(',', '.'))),
+                                     inputPrice=str(price_rozn_pow(product_supplier.input_price)) if product_supplier
+                                     else '',
+                                     price_rozn=str(price_rozn_pow(product_supplier.price_rozn)) if
+                                     product_supplier.price_rozn else price_rozn(
                                          product_supplier.input_price, company_id, best_price),
                                      deliveryPeriodDays=str(
                                          best_delivery_period_days) if best_delivery_period_days is not None else '',
                                      tireType=tire_type,
-                                     stock=presence_status,
+                                     stock=stock,
                                      supplier=str(best_supplier.supplier.id),
                                      presence=presence_status,
                                      lastAvailabilityDate=product_supplier.last_availability_date.strftime(
                                          "%d.%m.%Y %H:%M:%S") if product_supplier else '',
-                                     sale='',
+                                     sale=sale,
                                      year=""
                                      )
 

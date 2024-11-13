@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Исключения по брендам шин.</h1>
+    <a href="{% url 'company_detail' company.id %}">Вернуться назад</a>
+    <form method="post" action="{% url 'company_brand_exceptions_data' company.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="brand">Названия брендов:</label>
+            <input type="text" class="form-control" id="brand" name="brand" value="{{ company.brand_exception }}">
+            <small class="form-text text-muted">Введите названия брендов через запятую.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить настройки</button>
+    </form>
+
+</div>
+
+{% endblock %}

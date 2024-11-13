@@ -6,10 +6,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
 
-from apps.company.forms import CompanyForm
+from apps.company.forms import CompanyForm, FormatXLSXForm
 from apps.company.models import Company
 from apps.company.utils.processing import get_available_products_for_company
-from apps.company.utils.uniqueizer import unique
+from apps.company.utils.uniqueizer import unique, unique_avito
 from apps.suppliers.models import Supplier, CompanySupplier, SpecialTireSupplier, TireSupplier, DiskSupplier, \
     TruckTireSupplier, MotoTireSupplier, TruckDiskSupplier
 
@@ -32,6 +32,7 @@ def create_company(request):
         form = CompanyForm()
 
     return render(request, 'create_company.html', {'form': form})
+
 
 def company_data(request, company_id):
     company = get_object_or_404(Company, id=company_id)
@@ -118,6 +119,67 @@ def company_detail(request, company_id):
     })
 
 
+def uniq_drom_settings(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+
+    return render(request, 'company-settings-drom.html', {
+        'company': company
+    })
+
+
+def company_brand_exceptions(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    return render(request, 'company-settings-exceptions.html', {
+        'company': company
+    })
+
+def company_brand_exceptions_data(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    if request.method == 'POST':
+        brands = request.POST.get('brand')
+        company.brand_exception = brands
+        company.save()
+    return redirect('company_brand_exceptions', company_id=company.id)
+
+def uniq_avito_settings(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+
+    return render(request, 'company-settings-avito.html', {
+        'company': company
+    })
+
+
+def uniq_xlsx_settings(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+
+    # Инициализация поля, если оно пустое
+    if not company.format_xlsx:
+        company.format_xlsx = ', '.join([field[0] for field in FormatXLSXForm.fields_choices])
+        company.save()
+
+    # Получаем выбранные поля из базы данных
+    selected_fields = company.format_xlsx.split(', ') if company.format_xlsx else []
+    print("Selected fields from DB:", selected_fields)
+
+    if request.method == 'POST':
+        form = FormatXLSXForm(request.POST)
+        if form.is_valid():
+            selected_fields = form.cleaned_data['selected_fields']
+            print("Selected fields from form:", selected_fields)
+            # Сохраняем выбранные поля как строку, разделенную запятыми
+            company.format_xlsx = ', '.join(selected_fields)
+            company.save()
+            return redirect('uniq_xlsx_settings', company_id=company_id)
+    else:
+        form = FormatXLSXForm(initial={'selected_fields': selected_fields})
+
+    return render(request, 'company-settings-xlsx.html', {
+        'form': form,
+        'company': company,
+        'selected_fields': selected_fields,
+    })
+
+
 def upload_file_company(request, company_id):
     if request.method == 'POST' and request.FILES['file']:
         uploaded_file = request.FILES['file']
@@ -141,15 +203,19 @@ def run_uniqueness_checker(request, company_id):
         company = get_object_or_404(Company, id=company_id)
         file_name = request.POST.get('file_name')
         file_path = os.path.join(settings.MEDIA_ROOT, f"uploads/{company_id}/{file_name}")
-
-
+        path = None
         # Get selected product types
         product_types = request.POST.getlist('product_type')  # Retrieve all selected values
         print("Selected product types:", product_types)  # Debug output for selected types
         type_file = request.POST.get('output_format')
+        trading_platform = request.POST.get('trading_platform')
         # Call your uniqueness function, passing the selected product types
-        path = unique(file_path, company=company, company_id=company_id, product_types=product_types, type_file=type_file)
-        print(path)
+        print(trading_platform)
+        if trading_platform == 'drom':
+            path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+                          type_file=type_file)
+        elif trading_platform == 'avito':
+            path = unique_avito(file_path, company=company, product_types=product_types, type_file=type_file)
 
         # Prepare the processed file for download
         processed_file_path = path  # Use the path directly as it already contains the full path
@@ -179,6 +245,7 @@ def download_file_unique(request):
         else:
             return HttpResponse("Файл не найден.")
     return HttpResponse("Ошибка загрузки файла.")
+
 
 def delete_file(request, company_id):
     if request.method == 'POST':
@@ -226,6 +293,8 @@ def add_suppliers_to_company(request, company_id):
         'company': company,
         'all_suppliers': all_suppliers,
     })
+
+
 def delete_supplier_company(request, supplier_id, company_id):
     # Attempt to retrieve the CompanySupplier object or return a 404 error if not found
     print(supplier_id, company_id)
@@ -267,7 +336,7 @@ def delete_company(request, company_id):
     return render(request, 'error_delete.html', {'company': company})
 
 
-def update_company_settings(request, company_id):
+def update_company_avito_settings(request, company_id):
     company = get_object_or_404(Company, id=company_id)
 
     if request.method == 'POST':
@@ -277,16 +346,53 @@ def update_company_settings(request, company_id):
         promotions = request.POST.get('promotions')
         protector = request.POST.get('protector')
         price_multiplier = request.POST.get('price_multiplier')
+        seller = request.POST.get('seller')
+        address = request.POST.get('address')
+        telephone_avito = request.POST.get('telephone')
+        promo_photo = request.POST.get('promo-photo')
+        print(promo_photo)
 
+        # Обновляем поля компании
+        company.description_avito = description
+        company.tags_avito = tags  # Сохраняем теги как строку
+        company.promotion_avito = promotions
+        company.protector_avito = protector
+        company.price_multiplier_avito = float(price_multiplier)
+        company.telephone_avito = telephone_avito
+        company.address = address
+        company.seller = seller
+        company.promo_photo = promo_photo
+        company.save()  # Сохраняем изменения
+
+        return redirect('uniq_avito_settings', company_id=company.id)  # Перенаправляем на страницу компании
+
+    return render(request, 'settings.html', {
+        'company': company,
+    })
+
+
+def update_company_drom_settings(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+
+    if request.method == 'POST':
+        # Получаем данные из формы
+        description = request.POST.get('description')
+        tags = request.POST.get('tags')
+        promotions = request.POST.get('promotions')
+        protector = request.POST.get('protector')
+        price_multiplier = request.POST.get('price_multiplier')
+        promo_photo = request.POST.get('promo-photo')
+        print(promo_photo)
         # Обновляем поля компании
         company.description = description
         company.tags = tags  # Сохраняем теги как строку
         company.promotion = promotions
         company.protector = protector
         company.price_multiplier = float(price_multiplier)
+        company.promo_photo = promo_photo
         company.save()  # Сохраняем изменения
 
-        return redirect('company_detail', company_id=company.id)  # Перенаправляем на страницу компании
+        return redirect('uniq_drom_settings', company_id=company.id)  # Перенаправляем на страницу компании
 
     return render(request, 'settings.html', {
         'company': company,
@@ -305,7 +411,25 @@ def save_ad_order(request, company_id):
             company.save()
             return redirect('company_detail', company_id=company.id)
     return HttpResponse("Invalid request", status=400)
+def save_ad_order_avito(request, company_id):
+    if request.method == 'POST':
+        order = request.POST.get('order')  # Get the order from the form
+        print(order)
+        if order:
+            # Split the order string into a list
+            print("Received order:", order)  # Debugging statement
+            # Here you can save the order to the database or process it as needed
+            company = Company.objects.get(id=company_id)
+            company.ad_order_avito = order  # Assuming you have a field to store this
+            company.save()
+            return redirect('company_detail', company_id=company.id)
+    return HttpResponse("Invalid request", status=400)
+
 
 def sortable_ad_view(request, company_id):
     company = get_object_or_404(Company, id=company_id)
     return render(request, 'sortable_ad.html', {'company': company})
+
+def sortable_ad_view_avito(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    return render(request, 'sortable_ad-avito.html', {'company': company})

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Настройки уникализатора для Avito</h1>
+    <a href="{% url 'company_detail' company.id %}">Вернуться назад</a>
+    <form method="post" action="{% url 'update_company_avito_settings' company.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <textarea class="form-control" id="description" name="description"
+                      rows="4">{{ company.description_avito }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="tags">Теги:</label>
+            <input type="text" class="form-control" id="tags" name="tags" value="{{ company.tags_value }}">
+            <small class="form-text text-muted">Введите теги, разделенные запятыми.</small>
+        </div>
+        <div class="form-group">
+            <label for="promo-photo">Промо фото:</label>
+            <input type="text" class="form-control" id="promo-photo" name="promo-photo"
+                   value="{{ company.promo_photo }}">
+            <small class="form-text text-muted">Введите промо фото, разделенные запятыми.</small>
+        </div>
+        <div class="form-group">
+            <label for="promotions">Акции:</label>
+            <textarea class="form-control" id="promotions" name="promotions"
+                      rows="4">{{ company.promotion_avito }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="protector">Протектор (сейчас {{ company.protector_avito }}):</label>
+            <select class="form-control" id="protector" name="protector">
+                <option value="">Выберите протектор</option>
+                <option value="all_season" {% if company.protector_avito == 'all_season' %}selected{% endif %}>Всесезонный</option>
+                <option value="summer" {% if company.protector_avito == 'summer' %}selected{% endif %}>Лето</option>
+                <option value="winter" {% if company.protector_avito == 'winter' %}selected{% endif %}>Зима</option>
+                <option value="winter_spikes" {% if company.protector_avito == 'winter_spikes' %}selected{% endif %}>Зима/Шипы</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="price_multiplier">Множитель цены:</label>
+            <input type="number" step="0.01" class="form-control" id="price_multiplier" name="price_multiplier"
+                   value="{{ company.price_multiplier_avito }}">
+            <small class="form-text text-muted">Введите множитель цены (например, 1.5).</small>
+        </div>
+        <div class="form-group">
+            <label for="telephone">Телефон:</label>
+            <input type="text" class="form-control" id="telephone" name="telephone"
+                   value="{{ company.telephone_avito }}">
+            <small class="form-text text-muted">Введите номер телефона.</small>
+        </div>
+        <div class="form-group">
+            <label for="seller">Продавец:</label>
+            <input type="text" class="form-control" id="seller" name="seller" value="{{ company.seller }}">
+            <small class="form-text text-muted">Введите имя продавца.</small>
+        </div>
+        <div class="form-group">
+            <label for="address">Адрес:</label>
+            <input type="text" class="form-control" id="address" name="address" value="{{ company.address }}">
+            <small class="form-text text-muted">Введите адрес.</small>
+        </div>
+        <div>
+            <a href="{% url 'sortable_ad_avito' company.id %}">Редактировать порядок объявления</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить настройки</button>
+    </form>
+
+</div>
+
+{% endblock %}

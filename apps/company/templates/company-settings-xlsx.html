@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки формата XLSX</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        .sortable-list, .removed-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .sortable-item, .removed-item {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .remove-btn, .restore-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .field-label {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Настройки формата XLSX для {{ company.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Выберите поля для включения в таблицу:</h2>
+        <ul class="sortable-list" id="sortable">
+            {% for field in form.fields_choices %}
+                {% if field.0 in selected_fields %}
+                    <li class="sortable-item" data-field="{{ field.0 }}">
+                        <label class="field-label">
+                            <input type="checkbox" name="selected_fields" value="{{ field.0 }}" checked>
+                            {{ field.1 }}  <!-- Здесь отображается название поля -->
+                        </label>
+                        <button type="button" class="remove-btn">Удалить</button>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <h2>Удаленные поля:</h2>
+        <ul class="removed-list" id="removed-list">
+            {% for field in form.fields_choices %}
+                {% if field.0 not in selected_fields %}
+                    <li class="removed-item" data-field="{{ field.0 }}">
+                        <span>{{ field.1 }}</span>
+                        <button type="button" class="restore-btn">Восстановить</button>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <button type="submit">Сохранить настройки</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            // Make the list sortable
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+
+            // Remove item on button click
+            $(".remove-btn").on("click", function() {
+                var item = $(this).closest(".sortable-item");
+                var fieldValue = item.data("field");
+                var fieldLabel = item.find(".field-label").text();
+
+                // Move item to removed list
+                $("#removed-list").append(
+                    `<li class="removed-item" data-field="${fieldValue}">
+                        <span>${fieldLabel}</span>
+                        <button type="button" class="restore-btn">Восстановить</button>
+                    </li>`
+                );
+                item.remove();
+            });
+
+            // Restore item on button click
+            $(document).on("click", ".restore-btn", function() {
+                var item = $(this).closest(".removed-item");
+                var fieldValue = item.data("field");
+                var fieldLabel = item.find("span").text();
+
+                // Move item back to sortable list
+                $("#sortable").append(
+                    `<li class="sortable-item" data-field="${fieldValue}">
+                        <label class="field-label">
+                            <input type="checkbox" name="selected_fields" value="${fieldValue}" checked>
+                            ${fieldLabel}
+                        </label>
+                        <button type="button" class="remove-btn">Удалить</button>
+                    </li>`
+                );
+                item.remove();
+            });
+        });
+    </script>
+</body>
+</html>
