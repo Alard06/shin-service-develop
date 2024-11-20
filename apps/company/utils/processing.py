@@ -1,6 +1,8 @@
 import math
 import xml.etree.ElementTree as ET
 from datetime import datetime
+
+import numpy
 import pandas as pd
 import openpyxl
 
@@ -8,6 +10,7 @@ from itertools import groupby
 
 from apps.company.models import Company
 from apps.company.utils.functions import get_measurement
+from apps.company.utils.general_tools import format_number
 from apps.suppliers.models import Tire, TireSupplier, Supplier, CompanySupplier, TruckTireSupplier, DiskSupplier, \
     SpecialTireSupplier, MotoTireSupplier, TruckDiskSupplier
 
@@ -308,14 +311,33 @@ def save_tires_to_xml_availability(grouped_products, company_id, types, format):
         print(f"XML сохранен в файл: {name}")
 
 
-def get_headline(result, category) -> str:
-    res = ""
+def  get_headline(result, category) -> str:
     result = result['product']
+    diameter, width = None, None
+    try:
+        if result.diameter:
+            diameter = numpy.float16(result.diameter.replace(',', '.'))
+        try:
+            width = numpy.float16(result.width.replace(',', '.'))
+        except:
+            width = 'Full'
+        try:
+            height = numpy.float16(result.height.replace(',', '.'))
+        except:
+            height = 'Full'
+    except ValueError as e:
+        print(f"Error converting tire size: {e}")
+        return ""  # Return an empty string or handle the error as needed
+    diameter_str = format_number(diameter)
+    height_str = format_number(height) if height != 'Full' else 'Full'
+    width_str = format_number(width) if width != 'Full' else 'Full'
+
+    res = ""
     if category == "tires" or category == "truckTires" or category == "mototires":
         res += result.brand + " "
         res += result.product + " "
-        product_width_res = result.width.replace(",", ".").strip("0").strip(".")
-        product_height_res = result.height.replace(",", ".").strip("0").strip(".")
+        product_width_res = width_str
+        product_height_res = height_str
         if product_width_res != "":
             res += product_width_res + " "
         if product_height_res != "":
@@ -332,9 +354,9 @@ def get_headline(result, category) -> str:
         if result.product != "":
             res += result.product + " "
         if result.width != "":
-            res += result.width.replace(",", ".").strip("0").strip(".") + " "
+            res += width_str + ' '
         if result.diameter != "":
-            res += result.diameter.replace(",", ".").strip("0").strip(".") + " "
+            res += diameter_str + " "
         if result.outfit != "":
             res += result.outfit.replace(",", ".").strip("0").strip(".") + " "
         if result.boltcount != "":
@@ -342,7 +364,7 @@ def get_headline(result, category) -> str:
         if result.pcd != "":
             res += result.pcd.replace(",", ".").strip("0").strip(".") + " "
         if result.dia != "":
-            res += result.dia.replace(",", ".").strip("0").strip(".") + " "
+            res += diameter_str + " "
         if result.color != "":
             res += result.color + " "
         return res.strip()

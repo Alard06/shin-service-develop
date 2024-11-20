@@ -29,6 +29,7 @@
             <label for="protector">Протектор (сейчас {{ company.protector }}):</label>
             <select class="form-control" id="protector" name="protector">
                 <option value="">Выберите протектор</option>
+                <option value="cancel" {% if company.protector == 'cancel' %}selected{% endif %}>Не выбрано</option>
                 <option value="all_season" {% if company.protector == 'all_season' %}selected{% endif %}>Всесезонный</option>
                 <option value="summer" {% if company.protector == 'summer' %}selected{% endif %}>Лето</option>
                 <option value="winter" {% if company.protector == 'winter' %}selected{% endif %}>Зима</option>
@@ -36,11 +37,19 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="price_multiplier">Множитель цены:</label>
+            <label for="price_multiplier">Множитель цены (сейчас {{ company.price_multiplier }}):</label>
             <input type="number" step="0.01" class="form-control" id="price_multiplier" name="price_multiplier"
                    value="{{ company.price_multiplier }}">
             <small class="form-text text-muted">Введите множитель цены (например, 1.5).</small>
         </div>
+
+        <div class="form-group">
+            <label for="photo_source">Использовать фото из стороннего файла (сейчас {{company.get_other_photo_drom}}):</label>
+            <input type="checkbox" id="photo_source" name="photo_source"
+                   {% if company.get_other_photo_drom %}checked{% endif %}>
+            <small class="form-text text-muted">Если выбрано, фото будут загружены из стороннего файла.</small>
+        </div>
+
         <div>
             <a href="{% url 'sortable_ad' company.id %}">Редактировать порядок объявления</a>
         </div>

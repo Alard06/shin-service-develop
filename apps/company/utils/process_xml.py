@@ -59,6 +59,35 @@ def process_xml_avito(file_path, company, product_types):
     return ads
 
 
+## TEMP
+# TODO
+def process_xml_avito_handler(file_path, company, product_types):
+    root = read_xml(file_path)
+    print('read')
+    ads = ET.Element("Ads", formatVersion="3", target="Avito.ru")
+    print('ads')
+    for product in product_types:
+        if product == 'tires':
+            for tires in root.findall('tires/tire'):
+                process_data_tire(ads, tires, company, season=True)
+        elif product == 'disks':
+            for disk in root.findall('disks/disk'):
+                process_data_disks(ads, disk, company)
+        elif product == 'moto_tires':
+            for moto_tire in root.findall('moto/motoTire'):
+                process_data_moto(ads, moto_tire, company)
+        elif product == 'truck_tires':
+            for truck_tire in root.findall('trucks/truckTire'):
+                process_data_truck_tire_and_special(ads, truck_tire, company, season=True)
+        elif product == 'special_tires':
+            for special_tire in root.findall('specialTires/specialTire'):
+                process_data_truck_tire_and_special(ads, special_tire, company, season=True)
+        elif product == 'truck_disks':
+            for truck_disk in root.findall('truckDisks/truckDisk'):
+                process_data_disks(ads, truck_disk, company)
+    return ads
+
+
 def save_to_xml_avito(ads, type_file, company_id, product_types):
     # Преобразуем все значения в строки перед сериализацией
     def convert_to_string(element):

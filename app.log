@@ -1,0 +1,1483 @@
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 307, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 159, in process_xml_handler
+    root = read_xml(file_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 35, in read_xml
+    tree = ET.parse(file_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py", line 1203, in parse
+    tree.parse(source, parser)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py", line 557, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\admin\\Documents\\shin-service-develop\\media\\uploads/2/Обработчик-15-11-16-54.xml'
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 90424
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 307, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 159, in process_xml_handler
+    root = read_xml(file_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 35, in read_xml
+    tree = ET.parse(file_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py", line 1203, in parse
+    tree.parse(source, parser)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py", line 568, in parse
+    self._root = parser._parse_whole(source)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xml.etree.ElementTree.ParseError: not well-formed (invalid token): line 1, column 2
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 90423
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 109, in company_detail
+    get_available_products_for_company(company_id, types, availability, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 172, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 204, in save_tires_to_xml_availability
+    process_special_tires(root, grouped_products['special_tires'], company_id)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 806, in process_special_tires
+    headline=get_headline(data, 'SpecialTires'),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 318, in get_headline
+    width = numpy.float16(result.width.replace(',', '.'))
+                          ^^^^^^^^^^^^
+AttributeError: 'SpecialTire' object has no attribute 'width'
+"POST /companies/2/ HTTP/1.1" 500 136363
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 109, in company_detail
+    get_available_products_for_company(company_id, types, availability, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 172, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 204, in save_tires_to_xml_availability
+    process_special_tires(root, grouped_products['special_tires'], company_id)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 806, in process_special_tires
+    headline=get_headline(data, 'SpecialTires'),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 318, in get_headline
+    width = numpy.float16(result.width.replace(',', '.'))
+                          ^^^^^^^^^^^^
+AttributeError: 'SpecialTire' object has no attribute 'width'
+"POST /companies/2/ HTTP/1.1" 500 136363
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 109, in company_detail
+    get_available_products_for_company(company_id, types, availability, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 172, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 204, in save_tires_to_xml_availability
+    process_special_tires(root, grouped_products['special_tires'], company_id)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 806, in process_special_tires
+    headline=get_headline(data, 'SpecialTires'),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 318, in get_headline
+    width = numpy.float16(result.width.replace(',', '.'))
+                          ^^^^^^^^^^^^
+AttributeError: 'SpecialTire' object has no attribute 'width'
+"POST /companies/2/ HTTP/1.1" 500 136363
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 109, in company_detail
+    get_available_products_for_company(company_id, types, availability, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 172, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 204, in save_tires_to_xml_availability
+    process_special_tires(root, grouped_products['special_tires'], company_id)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 809, in process_special_tires
+    headline=get_headline(data, 'SpecialTires'),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 320, in get_headline
+    if result.width:
+       ^^^^^^^^^^^^
+AttributeError: 'SpecialTire' object has no attribute 'width'
+"POST /companies/2/ HTTP/1.1" 500 136389
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 109, in company_detail
+    get_available_products_for_company(company_id, types, availability, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 172, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 204, in save_tires_to_xml_availability
+    process_special_tires(root, grouped_products['special_tires'], company_id)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 811, in process_special_tires
+    headline=get_headline(data, 'SpecialTires'),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 333, in get_headline
+    width_str = format_number(width)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 134, in format_number
+    if num.is_integer():
+       ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'is_integer'
+"POST /companies/2/ HTTP/1.1" 500 140917
+Internal Server Error: /company/2/load/photo
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 453, in load_photo
+    add_other_photo(file_path, company)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 311, in add_other_photo
+    items = eval(f"{category}.objects.filter(find_images_title__in=category_data['Наименование'].unique())")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 1, in <module>
+NameError: name 'nan' is not defined
+"POST /company/2/load/photo HTTP/1.1" 500 80613
+Internal Server Error: /company/2/load/photo
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 453, in load_photo
+    add_other_photo(file_path, company)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 313, in add_other_photo
+    items = eval(f"{category}.objects.filter(find_images_title__in=category_data['Наименование'].unique())")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 1, in <module>
+NameError: name 'nan' is not defined
+"POST /company/2/load/photo HTTP/1.1" 500 80613
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 141, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 83, in get_images_drom
+    image = company_image.tire.image
+            ^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'tire'
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 93401
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 159, in process_xml_handler
+    root = read_xml(file_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 35, in read_xml
+    tree = ET.parse(file_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py", line 1203, in parse
+    tree.parse(source, parser)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py", line 557, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\admin\\Documents\\shin-service-develop\\media\\uploads/2/Уникализатор-AVITO-20241116-000527.xml'
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 90581
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 160, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 86, in get_images_drom
+    company_image = company_model.objects.filter(**{f"{model.__class__.__name__.lower()}": model, "company": company}).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140009
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 162, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 88, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140165
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 163, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 89, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140378
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 163, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 89, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140378
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 164, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 90, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140397
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 164, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 90, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140415
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 164, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 90, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140415
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 164, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 90, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140415
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 162, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 88, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140347
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 162, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 88, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140346
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 215, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 308, in unique
+    offers = process_xml_handler(file_path, company, product_types)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 166, in process_xml_handler
+    offer = process_tires(tire, company, season=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 165, in get_images
+    images = get_images_drom(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 88, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 140390
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 218, in run_uniqueness_checker
+    path = unique_avito(file_path, company=company, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 317, in unique_avito
+    ads = process_xml_avito_handler(file_path, company, product_types)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\process_xml.py", line 65, in process_xml_avito_handler
+    root = read_xml(file_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 35, in read_xml
+    tree = ET.parse(file_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py", line 1203, in parse
+    tree.parse(source, parser)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py", line 557, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\admin\\Documents\\shin-service-develop\\media\\uploads/2/Обработчик-19-11-15-53.xml'
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 89244
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 218, in run_uniqueness_checker
+    path = unique_avito(file_path, company=company, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 317, in unique_avito
+    ads = process_xml_avito_handler(file_path, company, product_types)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\process_xml.py", line 72, in process_xml_avito_handler
+    process_data_tire(ads, tires, company, season=True)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\tires.py", line 50, in process_data_tire
+    get_images_db = get_images(data, company)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 170, in get_images
+    images = get_images_avito(tires_element, company)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 145, in get_images_avito
+    company_image = company_model.objects.filter(**{f"{model.__class__.__name__.lower()}": model, "company": company}).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'tire' into field. Choices are: additional_images, company, company_id, disk, disk_id, id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 139667
+Not Found: /result-uniq
+"GET /result-uniq HTTP/1.1" 404 13756
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: services_uniquedetail
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 218, in run_uniqueness_checker
+    new_uniq_data = UniqueDetail.objects.create(company=company, date=datetime.now())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 891, in save
+    self.save_base(
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 997, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 1160, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 1201, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: services_uniquedetail
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 159515
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Forbidden (CSRF token from POST incorrect.): /run_uniqueness_checker/2
+"POST /run_uniqueness_checker/2 HTTP/1.1" 403 2545
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 219, in run_uniqueness_checker
+    new_uniq_data.commit()
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'UniqueDetail' object has no attribute 'commit'
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 68647
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /company/2/result-uniq/8
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 477, in result_uniq
+    products = UniqueProductNoPhoto.objects.filter(id_product__in=uniq_data.products.values_list('id_product', flat=True))
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'UniqueProductNoPhoto' object has no attribute 'values_list'
+"GET /company/2/result-uniq/8 HTTP/1.1" 500 66056
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 165, in process_xml_handler
+    offer = process_tires(tire, company, season=True, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 166, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 111, in get_images_drom
+    unique_detail.products = new_product
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 665, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use products.set() instead.
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 100638
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 184, in process_xml_handler
+    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 178, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 88, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'specialtire' into field. Choices are: additional_images, company, company_id, id, tire, tire_id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 148705
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 184, in process_xml_handler
+    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 179, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 89, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'specialtire' into field. Choices are: additional_images, company, company_id, id, tire, tire_id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 148741
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 184, in process_xml_handler
+    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 179, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 89, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'specialtire' into field. Choices are: additional_images, company, company_id, id, tire, tire_id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 148756
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 184, in process_xml_handler
+    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 179, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 89, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'specialtire' into field. Choices are: additional_images, company, company_id, id, tire, tire_id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 148589
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 184, in process_xml_handler
+    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 179, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 89, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'specialtire' into field. Choices are: additional_images, company, company_id, id, tire, tire_id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 148589
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 184, in process_xml_handler
+    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 180, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 90, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'specialtire' into field. Choices are: additional_images, company, company_id, id, tire, tire_id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 148585
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 184, in process_xml_handler
+    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 181, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 91, in get_images_drom
+    company_image = company_model.objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'specialtire' into field. Choices are: additional_images, company, company_id, id, tire, tire_id
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 148572
+Not Found: /favicon.ico
+Internal Server Error: /run_uniqueness_checker/2
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in run_uniqueness_checker
+    path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 306, in unique
+    offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 184, in process_xml_handler
+    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 84, in process_tires
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 181, in get_images
+    images = get_images_drom(tires_element, company, uniq_data_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 91, in get_images_drom
+    company_image = company_models[model_index].objects.filter(**filter_kwargs).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1528, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1342, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1319, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "<class 'apps.suppliers.models.SpecialTireCompany'>": Must be "SpecialTire" instance.
+"POST /run_uniqueness_checker/2 HTTP/1.1" 500 142607
+Not Found: /favicon.ico
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041
+Not Found: /company/2/result-uniq/media/uploads/2/Уникализатор-20241120-154638.xml
+"GET /company/2/result-uniq/media/uploads/2/%D0%A3%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80-20241120-154638.xml HTTP/1.1" 404 14041

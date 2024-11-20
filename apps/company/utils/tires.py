@@ -1,16 +1,16 @@
 from apps.company.utils.general_tools import season_to_protector, immutable_data, price_rozn_pow, get_images, \
     ad_order_create, types_avito_tires, get_diameter, get_price
 import xml.etree.ElementTree as ET
-
+import openpyxl
 
 def unique_tire_avito(tires, company, season=True):
     ...
 
 
 def process_data_tire(ads, data, company, season=False):
-    season_protector = None
+    season_protector = types_avito_tires(data.get('season'))
 
-    if season:
+    if season and not (company.protector == 'cancel'):
         tire_season = types_avito_tires(data.get('season'))
         print(company.protector_avito, season_to_protector, season_to_protector.get(tire_season), tire_season)
         if company.protector_avito not in season_to_protector.get(tire_season):
@@ -60,3 +60,7 @@ def process_data_tire(ads, data, company, season=False):
                                        company_description=company.description_avito,
                                        company_tags=company.tags_avito,
                                        company_promotion=company.promotion_avito)
+
+
+# def get_other_photo(path):
+#     with

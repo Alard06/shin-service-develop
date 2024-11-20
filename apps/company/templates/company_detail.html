@@ -233,6 +233,13 @@
                 <label>
                     <input type="radio" name="trading_platform" value="drom"> DROM
                 </label><br>
+                    <h3>Обработка другим ПО:</h3>
+                <label>
+                    <input type="radio" name="Processing-by-other-software" value="yes" required> Да
+                </label><br>
+                <label>
+                    <input type="radio" name="Processing-by-other-software" value="no"> Нет
+                </label><br>
     <button type="submit" class="btn btn-primary">Запустить уникализатор</button>
 </form>
 
@@ -247,6 +254,12 @@
         <input type="hidden" name="file_name" id="file-name-input-download">
         <input type="hidden" name="company_id" value="{{ company.id }}">
         <button type="submit" class="btn btn-info">Скачать</button>
+    </form>
+    <form id="load-photo-form" method="post" action="{% url 'load_photo_company' company.id %}">
+        {% csrf_token %}
+        <input type="hidden" name="file_name" id="file-name-input-images">
+        <input type="hidden" name="company_id" value="{{ company.id }}">
+        <button type="submit" class="btn btn-info">Загрузить фото</button>
     </form>
 </div>
             </div>
@@ -295,6 +308,7 @@
         document.getElementById('file-name-input').value = fileName; // Set the file name for uniqueness checker
         document.getElementById('file-name-input-delete').value = fileName; // Set the file name for deletion
         document.getElementById('file-name-input-download').value = fileName; // Set the file name for download
+        document.getElementById('file-name-input-images').value = fileName; // Set the file name for download
         document.getElementById('file-options').style.display = 'block'; // Show options
     }
 

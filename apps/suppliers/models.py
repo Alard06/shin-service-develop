@@ -64,6 +64,8 @@ class Tire(models.Model):
     fr = models.CharField(max_length=100, blank=True, null=True)
     xl = models.CharField(max_length=100, blank=True, null=True)
 
+    find_images_title = models.CharField(max_length=100, blank=True, null=True)
+
     def __str__(self):
         return f"{self.brand} {self.product} ({self.model})"
 
@@ -104,6 +106,8 @@ class Disk(models.Model):
     dia = models.CharField(max_length=20)
     color = models.CharField(max_length=50)  # Цвет
     type = models.CharField(max_length=50)  # Тип (литой, штампованный и т.д.)
+
+    find_images_title = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return f"{self.brand} {self.product} ({self.model})"
@@ -148,6 +152,8 @@ class TruckTire(models.Model):
     lightduty = models.CharField(max_length=20)  # Признак легкой нагрузки
     special = models.CharField(max_length=20)  # Признак специального назначения
 
+    find_images_title = models.CharField(max_length=100, blank=True, null=True)
+
     def __str__(self):
         return f"{self.brand} {self.product} ({self.model})"
 
@@ -190,6 +196,8 @@ class TruckDisk(models.Model):
     note = models.CharField(max_length=255, blank=True, null=True)  # Примечание
     type = models.CharField(max_length=50)  # Тип (литой, штампованный и т.д.)
 
+    find_images_title = models.CharField(max_length=100, blank=True, null=True)
+
     def __str__(self):
         return f"{self.brand} {self.product} ({self.model})"
 
@@ -213,7 +221,6 @@ class TruckDiskSupplier(models.Model):
         return f"{self.truck_disk} - {self.supplier.name} - Price: {self.price}"
 
 
-
 class SpecialTire(models.Model):
     """ Модель для хранения информации о специальных шинах """
     id_special = models.CharField(max_length=100, blank=True, null=True)
@@ -234,6 +241,8 @@ class SpecialTire(models.Model):
     note = models.TextField(blank=True)  # Примечание
     countries = models.TextField(blank=True)  # Страны
     protector_type = models.CharField(max_length=50, blank=True)  # Тип протектора
+
+    find_images_title = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return f"{self.brand} {self.product} ({self.model})"
@@ -279,6 +288,8 @@ class MotoTire(models.Model):
     runflat = models.CharField(max_length=20)  # Признак Runflat
     omolagation = models.CharField(max_length=20)  # Омологация
 
+    find_images_title = models.CharField(max_length=100, blank=True, null=True)
+
     def __str__(self):
         return f"{self.brand} {self.product} ({self.width}/{self.height} R{self.diameter})"
 
@@ -300,3 +311,63 @@ class MotoTireSupplier(models.Model):
 
     def __str__(self):
         return f"{self.moto_tire} - {self.supplier.name} - Price: {self.price}"
+
+
+class TireCompany(models.Model):
+    """ Промежуточная таблица для связи шины и компании с дополнительными изображениями """
+    tire = models.ForeignKey(Tire, on_delete=models.CASCADE, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    additional_images = models.TextField(null=True, blank=True)  # Store additional image URLs as a list
+
+    def __str__(self):
+        return f"{self.tire} - {self.company}"
+
+
+class DiskCompany(models.Model):
+    """ Промежуточная таблица для связи шины и компании с дополнительными изображениями """
+    disk = models.ForeignKey(Disk, on_delete=models.CASCADE, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    additional_images = models.TextField(null=True, blank=True)  # Store additional image URLs as a list
+
+    def __str__(self):
+        return f"{self.disk} - {self.company}"
+
+
+class SpecialTireCompany(models.Model):
+    """ Промежуточная таблица для связи шины и компании с дополнительными изображениями """
+    specialtire = models.ForeignKey(SpecialTire, on_delete=models.CASCADE, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    additional_images = models.TextField(null=True, blank=True)  # Store additional image URLs as a list
+
+    def __str__(self):
+        return f"{self.specialtire} - {self.company}"
+
+
+class MotoTireCompany(models.Model):
+    """ Промежуточная таблица для связи шины и компании с дополнительными изображениями """
+    mototire = models.ForeignKey(MotoTire, on_delete=models.CASCADE, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    additional_images = models.TextField(null=True, blank=True)  # Store additional image URLs as a list
+
+    def __str__(self):
+        return f"{self.mototire} - {self.company}"
+
+
+class TruckDiskCompany(models.Model):
+    """ Промежуточная таблица для связи шины и компании с дополнительными изображениями """
+    truckdisk = models.ForeignKey(TruckDisk, on_delete=models.CASCADE, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    additional_images = models.TextField(null=True, blank=True)  # Store additional image URLs as a list
+
+    def __str__(self):
+        return f"{self.truckdisk} - {self.company}"
+
+
+class TruckTireCompany(models.Model):
+    """ Промежуточная таблица для связи шины и компании с дополнительными изображениями """
+    trucktire = models.ForeignKey(TruckTire, on_delete=models.CASCADE, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    additional_images = models.TextField(null=True, blank=True)  # Store additional image URLs as a list
+
+    def __str__(self):
+        return f"{self.trucktire} - {self.company}"

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Результат уникализатора!</h1>
+
+    <h2 class="mt-4">Информация о компании</h2>
+    <p><strong>Компания:</strong> {{ company.name }}</p>
+    <p><strong>Дата уникализации:</strong> {{ uniq_data.date }}</p>
+    <p><strong>Фото не найдено:</strong> {{ uniq_data.count_no_photos }}</p>
+
+    <h3 class="mt-4">Позиции, на которые отсутствуют изображения</h3>
+    <div class="scrollable-container mb-3">
+        <div class="row">
+            {% for image in images %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ image.brand }} {{ image.product }}</h5>
+                            {% if image.image %}
+                                <img src="{{ image.image.url }}" alt="{{ image.product }}" class="img-fluid">
+                            {% else %}
+                                <p class="text-muted">Изображение отсутствует</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button id="copyButton" class="btn btn-primary">Скопировать названия</button>
+    <a href="{{ file_path }}" class="btn btn-success mt-3" download>Скачать файл</a>  <!-- Download button -->
+</div>
+<script>
+    document.getElementById('copyButton').addEventListener('click', function() {
+        const productNames = Array.from(document.querySelectorAll('.card-title')).map(card => card.textContent.trim()).join('\n');
+        navigator.clipboard.writeText(productNames).then(() => {
+            alert('Названия скопированы в буфер обмена!');
+        }).catch(err => {
+            console.error('Ошибка при копировании: ', err);
+        });
+    });
+</script>
+<style>
+    .scrollable-container {
+        max-height: 400px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+</style>
+
+{% endblock %}

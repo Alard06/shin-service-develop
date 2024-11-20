@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, FileResponse
@@ -8,8 +9,10 @@ from django.conf import settings
 
 from apps.company.forms import CompanyForm, FormatXLSXForm
 from apps.company.models import Company
+from apps.company.utils.general_tools import add_other_photo
 from apps.company.utils.processing import get_available_products_for_company
 from apps.company.utils.uniqueizer import unique, unique_avito
+from apps.services.models import UniqueDetail, UniqueProductNoPhoto
 from apps.suppliers.models import Supplier, CompanySupplier, SpecialTireSupplier, TireSupplier, DiskSupplier, \
     TruckTireSupplier, MotoTireSupplier, TruckDiskSupplier
 
@@ -94,8 +97,6 @@ def company_detail(request, company_id):
                 supplier = get_object_or_404(Supplier, id=supplier_id)
                 priority = request.POST.get(f'priority_{supplier_id}', 1)  # Получаем приоритет для каждого поставщика
                 visual_priority = request.POST.get(f'visual_priority_{supplier_id}', 1)  # Получаем визуальный приоритет
-
-                # Убедитесь, что приоритет и визуальный приоритет корректно сохраняются
                 CompanySupplier.objects.update_or_create(
                     company=company,
                     supplier=supplier,
@@ -133,6 +134,7 @@ def company_brand_exceptions(request, company_id):
         'company': company
     })
 
+
 def company_brand_exceptions_data(request, company_id):
     company = get_object_or_404(Company, id=company_id)
     if request.method == 'POST':
@@ -140,6 +142,7 @@ def company_brand_exceptions_data(request, company_id):
         company.brand_exception = brands
         company.save()
     return redirect('company_brand_exceptions', company_id=company.id)
+
 
 def uniq_avito_settings(request, company_id):
     company = get_object_or_404(Company, id=company_id)
@@ -209,23 +212,34 @@ def run_uniqueness_checker(request, company_id):
         print("Selected product types:", product_types)  # Debug output for selected types
         type_file = request.POST.get('output_format')
         trading_platform = request.POST.get('trading_platform')
+        processing_by_type_other_software = request.POST.get('Processing-by-other-software')
         # Call your uniqueness function, passing the selected product types
         print(trading_platform)
+        new_uniq_data = UniqueDetail.objects.create(company=company, date=datetime.now())
         if trading_platform == 'drom':
             path = unique(file_path, company=company, company_id=company_id, product_types=product_types,
-                          type_file=type_file)
+                          type_file=type_file, processing_by_type_other_software=processing_by_type_other_software,
+                          uniq_data_id=new_uniq_data.pk)
         elif trading_platform == 'avito':
-            path = unique_avito(file_path, company=company, product_types=product_types, type_file=type_file)
+            path = unique_avito(file_path, company=company, product_types=product_types,
+                                type_file=type_file,
+                                processing_by_type_other_software=processing_by_type_other_software,
+                                uniq_data_id=new_uniq_data.pk)
 
         # Prepare the processed file for download
         processed_file_path = path  # Use the path directly as it already contains the full path
-
+        new_uniq_data.path = processed_file_path
+        new_uniq_data.save()
+        if os.path.exists(path):
+            # Instead of returning the file, redirect to the results page
+            return redirect('result_uniq', company_id=company_id, uniq_data_id=new_uniq_data.pk)
         # Check if the processed file exists
-        if os.path.exists(processed_file_path):
+        # if os.path.exists(processed_file_path):
             # Return the file response for download
-            response = FileResponse(open(processed_file_path, 'rb'), as_attachment=True,
-                                    filename=os.path.basename(processed_file_path))  # Use the original filename
-            return response
+            #response = FileResponse(open(processed_file_path, 'rb'), as_attachment=True,
+             #                       filename=os.path.basename(processed_file_path))  # Use the original filename
+           # return response
+
         else:
             print('Обработанный файл не найден. 404')
             return HttpResponse("Обработанный файл не найден.", status=404)
@@ -350,8 +364,11 @@ def update_company_avito_settings(request, company_id):
         address = request.POST.get('address')
         telephone_avito = request.POST.get('telephone')
         promo_photo = request.POST.get('promo-photo')
-        print(promo_photo)
+        get_other_photo = 'photo_source' in request.POST
+        print(get_other_photo)
 
+        if price_multiplier == '' or price_multiplier == 'None' or price_multiplier is None:
+            price_multiplier = 1
         # Обновляем поля компании
         company.description_avito = description
         company.tags_avito = tags  # Сохраняем теги как строку
@@ -362,6 +379,7 @@ def update_company_avito_settings(request, company_id):
         company.address = address
         company.seller = seller
         company.promo_photo = promo_photo
+        company.get_other_photo_avito = get_other_photo
         company.save()  # Сохраняем изменения
 
         return redirect('uniq_avito_settings', company_id=company.id)  # Перенаправляем на страницу компании
@@ -382,7 +400,11 @@ def update_company_drom_settings(request, company_id):
         protector = request.POST.get('protector')
         price_multiplier = request.POST.get('price_multiplier')
         promo_photo = request.POST.get('promo-photo')
-        print(promo_photo)
+        get_other_photo = 'photo_source' in request.POST
+        print(get_other_photo)
+
+        if price_multiplier == '' or price_multiplier == 'None' or price_multiplier is None:
+            price_multiplier = 1
         # Обновляем поля компании
         company.description = description
         company.tags = tags  # Сохраняем теги как строку
@@ -390,6 +412,7 @@ def update_company_drom_settings(request, company_id):
         company.protector = protector
         company.price_multiplier = float(price_multiplier)
         company.promo_photo = promo_photo
+        company.get_other_photo_drom = get_other_photo
         company.save()  # Сохраняем изменения
 
         return redirect('uniq_drom_settings', company_id=company.id)  # Перенаправляем на страницу компании
@@ -411,10 +434,11 @@ def save_ad_order(request, company_id):
             company.save()
             return redirect('company_detail', company_id=company.id)
     return HttpResponse("Invalid request", status=400)
+
+
 def save_ad_order_avito(request, company_id):
     if request.method == 'POST':
         order = request.POST.get('order')  # Get the order from the form
-        print(order)
         if order:
             # Split the order string into a list
             print("Received order:", order)  # Debugging statement
@@ -430,6 +454,39 @@ def sortable_ad_view(request, company_id):
     company = get_object_or_404(Company, id=company_id)
     return render(request, 'sortable_ad.html', {'company': company})
 
+
 def sortable_ad_view_avito(request, company_id):
     company = get_object_or_404(Company, id=company_id)
     return render(request, 'sortable_ad-avito.html', {'company': company})
+
+
+def load_photo(request, company_id):
+    company = Company.objects.get(id=company_id)
+    file_name = request.POST.get('file_name')
+    uploads_dir = os.path.join(settings.MEDIA_ROOT, f'uploads/{company_id}')  # Ensure company_id is defined
+    file_path = os.path.join(uploads_dir, file_name)
+    print(file_path)
+    add_other_photo(file_path, company)
+    return redirect('company_detail', company_id=company.id)
+
+
+
+def result_uniq(request, company_id, uniq_data_id):
+    company = get_object_or_404(Company, id=company_id)
+    uniq_data = get_object_or_404(UniqueDetail, pk=uniq_data_id)
+    products = uniq_data.products.all()
+    images = []
+    for product in products:
+        images.append({
+            'id_product': product.id_product,
+            'brand': product.brand,
+            'product': product.product,
+            'image': product.image if hasattr(product, 'image') else None
+        })
+
+    return render(request, 'company-result-uniq.html', {
+        'company': company,
+        'uniq_data': uniq_data,
+        'images': images,
+        'file_path': uniq_data.path  # Pass the file path to the context
+    })

@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 from .models import Supplier, City, CompanySupplier, Tire, TireSupplier, MotoTireSupplier, MotoTire, SpecialTire, \
-    SpecialTireSupplier, TruckTireSupplier, TruckTire, Disk, DiskSupplier, TruckDisk, TruckDiskSupplier
+    SpecialTireSupplier, TruckTireSupplier, TruckTire, Disk, DiskSupplier, TruckDisk, TruckDiskSupplier, TireCompany, \
+    DiskCompany, SpecialTireCompany, MotoTireCompany, TruckDiskCompany, TruckTireCompany
 
 # Register your models here.
 admin.site.register(Supplier)
@@ -19,3 +20,9 @@ admin.site.register(Disk)
 admin.site.register(DiskSupplier)
 admin.site.register(TruckDisk)
 admin.site.register(TruckDiskSupplier)
+admin.site.register(TireCompany)
+admin.site.register(DiskCompany)
+admin.site.register(SpecialTireCompany)
+admin.site.register(MotoTireCompany)
+admin.site.register(TruckDiskCompany)
+admin.site.register(TruckTireCompany)

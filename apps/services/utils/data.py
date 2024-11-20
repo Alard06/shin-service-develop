@@ -48,7 +48,8 @@ async def tires_elements(suppliers, cities, file_path):
             'at': elem.get('at'),
             'runFlatTitle': elem.get('runFlatTitle'),
             'fr': elem.get('fr'),
-            'xl': elem.get('xl')
+            'xl': elem.get('xl'),
+            'find_images_title': elem.get('brand').upper() + ' ' + elem.get('product').upper()
         }
 
         # Add tire data to the list if the full title is present
@@ -187,6 +188,7 @@ async def trucks_disks_elements(suppliers, cities, root):
                 'diameter': disk.get('diameter'),
                 'boltcount': disk.get('boltcount'),
                 'dia': disk.get('dia'),
+                'find_images_title': disk.get('brand').upper() + ' ' + disk.get('product').upper() + ' ' + str(disk.get('color').upper()) if disk.get('color') else ' '
             }
 
             # Add disk data to the list if the full title is present
@@ -287,6 +289,7 @@ async def disks_elements(suppliers, cities, root):
                 'diameter': disk.get('diameter'),
                 'boltcount': disk.get('boltcount'),
                 'dia': disk.get('dia'),
+                'find_images_title': disk.get('brand').upper() + ' ' + disk.get('product').upper() + ' ' + disk.get('color').upper()
             }
 
             # Add disk data to the list if the full title is present
@@ -388,7 +391,8 @@ async def truck_tires_element(suppliers, cities, root):
                 'height': truck_tire.get('height'),
                 'diameter': truck_tire.get('diameter'),
                 'number_of_plies': truck_tire.get('numberOfPlies'),
-                'axis': truck_tire.get('axis') or ''
+                'axis': truck_tire.get('axis') or '',
+                'find_images_title': truck_tire.get('brand').upper() + ' ' + truck_tire.get('product').upper()
             }
 
             # Add truck tire data to the list if the full title is present

@@ -4,7 +4,8 @@ from .views import company_list, create_company, company_detail, add_suppliers_t
     delete_company, edit_company, company_data, run_uniqueness_checker, delete_file, upload_file_company, \
     download_file_unique, save_ad_order, sortable_ad_view, uniq_drom_settings, \
     update_company_drom_settings, uniq_avito_settings, update_company_avito_settings, uniq_xlsx_settings, \
-    company_brand_exceptions, company_brand_exceptions_data, sortable_ad_view_avito, save_ad_order_avito
+    company_brand_exceptions, company_brand_exceptions_data, sortable_ad_view_avito, save_ad_order_avito, load_photo, \
+    result_uniq
 
 urlpatterns = [
     path('companies/', company_list, name='company_list'),
@@ -31,4 +32,7 @@ urlpatterns = [
     path('company/<int:company_id>/uniq/xlsx/', uniq_xlsx_settings, name='uniq_xlsx_settings'),
     path('company/<int:company_id>/exceptions/', company_brand_exceptions, name='company_brand_exceptions'),
     path('company/<int:company_id>/exceptions/data', company_brand_exceptions_data, name='company_brand_exceptions_data'),
+    path('company/<int:company_id>/load/photo', load_photo, name='load_photo_company'),
+    path('company/<int:company_id>/result-uniq/<int:uniq_data_id>', result_uniq, name='result_uniq'),
+
 ]

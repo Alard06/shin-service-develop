@@ -4,7 +4,7 @@ import datetime
 import math
 
 from apps.company.utils.general_tools import read_xml, get_images, get_price
-from apps.company.utils.process_xml import process_xml_avito, save_to_xml_avito
+from apps.company.utils.process_xml import process_xml_avito, save_to_xml_avito, process_xml_avito_handler
 from apps.suppliers.models import Tire, Disk, TruckTire, MotoTire, SpecialTire
 import openpyxl
 
@@ -22,9 +22,6 @@ headers = [
     'supplier-presence', 'supplier-lastAvailabilityDate', 'supplier-sale',
     'supplier-year', 'supplier-description'
 ]
-
-
-
 
 
 def format_number(num):
@@ -45,7 +42,6 @@ def generate_tire_size_string(width, height, diameter):
         except:
             height = 'Full'
     except ValueError as e:
-        print(f"Error converting tire size: {e}")
         return ""  # Return an empty string or handle the error as needed
 
     # Format numbers to remove .0 if applicable
@@ -77,22 +73,21 @@ def price_rozn_pow(price_rozn):
     return math.ceil(float(price_rozn))
 
 
-def process_tires(tires_element, company, season=False):
+def process_tires(tires_element, company, season=False, uniq_data_id=None):
     """Processes a single tire element and returns the formatted data."""
     offer = {}
-    print(tires_element.get('fullTitle'))
     # Extracting tire data
     offer['id'] = tires_element.get('id')
     offer['brandArticul'] = tires_element.get('brandArticul', '')  # Default to empty string
     offer['brand'] = tires_element.get('brand')
     offer['product'] = tires_element.get('product')
-    offer['image'] = get_images(tires_element, company, drom=True)
+    offer['image'] = get_images(tires_element, company, drom=True, uniq_data_id=uniq_data_id)
     offer['fullTitle'] = tires_element.get('fullTitle')
     offer['headline'] = tires_element.get('headline')
     offer['measurement'] = tires_element.get('measurement')
     offer['recommendedPrice'] = tires_element.get('recommendedPrice', '')  # Default to empty string
     offer['model'] = tires_element.get('model')
-    offer['width'] = tires_element.get('width')
+    offer['width'] = tires_element.get('width', ' ')
     offer['height'] = tires_element.get('height')  # Note: height should be '70' not '7'
     offer['diameter'] = tires_element.get('diameter')
     offer['season'] = tires_element.get('season')
@@ -106,12 +101,13 @@ def process_tires(tires_element, company, season=False):
         'Всесезонный': 'all_season',
         'Лето': 'summer',
         'Зима': 'winter',
-        'Зима / Шипы': 'winter_spikes'
+        'Зима / Шипы': 'winter_spikes',
+        'Всесезонная': 'all_season',
     }
-    if season:
+    if season and tires_element.get('season') and not (company.protector == 'cancel'):
         tire_season = tires_element.get('season')
         if company.protector not in season_to_protector.get(tire_season):
-            print(season_to_protector.get(tire_season), tires_element.get('season'), company.protector)
+            # print(season_to_protector.get(tire_season), tires_element.get('season'), company.protector)
             return None  # Skip this tire if it doesn't match the protector type
 
     # Extracting supplier data
@@ -123,8 +119,8 @@ def process_tires(tires_element, company, season=False):
         offer['supplier-price'] = supplier.get('price')
         offer['supplier-inputPrice'] = supplier.get('inputPrice')
         offer['supplier-price_rozn'] = price_rozn_pow(get_price(supplier.get('price_rozn'),
-                                                                       tires_element.get('PriceToPublic'),
-                                                                       tires_element.get('brand'), company))  # TODO
+                                                                tires_element.get('PriceToPublic'),
+                                                                tires_element.get('brand'), company))  # TODO
         offer['supplier-deliveryPeriodDays'] = supplier.get('deliveryPeriodDays')
         offer['supplier-tireType'] = supplier.get('tireType')
         offer['supplier-stock'] = supplier.get('stock')
@@ -157,7 +153,56 @@ def process_tires(tires_element, company, season=False):
     return offer
 
 
-def process_xml(file_path, company, product_types):
+def process_xml_handler(file_path, company, product_types, uniq_data_id):
+    """Processes the XML file and returns a list of offers."""
+    root = read_xml(file_path)
+    offers = []
+    offer = None
+    site_type = 'drom'
+    for product in product_types:
+        if product == 'tires':
+            for tire in root.findall('tires/tire'):
+                offer = process_tires(tire, company, season=True, uniq_data_id=uniq_data_id)
+                offers.append(offer)
+        elif product == 'disks':
+            for disks in root.findall('disks/disk'):
+                if site_type == 'drom':
+                    offer = process_tires(disks, company, uniq_data_id=uniq_data_id)
+                elif site_type == 'avito':
+                    ...
+                offers.append(offer)
+        elif product == 'moto_tires':
+            for moto_tire in root.findall('moto/motoTire'):
+                if site_type == 'drom':
+                    offer = process_tires(moto_tire, company, uniq_data_id=uniq_data_id)
+                elif site_type == 'avito':
+                    ...
+                offers.append(offer)
+        elif product == 'special_tires':
+            for special_tire in root.findall('specialTires/specialTire'):
+                if site_type == 'drom':
+                    offer = process_tires(special_tire, company, uniq_data_id=uniq_data_id)
+                elif site_type == 'avito':
+                    ...
+                offers.append(offer)
+        elif product == 'truck_disks':
+            for truck_disk in root.findall('truckDisks/truckDisk'):
+                if site_type == 'drom':
+                    offer = process_tires(truck_disk, company, uniq_data_id=uniq_data_id)
+                elif site_type == 'avito':
+                    ...
+                offers.append(offer)
+        elif product == 'truck_tires':
+            for truck_tire in root.findall('trucks/truckTire'):
+                if site_type == 'drom':
+                    offer = process_tires(truck_tire, company, season=True, uniq_data_id=uniq_data_id)
+                elif site_type == 'avito':
+                    ...
+                offers.append(offer)
+    return offers
+
+
+def process_xml(file_path, company, product_types, uniq_data_id):
     """Processes the XML file and returns a list of offers."""
     root = read_xml(file_path)
     offers = []
@@ -167,42 +212,42 @@ def process_xml(file_path, company, product_types):
         if product == 'tires':
             for tires in root.findall('Tires'):
                 if site_type == 'drom':
-                    offer = process_tires(tires, company, season=True)
+                    offer = process_tires(tires, company, season=True, uniq_data_id=uniq_data_id)
                 elif site_type == 'avito':
                     ...
                 offers.append(offer)
         elif product == 'disks':
             for disks in root.findall('Disks'):
                 if site_type == 'drom':
-                    offer = process_tires(disks, company)
+                    offer = process_tires(disks, company,  uniq_data_id=uniq_data_id)
                 elif site_type == 'avito':
                     ...
                 offers.append(offer)
         elif product == 'moto_tires':
-            for moto_tire in root.findall('motoTire'):
+            for moto_tire in root.findall('mototires/motoTire'):
                 if site_type == 'drom':
-                    offer = process_tires(moto_tire, company)
+                    offer = process_tires(moto_tire, company,  uniq_data_id=uniq_data_id)
                 elif site_type == 'avito':
                     ...
                 offers.append(offer)
         elif product == 'special_tires':
             for special_tire in root.findall('specialTire'):
                 if site_type == 'drom':
-                    offer = process_tires(special_tire, company)
+                    offer = process_tires(special_tire, company,  uniq_data_id=uniq_data_id)
                 elif site_type == 'avito':
                     ...
                 offers.append(offer)
         elif product == 'truck_disks':
             for truck_disk in root.findall('truckDisk'):
                 if site_type == 'drom':
-                    offer = process_tires(truck_disk, company)
+                    offer = process_tires(truck_disk, company,  uniq_data_id=uniq_data_id)
                 elif site_type == 'avito':
                     ...
                 offers.append(offer)
         elif product == 'truck_tires':
             for truck_tire in root.findall('truckTire'):
                 if site_type == 'drom':
-                    offer = process_tires(truck_tire, company, season=True)
+                    offer = process_tires(truck_tire, company, season=True,  uniq_data_id=uniq_data_id)
                 elif site_type == 'avito':
                     ...
                 offers.append(offer)
@@ -238,7 +283,6 @@ def save_to_xml(offers, company_id, type_file):
                 # Добавляем значение, даже если оно пустое
                 value = element.text.strip() if element is not None and element.text else ''
                 row_data.append(value)  # Добавляем значение в row_data
-            print(row_data)
             ws.append(row_data)
 
         name = f'Уникализатор-{date}.xlsx'
@@ -254,13 +298,19 @@ def save_to_xml(offers, company_id, type_file):
     return path
 
 
-def unique(file_path, company, company_id, product_types, type_file):
-    offers = process_xml(file_path, company, product_types)
-    print(offers)
+def unique(file_path, company, company_id, product_types, type_file, processing_by_type_other_software, uniq_data_id=None):
+    offers = None
+    if processing_by_type_other_software == 'yes':
+        offers = process_xml(file_path, company, product_types, uniq_data_id)
+    else:
+        offers = process_xml_handler(file_path, company, product_types, uniq_data_id)
     return save_to_xml(offers, company_id, type_file)
 
 
-def unique_avito(file_path, company, product_types, type_file):
+def unique_avito(file_path, company, product_types, type_file, processing_by_type_other_software, uniq_data_id=None):
     print('Unique avito ', file_path, company, product_types, type_file)
-    ads = process_xml_avito(file_path, company, product_types)
+    if processing_by_type_other_software == 'yes':
+        ads = process_xml_avito(file_path, company, product_types)
+    else:
+        ads = process_xml_avito_handler(file_path, company, product_types)
     return save_to_xml_avito(ads, type_file, company.id, product_types)
