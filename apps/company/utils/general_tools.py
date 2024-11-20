@@ -7,6 +7,7 @@ import pandas as pd
 from django.core.exceptions import ObjectDoesNotExist
 
 from apps.services.models import UniqueDetail, UniqueProductNoPhoto
+from apps.services.utils.db import add_unique_product_no_photo
 from apps.suppliers.models import Tire, Disk, TruckTire, TruckDisk, MotoTire, SpecialTire, TireCompany, \
     TruckTireCompany, TruckDiskCompany, MotoTireCompany, SpecialTireCompany, DiskCompany
 
@@ -69,107 +70,123 @@ import logging
 def get_images_drom(tires_element, company, uniq_data_id):
     # Initialize logging
     logger = logging.getLogger(__name__)
-    image = None
 
     # Attempt to find the image in the Tire, Disk, TruckTire, MotoTire, and SpecialTire models
-    models = [
-        Tire.objects.filter(id_tire=tires_element.get('id')).first(),
-        Disk.objects.filter(id_disk=tires_element.get('id')).first(),
-        TruckTire.objects.filter(id_truck=tires_element.get('id')).first(),
-        MotoTire.objects.filter(id_moto=tires_element.get('id')).first(),
-        SpecialTire.objects.filter(id_special=tires_element.get('id')).first()
-    ]
+    tire_id = tires_element.get('id')
+    models = {
+        'Tire': Tire.objects.filter(id_tire=tire_id).first(),
+        'Disk': Disk.objects.filter(id_disk=tire_id).first(),
+        'TruckTire': TruckTire.objects.filter(id_truck=tire_id).first(),
+        'TruckDisk': TruckDisk.objects.filter(id_disk=tire_id).first(),
+        'MotoTire': MotoTire.objects.filter(id_moto=tire_id).first(),
+        'SpecialTire': SpecialTire.objects.filter(id_special=tire_id).first()
+    }
 
-    company_models = [TireCompany, DiskCompany, TruckTireCompany, MotoTireCompany, SpecialTireCompany]
+    # Prefetch related company images to reduce queries
+    company_models = {
+        Tire: TireCompany,
+        Disk: DiskCompany,
+        TruckTire: TruckTireCompany,
+        TruckDisk: TruckDiskCompany,
+        MotoTire: MotoTireCompany,
+        SpecialTire: SpecialTireCompany
+    }
 
-    for model, company_model in zip(models, company_models):
+    for model_name, model in models.items():
         if model is not None:
-            model_field_name = f"{model.__class__.__name__.lower()}"
-            filter_kwargs = {model_field_name: model, "company": company}
+            company_model = company_models.get(model.__class__)
+            if company_model is None:
+                logger.error(f"No company model found for {model.__class__}")
+                continue  # Skip to the next model
+
+            filter_kwargs = {f"{model_name.lower()}": model, "company": company}
             company_image = company_model.objects.filter(**filter_kwargs).first()
 
-            if company.get_other_photo_drom:
-                print(company_image.additional_images and company.get_other_photo_drom)
-                if company_image.additional_images and company.get_other_photo_drom:
+            if company_image is not None and company.get_other_photo_drom:
+                if company_image.additional_images:
                     return company_image.additional_images
-                elif company.get_other_photo_drom:
+                else:
                     return ' '
-            else:
-                return model.image
+
+            return model.image
 
     # If no image is found, log the missing element
-    if not image or image == ' ':
-        try:
-            unique_detail = UniqueDetail.objects.get(pk=uniq_data_id)
-            unique_detail.count_no_photos += 1  # Increment count of missing photos
-            new_product = UniqueProductNoPhoto.objects.create(
-                id_product=tires_element.get('id'),
-                brand=tires_element.get('brand'),
-                product=tires_element.get('product')
-            )
-            unique_detail.products.add(new_product)  # Use add() to associate the new product
-            unique_detail.save()
-        except ObjectDoesNotExist:
-            logger.error(f"UniqueDetail with id {uniq_data_id} does not exist.")
-        logger.warning(f"No image found for element ID: {tires_element.get('brand')} {tires_element.get('product')}")
-        return ' '  # Return empty string if no image found
+    logger.warning(f"No image found for element ID: {tires_element.get('brand')} {tires_element.get('product')}")
+    element = tires_element
+    # Call the async function to add the unique product
+    add_unique_product_no_photo(uniq_data_id, element)
 
-    return ' '  # Ensure we return an empty string if no image found
+    return ' '  # Return empty string if no image found
 
 
-def get_images_avito(tires_element, company, uniq_data_id=None):
+def get_images_avito(tires_element, company, uniq_data_id):
     # Initialize logging
     logger = logging.getLogger(__name__)
-    image = None
-    model_product = None
-
+    save_models = None
     # Attempt to find the image in the Tire, Disk, TruckTire, MotoTire, and SpecialTire models
-    models = [
-        Tire.objects.filter(id_tire=tires_element.get('id')).first(),
-        Disk.objects.filter(id_disk=tires_element.get('id')).first(),
-        TruckTire.objects.filter(id_truck=tires_element.get('id')).first(),
-        MotoTire.objects.filter(id_moto=tires_element.get('id')).first(),
-        SpecialTire.objects.filter(id_special=tires_element.get('id')).first()
-    ]
+    tire_id = tires_element.get('id')
+    models = {
+        'Tire': Tire.objects.filter(id_tire=tire_id).first(),
+        'Disk': Disk.objects.filter(id_disk=tire_id).first(),
+        'TruckTire': TruckTire.objects.filter(id_truck=tire_id).first(),
+        'TruckDisk': TruckDisk.objects.filter(id_disk=tire_id).first(),
+        'MotoTire': MotoTire.objects.filter(id_moto=tire_id).first(),
+        'SpecialTire': SpecialTire.objects.filter(id_special=tire_id).first()
+    }
 
-    # Check for images in the primary models
-    for model in models:
+    # Prefetch related company images to reduce queries
+    company_models = {
+        Tire: TireCompany,
+        Disk: DiskCompany,
+        TruckTire: TruckTireCompany,
+        TruckDisk: TruckDiskCompany,
+        MotoTire: MotoTireCompany,
+        SpecialTire: SpecialTireCompany
+    }
+    for model_name, model in models.items():
         if model is not None:
-            company_models = [TireCompany, DiskCompany, TruckTireCompany, MotoTireCompany, SpecialTireCompany]
-            for company_model in company_models:
-                model_field_name = f"{model.__class__.__name__.lower()}"
-                model_product = model
-                filter_kwargs = {model_field_name: model, "company": company}
+            if company.get_other_photo_avito:
+                company_model = company_models.get(model.__class__)
+                filter_kwargs = {f"{model_name.lower()}": model, "company": company}
                 company_image = company_model.objects.filter(**filter_kwargs).first()
-                if company_image and company_image.additional_images and company.get_other_photo_avito:
-                    image = company_image.additional_images
-                    break
-                if company.get_other_photo_avito:
-                    image = ' '
-                    break
-                if not company.get_other_photo_avito:
+                if company_image is not None and company_image.additional_images:
+                    return company_image.additional_images
+                else:
+                    add_unique_product_no_photo(uniq_data_id, tires_element)
                     image = model.image
-                    break
-            if image:  # Break if an image is found
-                break
+                    if image:
+                        return model.image
+                    else:
+                        return ''
+            else:
+                image = model.image
+                if image:
+                    return model.image
+                else:
+                    add_unique_product_no_photo(uniq_data_id, tires_element)
+                    return ''
+    #
+    #         print(f'{model_name} | {model}')
+    #         save_models = model
+    #         if company_model is None:
+    #             logger.error(f"No company model found for {model.__class__}")
+    #             continue  # Skip to the next model
+    #
+    #         if company.get_other_photo_avito:
+    #             if company_image.additional_images:
+    #                 return company_image.additional_images
+    #         else:
+    #             print('continue')
+    #             continue
+    #
+    #
+    # # If no image is found, log the missing element
+    # logger.warning(f"No image found for element ID: {tires_element.get('brand')} {tires_element.get('product')}")
+    #
+    # # Call the async function to add the unique product
+    # add_unique_product_no_photo(uniq_data_id, tires_element)
+    # return save_models.image  # Return empty string if no image found
 
-    # If no image is found, log the missing element
-    if not image or image == ' ':
-        try:
-            unique_detail = UniqueDetail.objects.get(pk=uniq_data_id)
-            unique_detail.count_no_photos += 1  # Increment count of missing photos
-            new_product = UniqueProductNoPhoto.objects.create(
-                id_product=tires_element.get('id'),
-                brand=tires_element.get('brand'),
-                product=tires_element.get('product')
-            )
-            unique_detail.products.add(new_product)  # Use add() to associate the new product
-            unique_detail.save()
-        except ObjectDoesNotExist:
-            logger.error(f"UniqueDetail with id {uniq_data_id} does not exist.")
-        logger.warning(f"No image found for element ID: {tires_element.get('brand')} {tires_element.get('product')}")
-        return model_product.image
-    return image if image else ' '  # Ensure we return an empty string if no image found
 
 def add_promo_photo(images, company):
     """Add the promotional photo to the list of images as a comma-separated string."""
@@ -193,6 +210,8 @@ def get_images(tires_element, company, drom=False, uniq_data_id=None):
             images = add_promo_photo(images, company)
     else:
         images = get_images_avito(tires_element, company, uniq_data_id)
+        if images and images != ' ':
+            images = add_promo_photo(images, company)
     return images
 
 

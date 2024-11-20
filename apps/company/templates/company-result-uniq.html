@@ -7,7 +7,7 @@
     <h2 class="mt-4">Информация о компании</h2>
     <p><strong>Компания:</strong> {{ company.name }}</p>
     <p><strong>Дата уникализации:</strong> {{ uniq_data.date }}</p>
-    <p><strong>Фото не найдено:</strong> {{ uniq_data.count_no_photos }}</p>
+    <p><strong>Фото не найдено:</strong> {{ product_count }}</p>
 
     <h3 class="mt-4">Позиции, на которые отсутствуют изображения</h3>
     <div class="scrollable-container mb-3">
@@ -30,7 +30,7 @@
     </div>
 
     <button id="copyButton" class="btn btn-primary">Скопировать названия</button>
-    <a href="{{ file_path }}" class="btn btn-success mt-3" download>Скачать файл</a>  <!-- Download button -->
+<a href="{% url 'download_file' uniq_data.id %}" class="btn btn-success mt-3">Скачать файл</a>
 </div>
 <script>
     document.getElementById('copyButton').addEventListener('click', function() {

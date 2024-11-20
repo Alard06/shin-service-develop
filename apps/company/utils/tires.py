@@ -7,7 +7,7 @@ def unique_tire_avito(tires, company, season=True):
     ...
 
 
-def process_data_tire(ads, data, company, season=False):
+def process_data_tire(ads, data, company, uniq_data_id, season=False):
     season_protector = types_avito_tires(data.get('season'))
 
     if season and not (company.protector == 'cancel'):
@@ -47,7 +47,7 @@ def process_data_tire(ads, data, company, season=False):
                                                                        data.get('PriceToPublic'),
                                                                        data.get('brand'), company))  # TODO
     images = ET.SubElement(ad_element, "Images")
-    get_images_db = get_images(data, company)
+    get_images_db = get_images(data, company, uniq_data_id)
     if get_images_db:
         if type(get_images_db) == list:
             for image_url in get_images_db[::-1]:

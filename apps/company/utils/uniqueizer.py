@@ -172,7 +172,9 @@ def process_xml_handler(file_path, company, product_types, uniq_data_id):
                     ...
                 offers.append(offer)
         elif product == 'moto_tires':
-            for moto_tire in root.findall('moto/motoTire'):
+            print('moto_tire')
+            for moto_tire in root.findall('mototires/motoTire'):
+                print(moto_tire.text)
                 if site_type == 'drom':
                     offer = process_tires(moto_tire, company, uniq_data_id=uniq_data_id)
                 elif site_type == 'avito':
@@ -224,7 +226,9 @@ def process_xml(file_path, company, product_types, uniq_data_id):
                     ...
                 offers.append(offer)
         elif product == 'moto_tires':
-            for moto_tire in root.findall('mototires/motoTire'):
+            print('moto_tires')
+            for moto_tire in root.findall('mototires/MotoTire'):
+                print(moto_tire.text)
                 if site_type == 'drom':
                     offer = process_tires(moto_tire, company,  uniq_data_id=uniq_data_id)
                 elif site_type == 'avito':
@@ -310,7 +314,7 @@ def unique(file_path, company, company_id, product_types, type_file, processing_
 def unique_avito(file_path, company, product_types, type_file, processing_by_type_other_software, uniq_data_id=None):
     print('Unique avito ', file_path, company, product_types, type_file)
     if processing_by_type_other_software == 'yes':
-        ads = process_xml_avito(file_path, company, product_types)
+        ads = process_xml_avito(file_path, company, product_types, uniq_data_id)
     else:
-        ads = process_xml_avito_handler(file_path, company, product_types)
+        ads = process_xml_avito_handler(file_path, company, product_types, uniq_data_id)
     return save_to_xml_avito(ads, type_file, company.id, product_types)

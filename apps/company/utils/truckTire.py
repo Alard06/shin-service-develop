@@ -4,15 +4,16 @@ from apps.company.utils.general_tools import types_avito_tires, season_to_protec
     get_images, ad_order_create, price_rozn_pow, get_price
 
 
-def process_data_truck_tire_and_special(ads, data, company, season=False):
+def process_data_truck_tire_and_special(ads, data, company,uniq_data_id, season=False):
     season_protector = None
 
     if season:
         tire_season = types_avito_tires(data.get('season'))
-        print(company.protector_avito, season_to_protector, season_to_protector.get(tire_season), tire_season)
-        if company.protector_avito not in season_to_protector.get(tire_season):
-            print(season_to_protector.get(tire_season), data.get('season'))
-            return None
+        if tire_season:
+            print(company.protector_avito, season_to_protector, season_to_protector.get(tire_season), tire_season)
+            if company.protector_avito not in season_to_protector.get(tire_season):
+                print(season_to_protector.get(tire_season), data.get('season'))
+                return None
         else:
             season_protector = types_avito_tires(data.get('season'))
 
@@ -35,7 +36,7 @@ def process_data_truck_tire_and_special(ads, data, company, season=False):
                                                                        data.get('PriceToPublic'),
                                                                        data.get('brand'), company))  # TODO
     images = ET.SubElement(ad_element, "Images")
-    get_images_db = get_images(data, company)
+    get_images_db = get_images(data, company, uniq_data_id)
     if get_images_db:
         if type(get_images_db) == list:
             for image_url in get_images_db:

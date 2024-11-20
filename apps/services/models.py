@@ -17,7 +17,6 @@ class UniqueDetail(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
     products = models.ManyToManyField('UniqueProductNoPhoto', blank=True)
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    count_no_photos = models.IntegerField(default=0)
     path = models.TextField(blank=True, null=True)
 
     def __str__(self):

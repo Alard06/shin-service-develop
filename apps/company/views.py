@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 
 from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse, FileResponse
+from django.http import HttpResponse, FileResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
@@ -474,6 +474,7 @@ def load_photo(request, company_id):
 def result_uniq(request, company_id, uniq_data_id):
     company = get_object_or_404(Company, id=company_id)
     uniq_data = get_object_or_404(UniqueDetail, pk=uniq_data_id)
+    product_count = uniq_data.products.count()
     products = uniq_data.products.all()
     images = []
     for product in products:
@@ -484,9 +485,26 @@ def result_uniq(request, company_id, uniq_data_id):
             'image': product.image if hasattr(product, 'image') else None
         })
 
+    # Construct the full file path
+    file_path = uniq_data.path if uniq_data.path.startswith('http') else settings.MEDIA_URL + uniq_data.path
+
     return render(request, 'company-result-uniq.html', {
         'company': company,
         'uniq_data': uniq_data,
         'images': images,
-        'file_path': uniq_data.path  # Pass the file path to the context
+        'product_count': product_count,
+        'file_path': file_path  # Pass the full file path to the context
     })
+
+
+def download_file(request, uniq_data_id):
+    uniq_data = get_object_or_404(UniqueDetail, pk=uniq_data_id)
+    file_path = uniq_data.path
+
+    # Ensure the file exists
+    if os.path.exists(file_path):
+        response = FileResponse(open(file_path, 'rb'))
+        response['Content-Disposition'] = f'attachment; filename="{os.path.basename(file_path)}"'
+        return response
+    else:
+        return HttpResponseNotFound("File not found")

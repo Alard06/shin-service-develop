@@ -1,5 +1,6 @@
 from asgiref.sync import sync_to_async
 
+from apps.services.models import UniqueDetail, UniqueProductNoPhoto
 from apps.suppliers.models import Tire, TireSupplier, TruckTire, TruckTireSupplier, SpecialTire, SpecialTireSupplier, \
     MotoTire, MotoTireSupplier, Disk, DiskSupplier, TruckDisk, TruckDiskSupplier
 from django.db import transaction
@@ -129,3 +130,14 @@ def disk_supplier_bulk_create(disk_elements_data):
 @sync_to_async
 def trucks_disks_supplier_bulk_create(trucks_disks_data):
     TruckDiskSupplier.objects.bulk_create(trucks_disks_data)
+
+
+def add_unique_product_no_photo(pk, tires_element):
+    unique_detail = UniqueDetail.objects.get(pk=pk)
+    new_product = UniqueProductNoPhoto.objects.create(
+        id_product=tires_element.get('id'),
+        brand=tires_element.get('brand'),
+        product=tires_element.get('product')
+    )
+    unique_detail.products.add(new_product)  # Use add() to associate the new product
+    unique_detail.save()

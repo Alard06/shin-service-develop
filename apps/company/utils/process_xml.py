@@ -31,7 +31,7 @@ headers_avito_tires = [
 ]
 
 
-def process_xml_avito(file_path, company, product_types):
+def process_xml_avito(file_path, company, product_types, uniq_data_id):
     print(file_path, company, product_types)
     root = read_xml(file_path)
     print('read')
@@ -40,28 +40,28 @@ def process_xml_avito(file_path, company, product_types):
     for product in product_types:
         if product == 'tires':
             for tires in root.findall('Tires'):
-                process_data_tire(ads, tires, company, season=True)
+                process_data_tire(ads, tires, company, uniq_data_id, season=True)
         elif product == 'disks':
             for disk in root.findall('Disks'):
-                process_data_disks(ads, disk, company)
+                process_data_disks(ads, disk, company, uniq_data_id)
         elif product == 'moto_tires':
             for moto_tire in root.findall('motoTire'):
-                process_data_moto(ads, moto_tire, company)
+                process_data_moto(ads, moto_tire, company=company, uniq_data_id=uniq_data_id)
         elif product == 'truck_tires':
             for truck_tire in root.findall('truckTire'):
-                process_data_truck_tire_and_special(ads, truck_tire, company, season=True)
+                process_data_truck_tire_and_special(ads, truck_tire, company, uniq_data_id, season=True)
         elif product == 'special_tires':
             for special_tire in root.findall('specialTire'):
-                process_data_truck_tire_and_special(ads, special_tire, company, season=True)
+                process_data_truck_tire_and_special(ads, special_tire, company,uniq_data_id, season=True)
         elif product == 'truck_disks':
             for truck_disk in root.findall('truckDisk'):
-                process_data_disks(ads, truck_disk, company)
+                process_data_disks(ads, truck_disk, uniq_data_id, company)
     return ads
 
 
 ## TEMP
 # TODO
-def process_xml_avito_handler(file_path, company, product_types):
+def process_xml_avito_handler(file_path, company, product_types, uniq_data_id):
     root = read_xml(file_path)
     print('read')
     ads = ET.Element("Ads", formatVersion="3", target="Avito.ru")
@@ -69,22 +69,22 @@ def process_xml_avito_handler(file_path, company, product_types):
     for product in product_types:
         if product == 'tires':
             for tires in root.findall('tires/tire'):
-                process_data_tire(ads, tires, company, season=True)
+                process_data_tire(ads, tires, company, uniq_data_id, season=True)
         elif product == 'disks':
             for disk in root.findall('disks/disk'):
-                process_data_disks(ads, disk, company)
+                process_data_disks(ads, disk, company, uniq_data_id)
         elif product == 'moto_tires':
             for moto_tire in root.findall('moto/motoTire'):
-                process_data_moto(ads, moto_tire, company)
+                process_data_moto(ads, moto_tire, company, uniq_data_id)
         elif product == 'truck_tires':
             for truck_tire in root.findall('trucks/truckTire'):
-                process_data_truck_tire_and_special(ads, truck_tire, company, season=True)
+                process_data_truck_tire_and_special(ads, truck_tire, company, uniq_data_id, season=True)
         elif product == 'special_tires':
             for special_tire in root.findall('specialTires/specialTire'):
-                process_data_truck_tire_and_special(ads, special_tire, company, season=True)
+                process_data_truck_tire_and_special(ads, special_tire, company, uniq_data_id, season=True)
         elif product == 'truck_disks':
             for truck_disk in root.findall('truckDisks/truckDisk'):
-                process_data_disks(ads, truck_disk, company)
+                process_data_disks(ads, truck_disk,company, uniq_data_id)
     return ads
 
 
