@@ -15,7 +15,7 @@ def process_data_disks(ads, data, company, uniq_data_id):
                                                                                                        'DoubleStar')
     ET.SubElement(ad_element, "Category").text = immutable_data['CATEGORY']
     ET.SubElement(ad_element, "GoodsType").text = immutable_data['GOODS_TYPE']
-    ET.SubElement(ad_element, "RimDiameter").text = str(get_diameter(data.get('diameter')))
+    ET.SubElement(ad_element, "RimDiameter").text = str(get_diameter(data.get('diameter').replace(',', '.')))
     ET.SubElement(ad_element, "Quantity").text = immutable_data['Quantity']
     ET.SubElement(ad_element, "Model").text = str(data.get('product'))
     ET.SubElement(ad_element, "CompanyName").text = company.name
@@ -30,11 +30,10 @@ def process_data_disks(ads, data, company, uniq_data_id):
                                                                        data.get('PriceToPublic'),
                                                                        data.get('brand'), company))  # TODO
     ET.SubElement(ad_element, "RimWidth").text = str(data.get('width').replace(',', '.'))
-    ET.SubElement(ad_element, "RimDiameter").text = str(get_diameter(data.get('diameter').replace(',', '.')))
-    ET.SubElement(ad_element, "RimOffset").text = str(data.get('outfit', ''))  # Добавлено RimOffset
+    ET.SubElement(ad_element, "RimOffset").text = str(get_diameter(data.get('outfit', '')))  # Добавлено RimOffset
     ET.SubElement(ad_element, "RimBolts").text = str(data.get('boltcount', ''))
-    ET.SubElement(ad_element, "RimBoltsDiameter").text = str(data.get('pcd', ''))  # Добавлено RimBoltsDiameter
-    ET.SubElement(ad_element, "RimDIA").text = str(data.get('dia', ''))  # Добавлено RimDIA
+    ET.SubElement(ad_element, "RimBoltsDiameter").text = str(get_diameter(data.get('pcd', '')))  # Добавлено RimBoltsDiameter
+    ET.SubElement(ad_element, "RimDIA").text = str(get_diameter(data.get('dia', '')))  # Добавлено RimDIA
     ET.SubElement(ad_element, "RimType").text = get_type_disk(data.get('type', ''))  # Добавлено RimType
     images = ET.SubElement(ad_element, "Images")
     get_images_db = get_images(data, company, uniq_data_id=uniq_data_id)
