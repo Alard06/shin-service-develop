@@ -51,10 +51,10 @@
         </div>
 <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
     <h2>Настройки</h2>
-<a href="{% url 'uniq_drom_settings' company.id %}" class="btn btn-primary">Настройки Drom</a>
-<a href="{% url 'uniq_avito_settings' company.id %}" class="btn btn-secondary">Настройки Avito</a>
-<a href="{% url 'uniq_xlsx_settings' company.id %}" class="btn btn-success">Настройки выходной таблицы xlsx</a>
+<a href="{% url 'uniq_drom_settings' company.id %}" class="btn btn-warning">Настройки Drom</a>
+<a href="{% url 'uniq_avito_settings' company.id %}" class="btn btn-warning">Настройки Avito</a>
 <a href="{% url 'company_brand_exceptions' company.id %}" class="btn btn-warning">Настроить исключение брендов</a>
+<a href="{% url 'output_table_company' company.id %}" class="btn btn-success">Выходная таблица</a>
 
 </div>
 
@@ -138,148 +138,219 @@
             </form>
         </div>
 
-        <div class="tab-pane fade" id="unique" role="tabpanel" aria-labelledby="unique-tab">
-            <h2>Обработка данных</h2>
-            <form method="post">
+<div class="tab-pane fade" id="unique" role="tabpanel" aria-labelledby="unique-tab">
+    <h2 class="text-center">Обработка данных</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <form id="upload-data-form" method="post" class="p-4 border rounded bg-light shadow-sm">
                 {% csrf_token %}
-                <button type="submit" name="generate_xml">Сгенерировать XML В НАЛИЧИИ</button>
-            </form>
-            <form id="upload-data-form" method="post">
-                {% csrf_token %}
-                <h3>Выберите типы:</h3>
-                <label>
-                    <input type="checkbox" name="types" value="tires"> Шины
-                </label><br>
-                <label>
-                    <input type="checkbox" name="types" value="moto_tires"> Мотошины
-                </label><br>
-                <label>
-                    <input type="checkbox" name="types" value="disks"> Диски
-                </label><br>
-                <label>
-                    <input type="checkbox" name="types" value="special_tires"> Спец. шины
-                </label><br>
-                <label>
-                    <input type="checkbox" name="types" value="truck_disks"> Грузовые диски
-                </label><br>
-                <label>
-                    <input type="checkbox" name="types" value="truck_tires"> Грузовые шины
-                </label><br>
 
-                <h3>Наличие:</h3>
-                <label>
-                    <input type="radio" name="availability" value="in_stock" required> В наличии
-                </label><br>
-                <label>
-                    <input type="radio" name="availability" value="out_of_stock"> Нет в наличии
-                </label><br>
-                    <h3>Формат вывода:</h3>
-                <label>
-                    <input type="radio" name="output_format" value="xlsx" required> XLSX
-                </label><br>
-                <label>
-                    <input type="radio" name="output_format" value="xml"> XML
-                </label><br>
-
-
-                <button type="submit">Сгенерировать</button>
-            </form>
-            <div class="container mt-5">
-                <h1 class="text-center">Выберите файл</h1>
-                <form method="post" id="file-selection-form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="list-group">
-                        {% for file in files %}
-                        <button type="button" class="list-group-item list-group-item-action"
-                                onclick="selectFile('{{ file }}')">
-                            {{ file }}
-                        </button>
-                        {% endfor %}
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <h3>Выберите типы:</h3>
+                        <div class="form-check">
+                            <input type="checkbox" name="types" value="tires" id="type-tires" class="form-check-input">
+                            <label for="type-tires" class="form-check-label">Шины</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" name="types" value="moto_tires" id="type-moto_tires" class="form-check-input">
+                            <label for="type-moto_tires" class="form-check-label">Мотошины</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" name="types" value="disks" id="type-disks" class="form-check-input">
+                            <label for="type-disks" class="form-check-label">Диски</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" name="types" value="special_tires" id="type-special-tires" class="form-check-input">
+                            <label for="type-special-tires" class="form-check-label">Спец. шины</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" name="types" value="truck_disks" id="type-truck-disks" class="form-check-input">
+                            <label for="type-truck-disks" class="form-check-label">Грузовые диски</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" name="types" value="truck_tires" id="type-truck-tire" class="form-check-input">
+                            <label for="type-truck-tire" class="form-check-label">Грузовые шины</label>
+                        </div>
                     </div>
-                </form>
+                    <div class="col-md-4">
+                        <h3>Наличие:</h3>
+                        <div class="form-check">
+                            <input type="radio" name="availability" value="in_stock" id="availability-in_stock" class="form-check-input" required>
+                            <label for="availability-in_stock" class="form-check-label">В наличии</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="availability" value="out_of_stock" id="availability-out_of_stock" class="form-check-input">
+                            <label for="availability-out_of_stock" class="form-check-label">Нет в наличии</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Формат вывода:</h3>
+                        <div class="form-check">
+                            <input type="radio" name="output_format" value="xlsx" id="output-xlsx" class="form-check-input" required>
+                            <label for="output-xlsx" class="form-check-label">XLSX</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="output_format" value="xml" id="output-xml" class="form-check-input">
+                            <label for="output-xml" class="form-check-label">XML</label>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="form-row mt-3">
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-primary">Сгенерировать</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+<div class="container mt-4">
+    <h1 class="text-center">Управление файлами</h1>
+    <div class="card">
+        <div class="card-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="fileTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="file-selection-tab" data-toggle="tab" href="#file-selection" role="tab" aria-controls="file-selection" aria-selected="true">Выбор файла</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="file-options-tab" data-toggle="tab" href="#file-options" role="tab" aria-controls="file-options" aria-selected="false">Настройки</a>
+                </li>
+            </ul>
 
-                <div id="file-options" class="mt-3" style="display: none;">
-    <h3>Выбранный файл: <span id="selected-file-name"></span></h3>
-<form id="uniqueness-checker-form" method="post" action="{% url 'run_uniqueness_checker' company.id %}">
-    {% csrf_token %}
-    <input type="hidden" name="file_name" id="file-name-input">
+            <!-- Tab panes -->
+            <div class="tab-content mt-3">
+                <div class="tab-pane fade show active" id="file-selection" role="tabpanel" aria-labelledby="file-selection-tab">
+                    <form method="post" id="file-selection-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="list-group" style="overflow-y: auto; max-height: 600px;">
+                            {% for file in files %}
+                            <button type="button" class="list-group-item list-group-item-action" onclick="selectFile('{{ file }}')">
+                                {{ file }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </form>
+                </div>
 
-    <!-- Dropdown for selecting the type of product with multiple selection -->
-    <div class="form-group">
-        <label for="product-type">Выберите тип продукта:</label>
-        <select name="product_type" id="product-type" class="form-control" multiple>
-            <option value="tires">Шины</option>
-            <option value="moto_tires">Мотошины</option>
-            <option value="disks">Диски</option>
-            <option value="special_tires">Спец. шины</option>
-            <option value="truck_disks">Грузовые диски</option>
-            <option value="truck_tires">Грузовые шины</option>
-        </select>
-        <small class="form-text text-muted">Удерживайте Ctrl (или Cmd на Mac), чтобы выбрать несколько пунктов.</small>
+                <div class="tab-pane fade" id="file-options" role="tabpanel" aria-labelledby="file-options-tab">
+                    <h3 class="text-center">Выбранный файл: <span id="selected-file-name"></span></h3>
+                    <form id="uniqueness-checker-form" method="post" action="{% url 'run_uniqueness_checker' company.id %}" class="mt-4">
+                        {% csrf_token %}
+                        <input type="hidden" name="file_name" id="file-name-input">
 
-    </div>
-    <h3>Формат вывода:</h3>
-                <label>
-                    <input type="radio" name="output_format" value="xlsx" required> XLSX
-                </label><br>
-                <label>
-                    <input type="radio" name="output_format" value="xml"> XML
-                </label><br>
-                <h3>Торговая площадка:</h3>
-                <label>
-                    <input type="radio" name="trading_platform" value="avito" required> AVITO
-                </label><br>
-                <label>
-                    <input type="radio" name="trading_platform" value="drom"> DROM
-                </label><br>
-                    <h3>Обработка другим ПО:</h3>
-                <label>
-                    <input type="radio" name="Processing-by-other-software" value="yes" required> Да
-                </label><br>
-                <label>
-                    <input type="radio" name="Processing-by-other-software" value="no"> Нет
-                </label><br>
-    <button type="submit" class="btn btn-primary">Запустить уникализатор</button>
-</form>
+                        <!-- Dropdown for selecting the type of product with multiple selection -->
+                        <div class="form-group">
+                            <label for="product-type">Выберите тип продукта:</label>
+                            <select name="product_type" id="product-type" class="form-control" multiple>
+                                <option value="tires">Шины</option>
+                                <option value="moto_tires">Мотошины</option>
+                                <option value="disks">Диски</option>
+                                <option value="special_tires">Спец. шины</option>
+                                <option value="truck_disks">Грузовые диски</option>
+                                <option value="truck_tires">Грузовые шины</option>
+                            </select>
+                            <small class="form-text text-muted">Удерживайте Ctrl (или Cmd на Mac), чтобы выбрать несколько пунктов.</small>
+                        </div>
 
+                        <h3>Формат вывода:</h3>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="radio" name="output_format" value="xlsx" id="output-xlsx" class="form-check-input" required>
+                                <label for="output-xlsx" class="form-check-label">XLSX</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="output_format" value="xml" id="output-xml" class="form-check-input">
+                                <label for="output-xml" class="form-check-label">XML</label>
+                            </div>
+                        </div>
 
-    <form id="delete-file-form" method="post" action="{% url 'delete_file' %}">
-        {% csrf_token %}
-        <input type="hidden" name="file_name" id="file-name-input-delete">
-        <button type="submit" class="btn btn-danger">Удалить</button>
-    </form>
-    <form id="download-file-form" method="post" action="{% url 'download_file' %}">
-        {% csrf_token %}
-        <input type="hidden" name="file_name" id="file-name-input-download">
-        <input type="hidden" name="company_id" value="{{ company.id }}">
-        <button type="submit" class="btn btn-info">Скачать</button>
-    </form>
-    <form id="load-photo-form" method="post" action="{% url 'load_photo_company' company.id %}">
-        {% csrf_token %}
-        <input type="hidden" name="file_name" id="file-name-input-images">
-        <input type="hidden" name="company_id" value="{{ company.id }}">
-        <button type="submit" class="btn btn-info">Загрузить фото</button>
-    </form>
-</div>
+                        <h3>Торговая площадка:</h3>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="radio" name="trading_platform" value="avito" id="platform-avito" class="form-check-input" required>
+                                <label for="platform-avito" class="form-check-label">AVITO</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="trading_platform" value="drom" id="platform-drom" class="form-check-input">
+                                <label for="platform-drom" class="form-check-label">DROM</label>
+                            </div>
+                        </div>
+
+                        <h3>Обработка другим ПО:</h3>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="radio" name="Processing-by-other-software" value="yes" id="processing-yes" class="form-check-input" required>
+                                <label for="processing-yes" class="form-check-label">Да</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="Processing-by-other-software" value="no" id="processing-no" class="form-check-input">
+                                <label for="processing-no" class="form-check-label">Нет</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3">Запустить уникализатор</button>
+                    </form>
+
+                    <div class="mt-4">
+                        <form id="delete-file-form" method="post" action="{% url 'delete_file' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="file_name" id="file-name-input-delete">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+
+                        <form id="download-file-form" method="post" action="{% url 'download_file' %}" class="mt-2">
+                            {% csrf_token %}
+                            <input type="hidden" name="file_name" id="file-name-input-download">
+                            <input type="hidden" name="company_id" value="{{ company.id }}">
+                            <button type="submit" class="btn btn-info">Скачать</button>
+                        </form>
+
+                        <form id="load-photo-form" method="post" action="{% url 'load_photo_company' company.id %}" class="mt-2">
+                            {% csrf_token %}
+                            <input type="hidden" name="file_name" id="file-name-input-images">
+                            <input type="hidden" name="company_id" value="{{ company.id }}">
+                            <button type="submit" class="btn btn-info">Загрузить фото</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Upload File Section -->
-        <div class="mt-3">
-            <h3>Загрузить файл</h3>
-            <form id="upload-file-form" method="post" action="{% url 'upload_file_company' company.id %}"
-                  enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="file" id="file-input" style="display: none;" onchange="updateFileName()">
-                <button type="button" class="btn btn-success" onclick="document.getElementById('file-input').click();">
-                    Загрузить файл
-                </button>
-                <span id="file-name-display" class="ml-2"></span>
-                <button type="submit" class="btn btn-primary ml-2" style="display: none;" id="submit-upload">Подтвердить
-                    загрузку
-                </button>
-            </form>
-        </div>
+    </div>
+</div>
+</div>
+</div>
+    </div>
+</div>
+
+<style>
+    #file-options {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        color: #333;
+    }
+    .list-group {
+        overflow-y: auto;
+        max-height: 300px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-processing {
+        width: 100%;
+    }
+
+    .btn-success {
+        margin-right: 10px;
+    }
+</style>
 
 
         <script>
@@ -348,6 +419,6 @@
             });
         </script>
 
-    </div>
-</div>
+
+
 {% endblock %}

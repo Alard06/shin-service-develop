@@ -2472,3 +2472,1167 @@ Traceback (most recent call last):
 django.core.exceptions.FieldError: Cannot resolve keyword 'id_truck' into field. Choices are: boltcount, brand, brand_articul, color, dia, diameter, find_images_title, full_title, id, id_disk, image, model, note, outfit, pcd, product, truckdiskcompany, truckdisksupplier, type, width
 "POST /run_uniqueness_checker/2 HTTP/1.1" 500 144448
 Not Found: /favicon.ico
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 197, in uniq_xlsx_settings
+    return render(request, 'select_fields.html', {'fields': fields, 'selected_fields': selected_fields, 'order': order})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: select_fields.html
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 90984
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 190, in uniq_xlsx_settings
+    company.format_xlsx = ','.join(selected_fields) + '|' + order
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+TypeError: can only concatenate str (not "NoneType") to str
+"POST /company/2/uniq/xlsx/ HTTP/1.1" 500 68386
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 193, in uniq_xlsx_settings
+    return redirect('success_url')  # Замените на ваш URL для перенаправления
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'success_url' not found. 'success_url' is not a valid view function or pattern name.
+"POST /company/2/uniq/xlsx/ HTTP/1.1" 500 87474
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 197, in uniq_xlsx_settings
+    return render(request, 'company-settings-xlsx.html', {'fields': fields, 'selected_fields': selected_fields})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 706, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[field]' from 'field_names[field]'
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 171495
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 228, in uniq_xlsx_settings
+    return render(request, 'company-settings-xlsx.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 706, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[field]' from 'field_names[field]'
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 176589
+Not Found: /favicon.ico
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 228, in uniq_xlsx_settings
+    return render(request, 'company-settings-xlsx.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 706, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[field]' from 'field_names[field]'
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 176589
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 228, in uniq_xlsx_settings
+    return render(request, 'company-settings-xlsx.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 706, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(field, field)' from 'field_names.get(field, field)'
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 176324
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 231, in uniq_xlsx_settings
+    return render(request, 'company-settings-xlsx.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 706, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(field, field)' from 'field_names.get(field, field)'
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 173499
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 223, in uniq_xlsx_settings
+    return redirect('uniq_xlsx_settings')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'uniq_xlsx_settings' with no arguments not found. 1 pattern(s) tried: ['company/(?P<company_id>[0-9]+)/uniq/xlsx/\\Z']
+"POST /company/2/uniq/xlsx/ HTTP/1.1" 500 90856
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 220, in uniq_xlsx_settings
+    return render(request, 'company-settings-xlsx.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'company_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['companies/(?P<company_id>[0-9]+)/\\Z']
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 138845
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 223, in uniq_xlsx_settings
+    'company': company,
+               ^^^^^
+NameError: name 'compa' is not defined. Did you mean: 'company'?
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 69066
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 223, in uniq_xlsx_settings
+    'company': company,
+               ^^^^^
+NameError: name 'compa' is not defined. Did you mean: 'company'?
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 69066
+Internal Server Error: /company/2/uniq/xlsx/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 223, in uniq_xlsx_settings
+    'company': company,
+               ^^^^^
+NameError: name 'compa' is not defined. Did you mean: 'company'?
+"GET /company/2/uniq/xlsx/ HTTP/1.1" 500 69066
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: services_nopricerozn
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 100, in company_detail
+    new_no_rozn_price = NoPriceRozn.objects.create(company=company, date=datetime.now())
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 891, in save
+    self.save_base(
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 997, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 1160, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 1201, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: services_nopricerozn
+"POST /companies/2/ HTTP/1.1" 500 161873
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 191, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 438, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 935, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 887, in price_rozn
+    id_product=product_supplier.get('id'),
+               ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TireSupplier' object has no attribute 'get'
+"POST /companies/2/ HTTP/1.1" 500 122908
+Not Found: /favicon.ico
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 191, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 438, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 936, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 888, in price_rozn
+    id_product=product_supplier.get('id'),
+               ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TireSupplier' object has no attribute 'get'
+"POST /companies/2/ HTTP/1.1" 500 122953
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 191, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 438, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 936, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 889, in price_rozn
+    brand=product_supplier.brand,
+          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TireSupplier' object has no attribute 'brand'
+"POST /companies/2/ HTTP/1.1" 500 122825
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 191, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 438, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 939, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 888, in price_rozn
+    print(product_supplier.brand)
+          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TireSupplier' object has no attribute 'brand'
+"POST /companies/2/ HTTP/1.1" 500 122831
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 191, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 438, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 936, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 889, in price_rozn
+    brand=data['brand'],
+          ~~~~^^^^^^^^^
+KeyError: 'brand'
+"POST /companies/2/ HTTP/1.1" 500 123294
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 102, in company_detail
+    return redirect('result_uniq', company_id=company_id, processing_id=new_no_rozn_price.pk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'result_uniq' with keyword arguments '{'company_id': 2, 'processing_id': 7}' not found. 1 pattern(s) tried: ['company/(?P<company_id>[0-9]+)/result\\-uniq/(?P<uniq_data_id>[0-9]+)\\Z']
+"POST /companies/2/ HTTP/1.1" 500 94077
+Internal Server Error: /company/2/result-processing/8
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: result_processing() got an unexpected keyword argument 'processing_id'
+"GET /company/2/result-processing/8 HTTP/1.1" 500 61340
+Internal Server Error: /company/2/result-processing/8
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 552, in result_processing
+    file_path = process_data.path if process_data.path.startswith('http') else settings.MEDIA_URL + process_data.path
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'startswith'
+"GET /company/2/result-processing/8 HTTP/1.1" 500 74973
+Internal Server Error: /company/2/result-processing/8
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 554, in result_processing
+    return render(request, 'company-result-processing.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'download_file' with arguments '('',)' not found. 2 pattern(s) tried: ['download/(?P<uniq_data_id>[0-9]+)/\\Z', 'download_file/\\Z']
+"GET /company/2/result-processing/8 HTTP/1.1" 500 265692
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 195, in save_tires_to_xml_availability
+    process_disks(root, grouped_products['disks'], company_id, new_price_no_rozn)
+TypeError: process_disks() takes 3 positional arguments but 4 were given
+"POST /companies/3/ HTTP/1.1" 500 104624
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 212, in save_tires_to_xml_availability
+    process_truck_tires(root, grouped_products['truck_tires'], company_id, new_price_no_rozn)
+TypeError: process_truck_tires() takes 3 positional arguments but 4 were given
+"POST /companies/3/ HTTP/1.1" 500 105359
+Not Found: /favicon.ico
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 212, in save_tires_to_xml_availability
+    process_truck_tires(root, grouped_products['truck_tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 583, in process_truck_tires
+    create_supplier_element(truck_tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 935, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 887, in price_rozn
+    id_product=data['product'].id,
+               ~~~~^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+"POST /companies/3/ HTTP/1.1" 500 131257
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 191, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 438, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 935, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 885, in price_rozn
+    print(product_supplier.id, data['product'].brand_articul)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Tire' object has no attribute 'brand_articul'. Did you mean: 'brand_article'?
+"POST /companies/3/ HTTP/1.1" 500 131042
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 191, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 438, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 935, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 885, in price_rozn
+    print(parent_element.id)
+          ^^^^^^^^^^^^^^^^^
+AttributeError: 'xml.etree.ElementTree.Element' object has no attribute 'id'
+"POST /companies/3/ HTTP/1.1" 500 131214
+Not Found: /favicon.ico
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 191, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 438, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 935, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 885, in price_rozn
+    print(parent_element.articul_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'xml.etree.ElementTree.Element' object has no attribute 'articul_id'
+"POST /companies/3/ HTTP/1.1" 500 131279
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 212, in save_tires_to_xml_availability
+    process_truck_tires(root, grouped_products['truck_tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 583, in process_truck_tires
+    create_supplier_element(truck_tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 934, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 887, in price_rozn
+    brand=data['product'].brand,
+          ~~~~^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 212, in save_tires_to_xml_availability
+    process_truck_tires(root, grouped_products['truck_tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 583, in process_truck_tires
+    create_supplier_element(truck_tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 934, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 887, in price_rozn
+    brand=data['product'].brand,
+          ~~~~^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+"POST /companies/3/ HTTP/1.1" 500 131506
+Not Found: /favicon.ico
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 212, in save_tires_to_xml_availability
+    process_truck_tires(root, grouped_products['truck_tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 583, in process_truck_tires
+    create_supplier_element(truck_tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 935, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 888, in price_rozn
+    brand= data['product'].brand if data['product'].brand else '',
+                                    ~~~~^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+"POST /companies/3/ HTTP/1.1" 500 131707
+Not Found: /favicon.ico
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 173, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 212, in save_tires_to_xml_availability
+    process_truck_tires(root, grouped_products['truck_tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 583, in process_truck_tires
+    create_supplier_element(truck_tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 939, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 893, in price_rozn
+    product=data['product'].product,
+            ~~~~^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+"POST /companies/3/ HTTP/1.1" 500 131467
+Not Found: /favicon.ico
+Bad Request: /services/delete-file/
+"POST /services/delete-file/ HTTP/1.1" 400 25
+Internal Server Error: /company/3/output-table/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 566, in output_table_company
+    return render(request, 'company-output-table.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'company-detail' not found. 'company-detail' is not a valid view function or pattern name.
+"GET /company/3/output-table/ HTTP/1.1" 500 145548
+Not Found: /favicon.ico
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /company/3/output-table/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 574, in output_table_company
+    return render(request, 'company-output-table.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'your_view_function' not found. 'your_view_function' is not a valid view function or pattern name.
+"GET /company/3/output-table/ HTTP/1.1" 500 167200
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico

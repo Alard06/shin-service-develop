@@ -2,111 +2,79 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Настройки формата XLSX</title>
+    <title>Выбор полей</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
-        .sortable-list, .removed-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 10px 0;
-        }
-        .sortable-item, .removed-item {
-            margin: 5px 0;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .remove-btn, .restore-btn {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        .field-label {
-            flex-grow: 1;
+        .scrollable {
+            max-height: 400px; /* Высота прокручиваемой области */
+            overflow-y: auto; /* Вертикальная прокрутка */
+            border: 1px solid #ccc; /* Граница для прокручиваемой области */
+            padding: 10px; /* Отступы внутри области */
         }
     </style>
 </head>
 <body>
-    <h1>Настройки формата XLSX для {{ company.name }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        <h2>Выберите поля для включения в таблицу:</h2>
-        <ul class="sortable-list" id="sortable">
-            {% for field in form.fields_choices %}
-                {% if field.0 in selected_fields %}
-                    <li class="sortable-item" data-field="{{ field.0 }}">
-                        <label class="field-label">
-                            <input type="checkbox" name="selected_fields" value="{{ field.0 }}" checked>
-                            {{ field.1 }}  <!-- Здесь отображается название поля -->
-                        </label>
-                        <button type="button" class="remove-btn">Удалить</button>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+<div class="container">
+    <nav class="navbar navbar-expand-lg" style="font-family: 'Roboto', sans-serif;">
+        <a class="navbar-brand" href="{% url 'company_list' %}">Компании</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'supplier_list' %}">Поставщики</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'list_files' %}">Список Файлов</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'upload_file' %}">Загрузить Файл</a>
+                </li>
 
-        <h2>Удаленные поля:</h2>
-        <ul class="removed-list" id="removed-list">
-            {% for field in form.fields_choices %}
-                {% if field.0 not in selected_fields %}
-                    <li class="removed-item" data-field="{{ field.0 }}">
-                        <span>{{ field.1 }}</span>
-                        <button type="button" class="restore-btn">Восстановить</button>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+            </ul>
+        </div>
+    </nav>
+</div>
+    <div class="container mt-4">
+        <h1 class="text-center">Выбор полей для экспорта</h1>
+        <a href="{% url 'output_table_company' company.id %}" class="btn btn-primary mt-3"> Вернуться назад </a>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Доступные поля</h2>
+                    <ul id="sortable" class="list-group scrollable">
+                        {% for field in fields %}
+                            <li class="list-group-item">
+                                <input type="checkbox" name="selected_fields" value="{{ field.0 }}"
+                                       {% if field.0 in selected_fields %}checked{% endif %}>
+                                {{ field.1 }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h2>Выбранные поля</h2>
+                    <ul id="selected-fields" class="list-group scrollable">
+                        {% for field, name in selected_field_names %}
+                            <li class="list-group-item">{{ name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Сохранить порядок</button>
+        </form>
+    </div>
 
-        <button type="submit">Сохранить настройки</button>
-    </form>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script>
         $(function() {
-            // Make the list sortable
             $("#sortable").sortable();
             $("#sortable").disableSelection();
-
-            // Remove item on button click
-            $(".remove-btn").on("click", function() {
-                var item = $(this).closest(".sortable-item");
-                var fieldValue = item.data("field");
-                var fieldLabel = item.find(".field-label").text();
-
-                // Move item to removed list
-                $("#removed-list").append(
-                    `<li class="removed-item" data-field="${fieldValue}">
-                        <span>${fieldLabel}</span>
-                        <button type="button" class="restore-btn">Восстановить</button>
-                    </li>`
-                );
-                item.remove();
-            });
-
-            // Restore item on button click
-            $(document).on("click", ".restore-btn", function() {
-                var item = $(this).closest(".removed-item");
-                var fieldValue = item.data("field");
-                var fieldLabel = item.find("span").text();
-
-                // Move item back to sortable list
-                $("#sortable").append(
-                    `<li class="sortable-item" data-field="${fieldValue}">
-                        <label class="field-label">
-                            <input type="checkbox" name="selected_fields" value="${fieldValue}" checked>
-                            ${fieldLabel}
-                        </label>
-                        <button type="button" class="remove-btn">Удалить</button>
-                    </li>`
-                );
-                item.remove();
-            });
         });
     </script>
 </body>

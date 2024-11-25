@@ -165,43 +165,18 @@ def get_images_avito(tires_element, company, uniq_data_id):
                 else:
                     add_unique_product_no_photo(uniq_data_id, tires_element)
                     return ''
-    #
-    #         print(f'{model_name} | {model}')
-    #         save_models = model
-    #         if company_model is None:
-    #             logger.error(f"No company model found for {model.__class__}")
-    #             continue  # Skip to the next model
-    #
-    #         if company.get_other_photo_avito:
-    #             if company_image.additional_images:
-    #                 return company_image.additional_images
-    #         else:
-    #             print('continue')
-    #             continue
-    #
-    #
-    # # If no image is found, log the missing element
-    # logger.warning(f"No image found for element ID: {tires_element.get('brand')} {tires_element.get('product')}")
-    #
-    # # Call the async function to add the unique product
-    # add_unique_product_no_photo(uniq_data_id, tires_element)
-    # return save_models.image  # Return empty string if no image found
 
 
 def add_promo_photo(images, company):
-    """Add the promotional photo to the list of images as a comma-separated string."""
-    # Retrieve the promo photo from the company instance
     promo_photo = company.promo_photo
 
-    # Check if the promo photo is not empty or None
     if promo_photo:
-        # Join the existing images with the promo photo
-        images_string = images  # Convert the list of images to a comma-separated string
-        images_string += f', {promo_photo}'  # Append the promo photo
+        images_string = images
+        images_string += f', {promo_photo}'
 
-        return images_string  # Return the updated string of images
+        return images_string
 
-    return images  # Return the original images if no promo photo is found
+    return images
 
 def get_images(tires_element, company, drom=False, uniq_data_id=None):
     if drom:
@@ -218,13 +193,11 @@ def get_images(tires_element, company, drom=False, uniq_data_id=None):
 def format_number(num):
     """Formats the number to remove decimal point if it's a whole number."""
     if num.is_integer():
-        return str(int(num))  # Convert to int to remove .0
-    return str(num)  # Return as is if it's not a whole number
+        return str(int(num))
+    return str(num)
 
 
 def generate_tire_size_string(width, height, diameter):
-    """Generates a formatted string of tire sizes based on width, height, and diameter."""
-    # Convert diameter, height, and width to float16
     try:
         diameter = numpy.float16(diameter.replace(',', '.'))
         width = numpy.float16(width.replace(',', '.'))
@@ -234,14 +207,10 @@ def generate_tire_size_string(width, height, diameter):
             height = 'Full'
     except ValueError as e:
         print(f"Error converting tire size: {e}")
-        return ""  # Return an empty string or handle the error as needed
-
-    # Format numbers to remove .0 if applicable
+        return ""
     diameter_str = format_number(diameter)
     height_str = format_number(height) if height != 'Full' else 'Full'
     width_str = format_number(width)
-
-    # Create the different combinations of tire sizes
     sizes = [
         f"{diameter_str} {width_str} {height_str}",
         f"{diameter_str}/{width_str}/{height_str}",
@@ -256,8 +225,6 @@ def generate_tire_size_string(width, height, diameter):
         f"{width_str}-{height_str}R{diameter_str}",
         f"{width_str}-{height_str}-R{diameter_str}",
     ]
-
-    # Join the sizes into a single string with a comma and space
     return ', '.join(sizes)
 
 
@@ -298,56 +265,41 @@ def add_other_photo(path, company):
     # Read the Excel file into a DataFrame
     excel_data = pd.read_excel(path)
     data = pd.DataFrame(excel_data, columns=['Наименование', 'Фото'])
-
-    # Define the categories to process
     categories = ['Tire', 'Disk', 'SpecialTire', 'MotoTire', 'TruckDisk', 'TruckTire']
 
     total_processed = 0
     total_added = 0
 
     for category in categories:
-        # Fetch all items for the current category
         items = eval(f"{category}.objects.filter(find_images_title__in=data['Наименование'].unique())")
         item_dict = {item.find_images_title.upper(): item for item in items}
-
-        # Clear existing instances for the specified company
         eval(
             f"{category}Company.objects.filter(company=company, {category.lower()}__full_title__in=item_dict.keys()).delete()")
 
-        # Prepare a dictionary to hold aggregated image data
         aggregated_images = {}
 
         for index, row in data.iterrows():
-            item_name = row['Наименование'].upper()  # Convert to uppercase
+            item_name = row['Наименование'].upper()
             image = row['Фото']
 
             if item_name in item_dict:
-                # Aggregate images for the same item, ensuring no NaN values are included
                 if item_name not in aggregated_images:
                     aggregated_images[item_name] = []
-                if pd.notna(image):  # Check if the image is not NaN
-                    # Convert image to string if it's not already
+                if pd.notna(image):
                     aggregated_images[item_name].append(str(image))
-
-        # Prepare a list to hold new instances to be created
         companies_to_create = []
 
         for item_name, images in aggregated_images.items():
             item = item_dict[item_name]
-
-            # Create a new Company instance
             company_instance = eval(f"{category}Company({category.lower()}=item, company=company)")
 
-            # Join images with a comma and update additional_images
             company_instance.additional_images = ', '.join(images)
             companies_to_create.append(company_instance)
 
 
-        # Bulk create all new instances at once
         total_added += len(companies_to_create)
         eval(f"{category}Company.objects.bulk_create(companies_to_create)")
 
-        # Update total processed items
         total_processed += len(aggregated_images)
 
     print(f"Total processed items: {total_processed}")

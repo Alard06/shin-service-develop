@@ -11,6 +11,7 @@ from itertools import groupby
 from apps.company.models import Company
 from apps.company.utils.functions import get_measurement
 from apps.company.utils.general_tools import format_number
+from apps.services.models import NoPriceRoznProduct
 from apps.suppliers.models import Tire, TireSupplier, Supplier, CompanySupplier, TruckTireSupplier, DiskSupplier, \
     SpecialTireSupplier, MotoTireSupplier, TruckDiskSupplier
 
@@ -30,9 +31,8 @@ headers = [
 ]
 
 
-def get_available_products_for_company(company_id, types, availability, format):
+def get_available_products_for_company(company_id, types, availability, format, new_price_no_rozn):
     # Получаем всех поставщиков, связанных с данной компанией через CompanySupplier
-    print(availability, types)
     suppliers = Supplier.objects.filter(companysupplier__company_id=company_id)
 
     # Инициализируем словарь для группировки доступных продуктов
@@ -169,12 +169,14 @@ def get_available_products_for_company(company_id, types, availability, format):
                 }
             grouped_products['truck_disks'][truck_disk_id]['suppliers'].append(truck_disk_supplier)
     # Сохраняем данные в XML файл
-    save_tires_to_xml_availability(grouped_products, company_id, types, format)
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
     return grouped_products
+
 
 from datetime import datetime, timezone
 
-def save_tires_to_xml_availability(grouped_products, company_id, types, format):
+
+def save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn):
     # Создаем корневой элемент
     # Получаем текущее время в UTC
     current_date = datetime.now(timezone.utc)
@@ -185,35 +187,34 @@ def save_tires_to_xml_availability(grouped_products, company_id, types, format):
     # Обрабатываем шины
     if 'tires' in types:
         if len(grouped_products['tires']) != 0:
-            process_tires(root, grouped_products['tires'], company_id)
+            process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
 
     if 'disks' in types:
         if len(grouped_products['disks']) != 0:
-            process_disks(root, grouped_products['disks'], company_id)
+            process_disks(root, grouped_products['disks'], company_id, new_price_no_rozn)
 
     if 'truck_disks' in types:
         if len(grouped_products['truck_disks']) != 0:
-            process_truck_disks(root, grouped_products['truck_disks'], company_id)
+            process_truck_disks(root, grouped_products['truck_disks'], company_id, new_price_no_rozn)
 
     if 'moto_tires' in types:
         if len(grouped_products['moto_tires']) != 0:
-            process_moto(root, grouped_products['moto_tires'], company_id)
+            process_moto(root, grouped_products['moto_tires'], company_id, new_price_no_rozn)
 
     if 'special_tires' in types:
         if len(grouped_products['special_tires']) != 0:
-            process_special_tires(root, grouped_products['special_tires'], company_id)
+            process_special_tires(root, grouped_products['special_tires'], company_id, new_price_no_rozn)
 
     # Обрабатываем грузовые шины
     if 'truck_tires' in types:
         if len(grouped_products['truck_tires']) != 0:
-            process_truck_tires(root, grouped_products['truck_tires'], company_id)
+            process_truck_tires(root, grouped_products['truck_tires'], company_id, new_price_no_rozn)
 
     # Генерируем строку XML
     xml_str = ET.tostring(root, encoding='utf-8').decode('utf-8')
     xml = ET.fromstring(xml_str)
     date = datetime.now().strftime("%d-%m-%H-%M")
     if format == 'xlsx':
-        print(xml.findall('tire'))
 
         xml_element = ET.fromstring(xml_str)
         wb = openpyxl.Workbook()
@@ -230,7 +231,6 @@ def save_tires_to_xml_availability(grouped_products, company_id, types, format):
         for index in range(len(items)):
             if items[index]:
                 for record in items[index].findall(find_item[index]):
-                    print(record)
                     supplier = record.find('supplier')
                     row_data = [
                         record.get('id', ''),
@@ -311,7 +311,7 @@ def save_tires_to_xml_availability(grouped_products, company_id, types, format):
         print(f"XML сохранен в файл: {name}")
 
 
-def  get_headline(result, category) -> str:
+def get_headline(result, category) -> str:
     result = result['product']
     diameter, width = None, None
     try:
@@ -371,7 +371,7 @@ def  get_headline(result, category) -> str:
     return res
 
 
-def process_tires(root, tires, company_id):
+def process_tires(root, tires, company_id, new_price_no_rozn):
     tires_elements = ET.SubElement(root, 'tires')
 
     for tire_id, data in tires.items():
@@ -433,7 +433,8 @@ def process_tires(root, tires, company_id):
 
         if best_supplier:
             create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
-                                    best_delivery_period_days, product_supplier=product_supplier, company_id=company_id)
+                                    best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
+                                    new_price_no_rozn=new_price_no_rozn, data=data)
 
 
 def get_drill(result) -> str:
@@ -446,7 +447,7 @@ def get_drill(result) -> str:
     return ""
 
 
-def process_disks(root, disks, company_id):
+def process_disks(root, disks, company_id, new_price_no_rozn):
     disks_elements = ET.SubElement(root, 'disks')
     for disk_id, data in disks.items():
         disk_element = ET.SubElement(disks_elements, "disk",
@@ -479,8 +480,10 @@ def process_disks(root, disks, company_id):
                                      pcd="{:.2f}".format(float((data['product'].pcd).replace(',', '.'))),
                                      boltcount=str(data['product'].boltcount) if data['product'].boltcount else '',
                                      drill=get_drill(data['product']),
-                                     outfit="{:.2f}".format(float((data['product'].outfit).replace(',','.'))) if data['product'].outfit else '',
-                                     dia="{:.2f}".format(float((data['product'].dia).replace(',', '.'))) if data['product'].dia else '',
+                                     outfit="{:.2f}".format(float((data['product'].outfit).replace(',', '.'))) if data[
+                                         'product'].outfit else '',
+                                     dia="{:.2f}".format(float((data['product'].dia).replace(',', '.'))) if data[
+                                         'product'].dia else '',
                                      color=data['product'].color,
                                      type=data['product'].type,
                                      numberOfPlies='',
@@ -508,10 +511,10 @@ def process_disks(root, disks, company_id):
         if best_supplier:
             create_supplier_element(disk_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    is_disk=True)
+                                    is_disk=True,new_price_no_rozn=new_price_no_rozn)
 
 
-def process_truck_tires(root, truck_tires, company_id):
+def process_truck_tires(root, truck_tires, company_id, new_price_no_rozn):
     trucks = ET.SubElement(root, 'trucks')
 
     for truck_tire_id, data in truck_tires.items():
@@ -576,10 +579,10 @@ def process_truck_tires(root, truck_tires, company_id):
         if best_supplier:
             create_supplier_element(truck_tire_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    is_truck_tire=True)
+                                    is_truck_tire=True, new_price_no_rozn=new_price_no_rozn)
 
 
-def process_truck_disks(root, truck_disks, company_id):
+def process_truck_disks(root, truck_disks, company_id, new_price_no_rozn):
     trucks = ET.SubElement(root, 'truckDisks')
     for truck_disk_id, data in truck_disks.items():
         truck_disk_element = ET.SubElement(trucks, "truckDisk",
@@ -642,10 +645,10 @@ def process_truck_disks(root, truck_disks, company_id):
         if best_supplier:
             create_supplier_element(truck_disk_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    is_truck_disk=True)
+                                    is_truck_disk=True, new_price_no_rozn=new_price_no_rozn)
 
 
-def process_moto(root, moto, company_id):
+def process_moto(root, moto, company_id, new_price_no_rozn):
     moto_root = ET.SubElement(root, 'mototires')
     for moto_id, data in moto.items():
         moto_element = ET.SubElement(moto_root, "motoTire",
@@ -711,7 +714,7 @@ def process_moto(root, moto, company_id):
         if best_supplier:
             create_supplier_element(moto_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    moto=True)
+                                    moto=True, new_price_no_rozn=new_price_no_rozn)
 
 
 def sort_suppliers(suppliers, company_id):
@@ -798,7 +801,7 @@ def process_suppliers(sorted_suppliers, product, company_id, is_disk=False,
     return articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier  # Ensure product_supplier is returned
 
 
-def process_special_tires(root, special_tires, company_id):
+def process_special_tires(root, special_tires, company_id, new_price_no_rozn):
     special_root = ET.SubElement(root, 'specialTires')
     for special_tire_id, data in special_tires.items():
         special_tire_element = ET.SubElement(special_root, "specialTire",
@@ -869,14 +872,28 @@ def process_special_tires(root, special_tires, company_id):
         if best_supplier:
             create_supplier_element(special_tire_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    special=True)
+                                    special=True, new_price_no_rozn=new_price_no_rozn)
 
 
-def price_rozn(price: str, company_id, best_price):
+def price_rozn(price: str, company_id, best_price, new_price_no_rozn, product_supplier, best_supplier, data, parent_element):
     if price:
-        print(price)
         price = float(price.replace(',', '.'))
         price_multiplier = Company.objects.get(id=company_id).price_multiplier
+        try:
+            brand = data['product'].brand
+        except:
+            brand = None
+        try:
+            product=data['product'].product
+        except:
+            product = None
+        new_product = NoPriceRoznProduct.objects.create(
+            id_product=product_supplier.articul,
+            brand=brand,
+            product=product,
+            supplier=best_supplier.supplier.name
+        )
+        new_price_no_rozn.products.add(new_product)
         return str(price_rozn_pow(price * price_multiplier))  # TODO проверить с нулем
     return str(price_rozn_pow(best_price))
 
@@ -891,7 +908,7 @@ def price_rozn_pow(price_rozn):
 def create_supplier_element(parent_element, articuls, best_supplier, best_price, total_quantity,
                             best_delivery_period_days, company_id, product_supplier=None, is_disk=False,
                             is_truck_tire=False, is_truck_disk=False,
-                            moto=False, special=False):
+                            moto=False, special=False, new_price_no_rozn=None, data=None):
     presence_status = 'В наличии' if int(best_delivery_period_days) == 0 else 'Под заказ'
     stock = 'Наличие' if int(best_delivery_period_days) == 0 else 'Под заказ'
     tire_type = None
@@ -920,7 +937,8 @@ def create_supplier_element(parent_element, articuls, best_supplier, best_price,
                                      else '',
                                      price_rozn=str(price_rozn_pow(product_supplier.price_rozn)) if
                                      product_supplier.price_rozn else price_rozn(
-                                         product_supplier.input_price, company_id, best_price),
+                                         product_supplier.input_price, company_id, best_price, new_price_no_rozn,
+                                         product_supplier, best_supplier, data, parent_element),
                                      deliveryPeriodDays=str(
                                          best_delivery_period_days) if best_delivery_period_days is not None else '',
                                      tireType=tire_type,
@@ -932,5 +950,8 @@ def create_supplier_element(parent_element, articuls, best_supplier, best_price,
                                      sale=sale,
                                      year=""
                                      )
+
+
+
 
 # TODO МОТО И СПЕЦ ШИНЫ ГРУЗОВЫЕ ДИСКИ ДОДЕЛАТЬ

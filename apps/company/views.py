@@ -12,10 +12,10 @@ from apps.company.models import Company
 from apps.company.utils.general_tools import add_other_photo
 from apps.company.utils.processing import get_available_products_for_company
 from apps.company.utils.uniqueizer import unique, unique_avito
-from apps.services.models import UniqueDetail, UniqueProductNoPhoto
+from apps.services.models import UniqueDetail, UniqueProductNoPhoto, NoPriceRozn
 from apps.suppliers.models import Supplier, CompanySupplier, SpecialTireSupplier, TireSupplier, DiskSupplier, \
     TruckTireSupplier, MotoTireSupplier, TruckDiskSupplier
-
+from apps.company.utils.process_xlsx import process_xml_files
 
 # Create your views here.
 def company_list(request):
@@ -63,59 +63,50 @@ def company_data(request, company_id):
 def company_detail(request, company_id):
     company = get_object_or_404(Company, id=company_id)
 
-    # Получаем всех поставщиков, связанных с данной компанией
     suppliers = CompanySupplier.objects.filter(company=company).select_related('supplier')
 
-    # Получаем всех поставщиков
     all_suppliers = Supplier.objects.all()
 
-    # Исключаем поставщиков, которые уже связаны с данной компанией
     selected_supplier_ids = suppliers.values_list('supplier_id', flat=True)
     available_suppliers = all_suppliers.exclude(id__in=selected_supplier_ids)
     uploads_dir = os.path.join(settings.MEDIA_ROOT, f'uploads/{company_id}')
 
-    # Check if the uploads directory exists, if not, create it
     if not os.path.exists(uploads_dir):
-        os.makedirs(uploads_dir)  # Create the directory
+        os.makedirs(uploads_dir)
 
-    # List all files in the uploads directory
     files = os.listdir(uploads_dir)
 
-    # Filter out directories, keep only files
     files = [f for f in files if os.path.isfile(os.path.join(uploads_dir, f))]
     if request.method == 'POST':
         selected_suppliers = request.POST.getlist('suppliers')
 
-        # Обработка генерации XML
         if 'generate_xml' in request.POST:
-            # get_available_products_for_company(company.id)
-            return redirect('company_detail', company_id=company.id)  # Перенаправляем обратно
+            return redirect('company_detail', company_id=company.id)
 
-        # Обработка выбора поставщиков и их приоритетов
         if selected_suppliers:
             for supplier_id in selected_suppliers:
                 supplier = get_object_or_404(Supplier, id=supplier_id)
-                priority = request.POST.get(f'priority_{supplier_id}', 1)  # Получаем приоритет для каждого поставщика
-                visual_priority = request.POST.get(f'visual_priority_{supplier_id}', 1)  # Получаем визуальный приоритет
+                priority = request.POST.get(f'priority_{supplier_id}', 1)
+                visual_priority = request.POST.get(f'visual_priority_{supplier_id}', 1)
                 CompanySupplier.objects.update_or_create(
                     company=company,
                     supplier=supplier,
                     defaults={'priority': priority, 'visual_priority': visual_priority}
                 )
-
-        # Обработка выбора типов и наличия
-        types = request.POST.getlist('types')  # Получаем список выбранных типов
-        availability = request.POST.get('availability')  # Получаем выбранное значение наличия
+        types = request.POST.getlist('types')
+        availability = request.POST.get('availability')
         format = request.POST.get('output_format')
         if types and availability:
-            get_available_products_for_company(company_id, types, availability, format)
+            new_no_rozn_price = NoPriceRozn.objects.create(company=company, date=datetime.now())
+            get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+            return redirect('result_processing', company_id=company_id, processing_id=new_no_rozn_price.pk)
 
         return redirect('company_detail', company_id=company.id)  # Перенаправляем обратно на страницу компании
 
     return render(request, 'company_detail.html', {
         'company': company,
-        'suppliers': suppliers,  # Поставщики, связанные с компанией
-        'available_suppliers': available_suppliers,  # Поставщики, которые еще не выбраны
+        'suppliers': suppliers,
+        'available_suppliers': available_suppliers,
         'files': files
     })
 
@@ -153,49 +144,92 @@ def uniq_avito_settings(request, company_id):
 
 
 def uniq_xlsx_settings(request, company_id):
-    company = get_object_or_404(Company, id=company_id)
+    company = Company.objects.get(id=company_id)
 
-    # Инициализация поля, если оно пустое
-    if not company.format_xlsx:
-        company.format_xlsx = ', '.join([field[0] for field in FormatXLSXForm.fields_choices])
-        company.save()
+    fields = [
+        ('id', 'id'),
+        ('brandArticul', 'Артикул бренда'),
+        ('brand', 'Бренд'),
+        ('product', 'Продукт'),
+        ('image', 'Изображения'),
+        ('fullTitle', 'Полное наименование'),
+        ('headline', 'Заголовок'),
+        ('measurement', 'Измерение'),
+        ('width', 'Ширина'),
+        ('height', 'Высота'),
+        ('diameter', 'Диаметр'),
+        ('season', 'Сезон'),
+        ('spike', 'Шипы'),
+        ('runflat', 'Runflat'),
+        ('lightduty', 'Легкий груз'),
+        ('indexes', 'Индексы'),
+        ('supplier-articul', 'Артикул'),
+        ('supplier-price', 'Цена'),
+        ('supplier-tireType', 'Тип'),
+        ('supplier-inputPrice', 'Закупочная цена'),
+        ('supplier-price_rozn', 'Розничная цена'),
+        ('supplier-quantity', 'Количество'),
+        ('supplier-presence', 'Наличие'),
+        ('supplier-deliveryPeriodDays', 'Срок доставки (дни)'),
+        ('supplier-lastAvailabilityDate', 'Дата последнего наличия'),
+        ('supplier-sale', 'Распродажа'),
+    ]
 
-    # Получаем выбранные поля из базы данных
-    selected_fields = company.format_xlsx.split(', ') if company.format_xlsx else []
-    print("Selected fields from DB:", selected_fields)
+    # Словарь для русских названий полей
+    field_names = {
+        'id': 'id',
+        'brandArticul': 'Артикул бренда',
+        'brand': 'Бренд',
+        'product': 'Продукт',
+        'image': 'Изображения',
+        'fullTitle': 'Полное наименование',
+        'headline': 'Заголовок',
+        'measurement': 'Измерение',
+        'width': 'Ширина',
+        'height': 'Высота',
+        'diameter': 'Диаметр',
+        'season': 'Сезон',
+        'spike': 'Шипы',
+        'runflat': 'Runflat',
+        'lightduty': 'Легкий груз',
+        'indexes': 'Индексы',
+        'supplier-articul': 'Артикул',
+        'supplier-price': 'Цена',
+        'supplier-tireType': 'Тип',
+        'supplier-inputPrice': 'Закупочная цена',
+        'supplier-price_rozn': 'Розничная цена',
+        'supplier-quantity': 'Количество',
+        'supplier-presence': 'Наличие',
+        'supplier-deliveryPeriodDays': 'Срок доставки (дни)',
+        'supplier-lastAvailabilityDate': 'Дата последнего наличия',
+        'supplier-sale': 'Распродажа',
+    }
 
     if request.method == 'POST':
-        form = FormatXLSXForm(request.POST)
-        if form.is_valid():
-            selected_fields = form.cleaned_data['selected_fields']
-            print("Selected fields from form:", selected_fields)
-            # Сохраняем выбранные поля как строку, разделенную запятыми
-            company.format_xlsx = ', '.join(selected_fields)
-            company.save()
-            return redirect('uniq_xlsx_settings', company_id=company_id)
-    else:
-        form = FormatXLSXForm(initial={'selected_fields': selected_fields})
+        selected_fields = request.POST.getlist('selected_fields')
+        ordered_fields = [field for field in selected_fields if field in [f[0] for f in fields]]
+        company.format_xlsx = ','.join(ordered_fields)
+        company.save()
+        return redirect('uniq_xlsx_settings', company_id=company.id)
+
+    selected_fields = company.format_xlsx.split(',') if company.format_xlsx else []
+
+    selected_field_names = [(field, field_names.get(field, field)) for field in selected_fields]
 
     return render(request, 'company-settings-xlsx.html', {
-        'form': form,
+        'fields': fields,
+        'selected_field_names': selected_field_names,
         'company': company,
-        'selected_fields': selected_fields,
     })
 
 
 def upload_file_company(request, company_id):
     if request.method == 'POST' and request.FILES['file']:
         uploaded_file = request.FILES['file']
-
-        # Define the upload directory based on company_id
         uploads_dir = os.path.join(settings.MEDIA_ROOT, f'uploads/{company_id}')
-
-        # Create the directory if it doesn't exist
         os.makedirs(uploads_dir, exist_ok=True)
-
-        # Save the file in the specified directory
         fs = FileSystemStorage(location=uploads_dir)
-        filename = fs.save(uploaded_file.name, uploaded_file)  # Save the file
+        filename = fs.save(uploaded_file.name, uploaded_file)
 
         return HttpResponse(f"Файл {filename} загружен успешно в {uploads_dir}.")
     return HttpResponse("Ошибка загрузки файла.")
@@ -207,13 +241,11 @@ def run_uniqueness_checker(request, company_id):
         file_name = request.POST.get('file_name')
         file_path = os.path.join(settings.MEDIA_ROOT, f"uploads/{company_id}/{file_name}")
         path = None
-        # Get selected product types
-        product_types = request.POST.getlist('product_type')  # Retrieve all selected values
-        print("Selected product types:", product_types)  # Debug output for selected types
+        product_types = request.POST.getlist('product_type')
+        print("Selected product types:", product_types)
         type_file = request.POST.get('output_format')
         trading_platform = request.POST.get('trading_platform')
         processing_by_type_other_software = request.POST.get('Processing-by-other-software')
-        # Call your uniqueness function, passing the selected product types
         print(trading_platform)
         new_uniq_data = UniqueDetail.objects.create(company=company, date=datetime.now())
         if trading_platform == 'drom':
@@ -225,21 +257,11 @@ def run_uniqueness_checker(request, company_id):
                                 type_file=type_file,
                                 processing_by_type_other_software=processing_by_type_other_software,
                                 uniq_data_id=new_uniq_data.pk)
-
-        # Prepare the processed file for download
-        processed_file_path = path  # Use the path directly as it already contains the full path
+        processed_file_path = path
         new_uniq_data.path = processed_file_path
         new_uniq_data.save()
         if os.path.exists(path):
-            # Instead of returning the file, redirect to the results page
             return redirect('result_uniq', company_id=company_id, uniq_data_id=new_uniq_data.pk)
-        # Check if the processed file exists
-        # if os.path.exists(processed_file_path):
-            # Return the file response for download
-            #response = FileResponse(open(processed_file_path, 'rb'), as_attachment=True,
-             #                       filename=os.path.basename(processed_file_path))  # Use the original filename
-           # return response
-
         else:
             print('Обработанный файл не найден. 404')
             return HttpResponse("Обработанный файл не найден.", status=404)
@@ -278,11 +300,10 @@ def add_suppliers_to_company(request, company_id):
     company = get_object_or_404(Company, id=company_id)
 
     if request.method == 'POST':
-        # Получаем строку с идентификаторами и разбиваем её на список
         selected_suppliers = request.POST.get('suppliers', '').split(',')
         priority = request.POST.get('priority')
 
-        if 'add_all' in request.POST:  # Проверяем, была ли нажата кнопка "Добавить всех поставщиков"
+        if 'add_all' in request.POST:
             all_suppliers = Supplier.objects.all()  # Получаем всех поставщиков
             for supplier in all_suppliers:
                 CompanySupplier.objects.update_or_create(
@@ -321,7 +342,6 @@ def delete_supplier_company(request, supplier_id, company_id):
         messages.success(request, 'Supplier relationship successfully deleted.')
         return redirect('company_detail', company_id=company_id)
 
-    # If the request method is not POST, redirect to the company detail page
     messages.info(request, 'No changes made.')
 
 
@@ -332,7 +352,7 @@ def edit_company(request, company_id):
         form = CompanyForm(request.POST, instance=company)
         if form.is_valid():
             form.save()
-            return redirect('company_detail', company_id=company.id)  # Перенаправляем обратно на страницу компании
+            return redirect('company_detail', company_id=company.id)
     else:
         form = CompanyForm(instance=company)
 
@@ -345,7 +365,7 @@ def delete_company(request, company_id):
     if request.method == 'POST':
         print('POST')
         company.delete()
-        return redirect('company_list')  # Перенаправляем на список компаний после удаления
+        return redirect('company_list')
 
     return render(request, 'error_delete.html', {'company': company})
 
@@ -382,7 +402,7 @@ def update_company_avito_settings(request, company_id):
         company.get_other_photo_avito = get_other_photo
         company.save()  # Сохраняем изменения
 
-        return redirect('uniq_avito_settings', company_id=company.id)  # Перенаправляем на страницу компании
+        return redirect('uniq_avito_settings', company_id=company.id)
 
     return render(request, 'settings.html', {
         'company': company,
@@ -440,11 +460,9 @@ def save_ad_order_avito(request, company_id):
     if request.method == 'POST':
         order = request.POST.get('order')  # Get the order from the form
         if order:
-            # Split the order string into a list
-            print("Received order:", order)  # Debugging statement
-            # Here you can save the order to the database or process it as needed
+            print("Received order:", order)
             company = Company.objects.get(id=company_id)
-            company.ad_order_avito = order  # Assuming you have a field to store this
+            company.ad_order_avito = order
             company.save()
             return redirect('company_detail', company_id=company.id)
     return HttpResponse("Invalid request", status=400)
@@ -485,7 +503,6 @@ def result_uniq(request, company_id, uniq_data_id):
             'image': product.image if hasattr(product, 'image') else None
         })
 
-    # Construct the full file path
     file_path = uniq_data.path if uniq_data.path.startswith('http') else settings.MEDIA_URL + uniq_data.path
 
     return render(request, 'company-result-uniq.html', {
@@ -493,7 +510,7 @@ def result_uniq(request, company_id, uniq_data_id):
         'uniq_data': uniq_data,
         'images': images,
         'product_count': product_count,
-        'file_path': file_path  # Pass the full file path to the context
+        'file_path': file_path
     })
 
 
@@ -508,3 +525,54 @@ def download_file(request, uniq_data_id):
         return response
     else:
         return HttpResponseNotFound("File not found")
+
+
+def result_processing(request, company_id, processing_id):
+    company = get_object_or_404(Company, id=company_id)
+    process_data = get_object_or_404(NoPriceRozn, pk=processing_id)
+    product_count = process_data.products.count()
+    products = process_data.products.all()
+    images = []
+    for product in products:
+        images.append({
+            'id_product': product.id_product,
+            'brand': product.brand,
+            'product': product.product,
+            'supplier': product.supplier
+        })
+
+    return render(request, 'company-result-processing.html', {
+        'company': company,
+        'process_data': process_data,
+        'images': images,
+        'product_count': product_count,
+        'file_path': '#'  #
+    })
+
+
+def output_table_company(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    uploads_dir = os.path.join(settings.MEDIA_ROOT, f'uploads/{company_id}')
+
+    if not os.path.exists(uploads_dir):
+        os.makedirs(uploads_dir)
+
+    files = os.listdir(uploads_dir)
+
+    files = [f for f in files if os.path.isfile(os.path.join(uploads_dir, f))]
+    return render(request, 'company-output-table.html', {
+        'company': company,
+        'files': files
+    })
+
+def output_table_company_formated(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    if request.method == 'POST':
+        selected_files = request.POST.getlist('selected_files')
+        processed_file_path  = process_xml_files(selected_files, company_id)
+        print(processed_file_path)
+        with open(processed_file_path, 'rb') as f:
+            response = HttpResponse(f.read(),
+                                    content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            response['Content-Disposition'] = f'attachment; filename="{company.name}_processed.xlsx"'
+            return response

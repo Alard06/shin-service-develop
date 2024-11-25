@@ -10,7 +10,7 @@ def unique_tire_avito(tires, company, season=True):
 def process_data_tire(ads, data, company, uniq_data_id, season=False):
     season_protector = types_avito_tires(data.get('season'))
 
-    if season and not (company.protector == 'cancel'):
+    if season and not (company.protector_avito == 'cancel'):
         tire_season = types_avito_tires(data.get('season'))
         print(company.protector_avito, season_to_protector, season_to_protector.get(tire_season), tire_season)
         if company.protector_avito not in season_to_protector.get(tire_season):

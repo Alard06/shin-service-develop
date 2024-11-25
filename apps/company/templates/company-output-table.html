@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h1>Настройки выходной таблицы для компании {{ company.name }}</h1>
+    <a href="{% url 'company_detail' company.id %}" class="btn btn-success">Вернуться назад</a>
+    <br />
+    <br />
+    <br />
+    <a href="{% url 'uniq_xlsx_settings' company.id %}" class="btn btn-warning">Настройки выходной таблицы xlsx</a>
+
+    <form method="post" action="{% url 'output_table_company_formated' company.id %}" class="mt-4">
+        {% csrf_token %}
+        <h3>Выберите файлы:</h3>
+        <div class="row">
+            {% for file in files %}
+                <div class="col-md-4 mb-3">
+                    <div class="card" style="cursor: pointer;" onclick="toggleCheckbox('file-{{ forloop.counter }}')">
+                        <div class="card-body">
+                            <input type="checkbox" name="selected_files" value="{{ file }}" id="file-{{ forloop.counter }}" class="form-check-input" style="display: none;">
+                            <h5 class="card-title">{{ file }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Отправить выбранные файлы</button>
+    </form>
+</div>
+
+<script>
+    function toggleCheckbox(checkboxId) {
+        const checkbox = document.getElementById(checkboxId);
+        checkbox.checked = !checkbox.checked; // Toggle the checkbox state
+        const card = checkbox.closest('.card');
+        card.classList.toggle('bg-light'); // Change background color to indicate selection
+        card.classList.toggle('border-primary'); // Change border color to indicate selection
+    }
+</script>
+
+{% endblock %}
