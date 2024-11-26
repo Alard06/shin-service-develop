@@ -69,7 +69,6 @@ def process_xml_avito_handler(file_path, company, product_types, uniq_data_id):
     for product in product_types:
         if product == 'tires':
             for tires in root.findall('tires/tire'):
-                print(f'tires | {tires}')
                 process_data_tire(ads, tires, company, uniq_data_id, season=True)
         elif product == 'disks':
             for disk in root.findall('disks/disk'):

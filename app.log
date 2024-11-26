@@ -3647,3 +3647,33 @@ Not Found: /favicon.ico
 "GET /static/img/favicon.ico HTTP/1.1" 404 1859
 "GET /static/img/favicon.ico HTTP/1.1" 404 1859
 "GET /static/img/favicon.ico HTTP/1.1" 404 1859
+Internal Server Error: /run_uniqueness_checker/3
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 256, in run_uniqueness_checker
+    path = unique_avito(file_path, company=company, product_types=product_types,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\uniqueizer.py", line 319, in unique_avito
+    ads = process_xml_avito_handler(file_path, company, product_types, uniq_data_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\process_xml.py", line 88, in process_xml_avito_handler
+    process_data_disks(ads, truck_disk,company, uniq_data_id)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\disks.py", line 33, in process_data_disks
+    ET.SubElement(ad_element, "RimOffset").text = str(get_diameter(data.get('outfit', '')))  # Добавлено RimOffset
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\general_tools.py", line 32, in get_diameter
+    formatted_value = str(float(diameter.replace(',', '.'))).rstrip('0').rstrip('.')
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: ''
+"POST /run_uniqueness_checker/3 HTTP/1.1" 500 89323
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859

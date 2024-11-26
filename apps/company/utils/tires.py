@@ -49,8 +49,9 @@ def process_data_tire(ads, data, company, uniq_data_id, season=False):
     images = ET.SubElement(ad_element, "Images")
     get_images_db = get_images(data, company, uniq_data_id)
     if get_images_db:
-        if type(get_images_db) == list:
-            for image_url in get_images_db[::-1]:
+        get_images_db_temp = get_images_db.split(',')
+        if type(get_images_db_temp) == list and len(get_images_db_temp) >= 2:
+            for image_url in get_images_db_temp:
                 ET.SubElement(images, "Image", url=str(image_url))
         else:
             ET.SubElement(images, "Image", url=str(get_images_db))

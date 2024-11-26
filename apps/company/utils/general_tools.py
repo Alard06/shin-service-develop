@@ -29,7 +29,9 @@ season_to_protector = {
 
 
 def get_diameter(diameter):
-    formatted_value = str(float(diameter.replace(',', '.'))).rstrip('0').rstrip('.')
+    formatted_value = diameter
+    if diameter:
+        formatted_value = str(float(diameter.replace(',', '.'))).rstrip('0').rstrip('.')
     return formatted_value
 
 
