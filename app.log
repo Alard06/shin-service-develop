@@ -3636,3 +3636,14 @@ Not Found: /favicon.ico
 Not Found: /favicon.ico
 Not Found: /favicon.ico
 Not Found: /favicon.ico
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859

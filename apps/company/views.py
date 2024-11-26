@@ -231,7 +231,7 @@ def upload_file_company(request, company_id):
         fs = FileSystemStorage(location=uploads_dir)
         filename = fs.save(uploaded_file.name, uploaded_file)
 
-        return HttpResponse(f"Файл {filename} загружен успешно в {uploads_dir}.")
+        return redirect('company_detail', company_id=company_id)
     return HttpResponse("Ошибка загрузки файла.")
 
 
