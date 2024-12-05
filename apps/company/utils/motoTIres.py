@@ -10,8 +10,10 @@ def process_data_moto(ads, data, company, uniq_data_id):
 
     # Add sub-elements with text from the ad_data
     ET.SubElement(ad_element, "Id").text = str(data.get('id'))
-    ET.SubElement(ad_element, "Brand").text = data.get('brand').replace(' (Nokian Tyres)', '').replace('Double Star',
-                                                                                                       'DoubleStar')
+    ET.SubElement(ad_element, "Brand").text = data.get('brand').replace(' (Nokian Tyres)',
+                                                                        '').replace('Double Star',
+                                                                        'DoubleStar').replace('Кама',
+                                                                                              'КАМА (Нижнекамский шинный завод)')
     ET.SubElement(ad_element, "Category").text = 'Запчасти и аксессуары'
     ET.SubElement(ad_element, "GoodsType").text = immutable_data['GOODS_TYPE']
     ET.SubElement(ad_element, "RimDiameter").text = str(get_diameter(data.get('diameter')))

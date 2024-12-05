@@ -18,6 +18,7 @@
             <button id="delete-btn" class="btn btn-danger" style="display:none;" onclick="deleteFile()">Удалить файл</button>
             <button id="upload-suppliers-btn" class="btn btn-success" style="display:none;" onclick="uploadSuppliers()">Загрузить поставщиков</button>
             <button id="upload-data-btn" class="btn btn-warning" style="display:none;" onclick="uploadData()">Загрузить данные</button>
+            <button id="update-price-btn" class="btn btn-primary" style="display:none;" onclick="updatePriceRozn()">Обновить price_rozn</button>
         </div>
         <div class="mt-4">
             <h2>Загрузить новый файл</h2>
@@ -40,6 +41,7 @@
             document.getElementById('delete-btn').style.display = 'inline-block';
             document.getElementById('upload-suppliers-btn').style.display = 'inline-block';
             document.getElementById('upload-data-btn').style.display = 'inline-block'; // Показать кнопку загрузки данных
+             document.getElementById('update-price-btn').style.display = 'inline-block';
             console.log('Выбранный файл:', fileName); // Вывод выбранного имени файла в консоль
         }
 
@@ -96,7 +98,14 @@
                 });
             }
         }
-
+        function updatePriceRozn() {
+            fetch('/update-price-rozn/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                }
+            })}
         function uploadData() {
             if (selectedFileName) {
                 fetch('/upload-data/', {

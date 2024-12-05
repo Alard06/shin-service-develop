@@ -1,7 +1,12 @@
+import asyncio
 import math
 import xml.etree.ElementTree as ET
 from datetime import datetime
+from typing import Type
 
+from asgiref.sync import sync_to_async
+from django.db import transaction
+from django.db.models import Max
 import numpy
 import pandas as pd
 import openpyxl
@@ -952,6 +957,168 @@ def create_supplier_element(parent_element, articuls, best_supplier, best_price,
                                      )
 
 
+# @sync_to_async
+# def get_max_prices(supplier_model, product_field):
+#     try:
+#         return (
+#             supplier_model.objects
+#             .values(f"{product_field}__full_title")  # Group by full_title
+#             .annotate(max_price=Max('price_rozn'))  # Get max price for each full_title
+#         )
+#     except Exception as e:
+#         print(f"Error fetching max prices: {e}")
+#         return []
+
+# @sync_to_async
+# def update_prices(supplier_model, product_field, full_title, max_price):
+#     try:
+#
+#     except Exception as e:
+#         print(f"Error updating prices for {full_title}: {e}")
 
 
-# TODO МОТО И СПЕЦ ШИНЫ ГРУЗОВЫЕ ДИСКИ ДОДЕЛАТЬ
+# async def update_max_price_for_supplier(supplier_model, product_field):
+#     print(f"Обработка модели: {supplier_model.__name__}")
+#
+#     # Step 1: Aggregate max prices for each product based on full_title
+#     max_prices = await sync_to_async(
+#         lambda: list(supplier_model.objects.values(f"{product_field}__full_title").annotate(max_price=Max('price_rozn')))
+#     )()
+#
+#     # Step 2: Create a mapping of full_title to max price
+#     product_max_price_map = {
+#         entry[f"{product_field}__full_title"]: entry['max_price']
+#         for entry in max_prices
+#     }
+#
+#     # Step 3: Prepare objects for bulk update
+#     if product_max_price_map:
+#         full_titles = list(product_max_price_map.keys())
+#
+#         update_objects = supplier_model.objects.filter(
+#             **{f"{product_field}__full_title__in": full_titles})
+#
+#         print(update_objects)
+#
+#         # Step 4: Update the price for each object
+#         for obj in update_objects:
+#             obj.price_rozn = product_max_price_map.get(obj.full_title, obj.price_rozn)  # Обновляем цену
+#
+#         # Step 5: Bulk update
+#         try:
+#             async with transaction.atomic():
+#                 await supplier_model.objects.bulk_update(update_objects, ['price_rozn'])
+#             print("Обновление завершено.")
+#         except Exception as e:
+#             print(f"Ошибка при обновлении: {e}")
+#     else:
+#         print("Нет объектов для обновления.")
+# async def update_max_price_for_supplier(supplier_model, product_field):
+#     print(f"Обработка модели: {supplier_model.__name__}")
+#
+#     # Step 1: Aggregate max prices for each product based on full_title
+#     max_prices = await asyncio.to_thread(
+#         lambda: list(supplier_model.objects.values(f"{product_field}__full_title").annotate(max_price=Max('price_rozn')))
+#     )
+#
+#     # Step 2: Create a mapping of full_title to max price
+#     product_max_price_map = {
+#         entry[f"{product_field}__full_title"]: entry['max_price']
+#         for entry in max_prices
+#     }
+#
+#     # Step 3: Update all records in bulk
+#     update_tasks = []
+#     for full_title, max_price in product_max_price_map.items():
+#         if max_price is not None:
+#             print(f"Запланировано обновление для продукта '{full_title}' с максимальной ценой {max_price}...")
+#             update_tasks.append(
+#                 asyncio.to_thread(
+#                     lambda title=full_title, price=max_price: supplier_model.objects.filter(**{f"{product_field}__full_title": title}).update(price_rozn=price)
+#                 )
+#             )
+#
+#     results = await asyncio.gather(*update_tasks, return_exceptions=True)
+#
+#     # Обработка результатов обновлений
+#     for full_title, updated_count in zip(product_max_price_map.keys(), results):
+#         if isinstance(updated_count, Exception):
+#             print(f"Ошибка при обновлении продукта '{full_title}': {updated_count}")
+#         else:
+#             print(f"Обновлено записей: {updated_count} для продукта '{full_title}'.")
+
+#
+# async def update_max_price_for_supplier(supplier_model, product_field):
+#     print(f"Обработка модели: {supplier_model.__name__}")
+#
+#     # Step 1: Aggregate max prices for each product based on full_title
+#     max_prices = await asyncio.to_thread(
+#         lambda: list(supplier_model.objects.values(f"{product_field}__full_title").annotate(max_price=Max('price_rozn')))
+#     )
+#
+#     # Step 2: Create a mapping of full_title to max price
+#     product_max_price_map = {
+#         entry[f"{product_field}__full_title"]: entry['max_price']
+#         for entry in max_prices
+#     }
+#     # Step 3: Perform bulk updates within a transaction
+#     for full_title, max_price in product_max_price_map.items():
+#         print(full_title, max_price)
+#         if max_price is not None:
+#             print(f"Запланировано обновление для продукта '{full_title}' с максимальной ценой {max_price}...")
+#             updated_count = await asyncio.to_thread(
+#                 lambda title=full_title, price=max_price: supplier_model.objects.filter(**{f"{product_field}__full_title": title}).update(price_rozn=price)
+#             )
+#             print(f"Обновлено записей: {updated_count} для продукта '{full_title}'.")
+#
+#     print("Все обновления завершены.")
+
+
+async def update_max_price_for_supplier(supplier_model, product_field):
+    print(f"Обработка модели: {supplier_model.__name__}")
+
+    # Step 1: Aggregate max prices for each product based on full_title
+    max_prices = await asyncio.to_thread(
+        lambda: list(supplier_model.objects.values(f"{product_field}__full_title").annotate(max_price=Max('price_rozn')))
+    )
+
+    # Step 2: Create a mapping of full_title to max price
+    product_max_price_map = {
+        entry[f"{product_field}__full_title"]: entry['max_price']
+        for entry in max_prices
+    }
+
+    # Step 3: Prepare bulk update data
+    updates = [
+        {
+            'filter': {f"{product_field}__full_title": full_title},
+            'price': max_price
+        }
+        for full_title, max_price in product_max_price_map.items() if max_price is not None
+    ]
+
+    # Step 4: Perform bulk updates within a transaction
+    if updates:
+        # Execute bulk update within a transaction
+        with transaction.atomic():
+            for update in updates:
+                supplier_model.objects.filter(**update['filter']).update(price_rozn=update['price'])
+
+        print(f"Обновлено записей: {len(updates)}.")
+
+    print(f"Все обновления завершены {supplier_model}.")
+async def update_max_prices_for_all_products():
+    items_models = {
+        TruckDiskSupplier: 'truck_disk',
+        TireSupplier: 'tire',
+        DiskSupplier: 'disk',
+        TruckTireSupplier: 'truck_tire',
+        SpecialTireSupplier: 'special_tire',
+        MotoTireSupplier: 'moto_tire',
+    }
+
+    # Create a list of tasks for each supplier model
+    tasks = [update_max_price_for_supplier(model, product_field) for model, product_field in items_models.items()]
+
+    # Run tasks concurrently
+    await asyncio.gather(*tasks)

@@ -576,3 +576,5 @@ def output_table_company_formated(request, company_id):
                                     content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
             response['Content-Disposition'] = f'attachment; filename="{company.name}_processed.xlsx"'
             return response
+
+

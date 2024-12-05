@@ -15,9 +15,11 @@ from django.views.decorators.csrf import csrf_exempt
 from .utils.data import tires_elements, disks_elements, truck_tires_element, special_tires_element, moto_tires_element, \
     trucks_disks_elements
 from .utils.suppliers import extract_suppliers_and_cities, save_suppliers_and_cities, parse_tire_xml
+from ..company.utils.processing import update_max_prices_for_all_products
 from ..suppliers.models import Supplier, City, TireSupplier, DiskSupplier, MotoTireSupplier, SpecialTireSupplier, \
     TruckTireSupplier, Tire, Disk, SpecialTire, MotoTire, TruckTire, TruckDiskSupplier, TruckDisk
 
+from concurrent.futures import ThreadPoolExecutor
 
 def upload_file(request):
     if request.method == 'POST':
@@ -124,6 +126,7 @@ class UploadDataView(View):
 
             await asyncio.gather(*tasks)
             print('END')
+
         except Exception as e:
             print(f"An error occurred: {e}")
 
@@ -171,3 +174,21 @@ def upload_suppliers(request):
             return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+
+
+class UpdatePriceRoznView(View):
+    async def async_post(self):
+        print('update')
+        try:
+            await update_max_prices_for_all_products()
+            print('Обновлено')
+            return JsonResponse({'message': 'Цены успешно обновлены.'})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+    def post(self, request, *args, **kwargs):
+        # Запускаем асинхронную функцию в текущем цикле событий
+
+        return asyncio.run(self.async_post())

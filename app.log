@@ -3677,3 +3677,407 @@ ValueError: could not convert string to float: ''
 "GET /static/img/favicon.ico HTTP/1.1" 404 1859
 "GET /static/img/favicon.ico HTTP/1.1" 404 1859
 "GET /static/img/favicon.ico HTTP/1.1" 404 1859
+Not Found: /favicon.ico
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 172, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 190, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 432, in process_tires
+    best_delivery_period_days, product_supplier, price_rozn_data) = process_suppliers(
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 772, in process_suppliers
+    if product_supplier.price_rozn != '' and product_supplier.price_rozn != None and product_supplier.price_rozn > price_rozn_get:
+                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'str' and 'int'
+"POST /companies/2/ HTTP/1.1" 500 119087
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 172, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 190, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 432, in process_tires
+    best_delivery_period_days, product_supplier, price_rozn_data) = process_suppliers(
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 773, in process_suppliers
+    if float(product_supplier.price_rozn) > price_rozn_get:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'float' and 'str'
+"POST /companies/2/ HTTP/1.1" 500 120090
+Not Found: /favicon.ico
+"GET /static/img/favicon.ico HTTP/1.1" 404 1859
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 262
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 262
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 262
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 262
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 262
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 71
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 59
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 59
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 59
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 52
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 52
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 52
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 52
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 52
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 52
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 31
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 69
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 56
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 56
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 56
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 56
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 64
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 87
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 87
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 87
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 87
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 87
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 87
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 31
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 31
+Internal Server Error: /update-price-rozn/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\services\views.py", line 194, in post
+    return asyncio.run(self.async_post())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 193, in run
+    with Runner(debug=debug, loop_factory=loop_factory) as runner:
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 62, in __exit__
+    self.close()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 72, in close
+    loop.run_until_complete(
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 684, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 596, in shutdown_default_executor
+    thread.start()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\threading.py", line 992, in start
+    _start_new_thread(self._bootstrap, ())
+RuntimeError: can't create new thread at interpreter shutdown
+"POST /update-price-rozn/ HTTP/1.1" 500 98075
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 177, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 195, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 440, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 944, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 895, in price_rozn
+    new_product = NoPriceRoznProduct.objects.create(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 891, in save
+    self.save_base(
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 997, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 1160, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 1201, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: database is locked
+"POST /companies/3/ HTTP/1.1" 500 221600
+Internal Server Error: /companies/3/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 177, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 195, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 440, in process_tires
+    create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 944, in create_supplier_element
+    product_supplier.price_rozn else price_rozn(
+                                     ^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 895, in price_rozn
+    new_product = NoPriceRoznProduct.objects.create(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 891, in save
+    self.save_base(
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 997, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 1160, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\base.py", line 1201, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: database is locked
+"POST /companies/3/ HTTP/1.1" 500 220970
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 91
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 91
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /update-price-rozn/
+"POST /update-price-rozn/ HTTP/1.1" 500 88

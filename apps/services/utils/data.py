@@ -19,13 +19,13 @@ async def tires_elements(suppliers, cities, file_path):
     tire_suppliers_to_create = []
     tire_data_list = []
     tire_objects = {}
-
     # Start timing the overall execution
     overall_start_time = time.time()
 
     # Use lxml for faster parsing
     parse_start_time = time.time()
     for event, elem in etree.iterparse(file_path, events=('end',), tag='tire'):
+
         tire_data = {
             'id_tire': elem.get('id'),
             'brand': elem.get('brand'),
@@ -69,7 +69,6 @@ async def tires_elements(suppliers, cities, file_path):
             delivery_period_days = supplier.get('deliveryPeriodDays')
             last_availability_date = supplier.get('lastAvailabilityDate')
             sale = supplier.get('sale') == 'yes'
-
             last_availability_date_aware = (
                 timezone.make_aware(
                     timezone.datetime.strptime(last_availability_date, '%d.%m.%Y %H:%M:%S')
@@ -207,7 +206,6 @@ async def trucks_disks_elements(suppliers, cities, root):
         for disk in disks_element.findall('truckDisk'):
             disk_full_title = disk.get('fullTitle')
             disk_obj = disk_objects.get(disk_full_title)
-
             for supplier in disk.findall('supplier'):
                 articul = supplier.get('articul')
                 price = supplier.get('price')
@@ -220,7 +218,6 @@ async def trucks_disks_elements(suppliers, cities, root):
                 delivery_period_days = supplier.get('deliveryPeriodDays')
                 last_availability_date = supplier.get('lastAvailabilityDate')
                 sale = supplier.get('sale') == 'yes'
-
                 # Convert date to timezone-aware datetime
                 last_availability_date_aware = None
                 if last_availability_date:
@@ -371,7 +368,6 @@ async def truck_tires_element(suppliers, cities, root):
         truck_tire_suppliers_to_create = []
         truck_tire_data_list = []
         truck_tire_objects = {}
-
         # Collect data about truck tires
         for truck_tire in truck_tires_element.findall('truckTire'):
             truck_tire_data = {
@@ -424,7 +420,6 @@ async def truck_tires_element(suppliers, cities, root):
                 delivery_period_days = supplier.get('deliveryPeriodDays')
                 last_availability_date = supplier.get('lastAvailabilityDate')
                 sale = supplier.get('sale') == 'yes'
-
                 # Convert date to timezone-aware datetime
                 last_availability_date_aware = None
                 if last_availability_date:
@@ -527,7 +522,6 @@ async def special_tires_element(suppliers, cities, root):
                 delivery_period_days = supplier.get('deliveryPeriodDays')
                 last_availability_date = supplier.get('lastAvailabilityDate')
                 sale = supplier.get('sale') == 'yes'
-
                 # Convert date to timezone-aware datetime
                 last_availability_date_aware = None
                 if last_availability_date:
@@ -617,7 +611,6 @@ async def moto_tires_element(suppliers, cities, root):
         for moto_tire in moto_tires_element.findall('motoTire'):
             moto_tire_full_title = moto_tire.get('fullTitle')
             moto_tire_obj = moto_tire_objects.get(moto_tire_full_title)
-
             for supplier in moto_tire.findall('supplier'):
                 articul = supplier.get('articul')
                 price = supplier.get('price')
@@ -630,7 +623,6 @@ async def moto_tires_element(suppliers, cities, root):
                 delivery_period_days = supplier.get('deliveryPeriodDays')
                 last_availability_date = supplier.get('lastAvailabilityDate')
                 sale = supplier.get('sale') == 'yes'
-
                 # Convert date to timezone-aware datetime
                 last_availability_date_aware = None
                 if last_availability_date:
