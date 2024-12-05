@@ -433,13 +433,13 @@ def process_tires(root, tires, company_id, new_price_no_rozn):
 
         # Sort suppliers and process them
         sorted_suppliers = sort_suppliers(data['suppliers'], company_id)
-        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier = process_suppliers(
+        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier, max_price_rozn = process_suppliers(
             sorted_suppliers, data['product'], company_id)
 
         if best_supplier:
             create_supplier_element(tire_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    new_price_no_rozn=new_price_no_rozn, data=data)
+                                    new_price_no_rozn=new_price_no_rozn, data=data, max_price_rozn=max_price_rozn)
 
 
 def get_drill(result) -> str:
@@ -510,13 +510,13 @@ def process_disks(root, disks, company_id, new_price_no_rozn):
 
         sorted_suppliers = sort_suppliers(data['suppliers'], company_id)
 
-        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier = process_suppliers(
+        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier, max_price_rozn = process_suppliers(
             sorted_suppliers, data['product'], company_id, is_disk=True)
 
         if best_supplier:
             create_supplier_element(disk_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    is_disk=True,new_price_no_rozn=new_price_no_rozn)
+                                    is_disk=True,new_price_no_rozn=new_price_no_rozn, max_price_rozn=max_price_rozn)
 
 
 def process_truck_tires(root, truck_tires, company_id, new_price_no_rozn):
@@ -578,13 +578,13 @@ def process_truck_tires(root, truck_tires, company_id, new_price_no_rozn):
         # Sort suppliers and process them
         sorted_suppliers = sort_suppliers(data['suppliers'], company_id)
 
-        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier = process_suppliers(
+        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier, max_price_rozn = process_suppliers(
             sorted_suppliers, data['product'], company_id, is_truck_tire=True)
         # Create supplier element if a best supplier is found
         if best_supplier:
             create_supplier_element(truck_tire_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    is_truck_tire=True, new_price_no_rozn=new_price_no_rozn)
+                                    is_truck_tire=True, new_price_no_rozn=new_price_no_rozn, max_price_rozn=max_price_rozn)
 
 
 def process_truck_disks(root, truck_disks, company_id, new_price_no_rozn):
@@ -644,13 +644,13 @@ def process_truck_disks(root, truck_disks, company_id, new_price_no_rozn):
 
         sorted_suppliers = sort_suppliers(data['suppliers'], company_id)
 
-        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier = process_suppliers(
+        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier, max_price_rozn = process_suppliers(
             sorted_suppliers, data['product'], company_id, is_truck_disks=True)
 
         if best_supplier:
             create_supplier_element(truck_disk_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    is_truck_disk=True, new_price_no_rozn=new_price_no_rozn)
+                                    is_truck_disk=True, new_price_no_rozn=new_price_no_rozn, max_price_rozn=max_price_rozn)
 
 
 def process_moto(root, moto, company_id, new_price_no_rozn):
@@ -713,13 +713,13 @@ def process_moto(root, moto, company_id, new_price_no_rozn):
 
         sorted_suppliers = sort_suppliers(data['suppliers'], company_id)
 
-        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier = process_suppliers(
+        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier, max_price_rozn = process_suppliers(
             sorted_suppliers, data['product'], company_id, moto=True)
 
         if best_supplier:
             create_supplier_element(moto_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    moto=True, new_price_no_rozn=new_price_no_rozn)
+                                    moto=True, new_price_no_rozn=new_price_no_rozn, max_price_rozn=max_price_rozn)
 
 
 def sort_suppliers(suppliers, company_id):
@@ -750,24 +750,36 @@ def process_suppliers(sorted_suppliers, product, company_id, is_disk=False,
     total_quantity = 0
     best_delivery_period_days = None
     product_supplier = None  # Initialize product_supplier
-
+    max_price_rozn = None
     for supplier in sorted_suppliers:
         company_supplier = CompanySupplier.objects.get(company_id=company_id, supplier=supplier.supplier)
         articuls.append(company_supplier.article_number or '')
 
         if is_disk:
             product_supplier = DiskSupplier.objects.filter(disk=product, supplier=supplier.supplier).first()
+            max_price_rozn = DiskSupplier.objects.filter(disk__full_title=product_supplier.disk.full_title).aggregate(
+                Max('price_rozn'))
         elif is_truck_tire:
             product_supplier = TruckTireSupplier.objects.filter(truck_tire=product, supplier=supplier.supplier).first()
+            max_price_rozn = TruckTireSupplier.objects.filter(truck_tire__full_title=product_supplier.truck_tire.full_title).aggregate(
+                Max('price_rozn'))
         elif is_truck_disks:
             product_supplier = TruckDiskSupplier.objects.filter(truck_disk=product, supplier=supplier.supplier).first()
+            max_price_rozn = TruckDiskSupplier.objects.filter(truck_disk__full_title=product_supplier.truck_disk.full_title).aggregate(
+                Max('price_rozn'))
         elif special:
             product_supplier = SpecialTireSupplier.objects.filter(special_tire=product,
                                                                   supplier=supplier.supplier).first()
+            max_price_rozn = SpecialTireSupplier.objects.filter(special_tire__full_title=product_supplier.special_tire.full_title).aggregate(
+                Max('price_rozn'))
         elif moto:
             product_supplier = MotoTireSupplier.objects.filter(moto_tire=product, supplier=supplier.supplier).first()
+            max_price_rozn = MotoTireSupplier.objects.filter(moto_tire__full_title=product_supplier.moto_tire.full_title).aggregate(
+                Max('price_rozn'))
         else:
             product_supplier = TireSupplier.objects.filter(tire=product, supplier=supplier.supplier).first()
+            max_price_rozn = TireSupplier.objects.filter(tire__full_title=product_supplier.tire.full_title).aggregate(
+                Max('price_rozn'))
 
         if product_supplier:
             total_quantity += int(product_supplier.quantity)
@@ -803,7 +815,8 @@ def process_suppliers(sorted_suppliers, product, company_id, is_disk=False,
                 if best_delivery_period_days is None or product_supplier.delivery_period_days > best_delivery_period_days:
                     best_delivery_period_days = product_supplier.delivery_period_days
 
-    return articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier  # Ensure product_supplier is returned
+    return (articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier,
+            max_price_rozn['price_rozn__max'])
 
 
 def process_special_tires(root, special_tires, company_id, new_price_no_rozn):
@@ -871,13 +884,13 @@ def process_special_tires(root, special_tires, company_id, new_price_no_rozn):
 
         sorted_suppliers = sort_suppliers(data['suppliers'], company_id)
 
-        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier = process_suppliers(
+        articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier, max_price_rozn = process_suppliers(
             sorted_suppliers, data['product'], company_id, special=True)
 
         if best_supplier:
             create_supplier_element(special_tire_element, articuls, best_supplier, best_price, total_quantity,
                                     best_delivery_period_days, product_supplier=product_supplier, company_id=company_id,
-                                    special=True, new_price_no_rozn=new_price_no_rozn)
+                                    special=True, new_price_no_rozn=new_price_no_rozn, max_price_rozn=max_price_rozn)
 
 
 def price_rozn(price: str, company_id, best_price, new_price_no_rozn, product_supplier, best_supplier, data, parent_element):
@@ -913,7 +926,7 @@ def price_rozn_pow(price_rozn):
 def create_supplier_element(parent_element, articuls, best_supplier, best_price, total_quantity,
                             best_delivery_period_days, company_id, product_supplier=None, is_disk=False,
                             is_truck_tire=False, is_truck_disk=False,
-                            moto=False, special=False, new_price_no_rozn=None, data=None):
+                            moto=False, special=False, new_price_no_rozn=None, data=None, max_price_rozn=None):
     presence_status = 'В наличии' if int(best_delivery_period_days) == 0 else 'Под заказ'
     stock = 'Наличие' if int(best_delivery_period_days) == 0 else 'Под заказ'
     tire_type = None
@@ -940,8 +953,8 @@ def create_supplier_element(parent_element, articuls, best_supplier, best_price,
                                      price=str(price_rozn_pow(best_price.replace(',', '.'))),
                                      inputPrice=str(price_rozn_pow(product_supplier.input_price)) if product_supplier
                                      else '',
-                                     price_rozn=str(price_rozn_pow(product_supplier.price_rozn)) if
-                                     product_supplier.price_rozn else price_rozn(
+                                     price_rozn=str(price_rozn_pow(max_price_rozn)) if
+                                     max_price_rozn else price_rozn(
                                          product_supplier.input_price, company_id, best_price, new_price_no_rozn,
                                          product_supplier, best_supplier, data, parent_element),
                                      deliveryPeriodDays=str(
@@ -1074,51 +1087,69 @@ def create_supplier_element(parent_element, articuls, best_supplier, best_price,
 #     print("Все обновления завершены.")
 
 
-async def update_max_price_for_supplier(supplier_model, product_field):
-    print(f"Обработка модели: {supplier_model.__name__}")
+# async def update_max_price_for_supplier(supplier_model, product_field):
+#     print(f"Обработка модели: {supplier_model.__name__}")
+#
+#     # Step 1: Aggregate max prices for each product based on full_title
+#     max_prices = await asyncio.to_thread(
+#         lambda: list(supplier_model.objects.values(f"{product_field}__full_title").annotate(max_price=Max('price_rozn')))
+#     )
+#
+#     # Step 2: Create a mapping of full_title to max price
+#     product_max_price_map = {
+#         entry[f"{product_field}__full_title"]: entry['max_price']
+#         for entry in max_prices
+#     }
+#
+#     # Step 3: Prepare bulk update data
+#     updates = [
+#         {
+#             'filter': {f"{product_field}__full_title": full_title},
+#             'price': max_price
+#         }
+#         for full_title, max_price in product_max_price_map.items() if max_price is not None
+#     ]
+#
+#     # Step 4: Perform bulk updates within a transaction
+#     if updates:
+#         # Execute bulk update within a transaction
+#         with transaction.atomic():
+#             for update in updates:
+#                 supplier_model.objects.filter(**update['filter']).update(price_rozn=update['price'])
+#
+#         print(f"Обновлено записей: {len(updates)}.")
+#
+#     print(f"Все обновления завершены {supplier_model}.")
+# async def update_max_prices_for_all_products():
+#     items_models = {
+#         TruckDiskSupplier: 'truck_disk',
+#         TireSupplier: 'tire',
+#         DiskSupplier: 'disk',
+#         TruckTireSupplier: 'truck_tire',
+#         SpecialTireSupplier: 'special_tire',
+#         MotoTireSupplier: 'moto_tire',
+#     }
+#
+#     # Create a list of tasks for each supplier model
+#     tasks = [update_max_price_for_supplier(model, product_field) for model, product_field in items_models.items()]
+#
+#     # Run tasks concurrently
+#     await asyncio.gather(*tasks)
 
-    # Step 1: Aggregate max prices for each product based on full_title
-    max_prices = await asyncio.to_thread(
-        lambda: list(supplier_model.objects.values(f"{product_field}__full_title").annotate(max_price=Max('price_rozn')))
-    )
 
-    # Step 2: Create a mapping of full_title to max price
-    product_max_price_map = {
-        entry[f"{product_field}__full_title"]: entry['max_price']
-        for entry in max_prices
-    }
-
-    # Step 3: Prepare bulk update data
-    updates = [
-        {
-            'filter': {f"{product_field}__full_title": full_title},
-            'price': max_price
-        }
-        for full_title, max_price in product_max_price_map.items() if max_price is not None
-    ]
-
-    # Step 4: Perform bulk updates within a transaction
-    if updates:
-        # Execute bulk update within a transaction
-        with transaction.atomic():
-            for update in updates:
-                supplier_model.objects.filter(**update['filter']).update(price_rozn=update['price'])
-
-        print(f"Обновлено записей: {len(updates)}.")
-
-    print(f"Все обновления завершены {supplier_model}.")
-async def update_max_prices_for_all_products():
-    items_models = {
-        TruckDiskSupplier: 'truck_disk',
-        TireSupplier: 'tire',
-        DiskSupplier: 'disk',
-        TruckTireSupplier: 'truck_tire',
-        SpecialTireSupplier: 'special_tire',
-        MotoTireSupplier: 'moto_tire',
-    }
-
-    # Create a list of tasks for each supplier model
-    tasks = [update_max_price_for_supplier(model, product_field) for model, product_field in items_models.items()]
-
-    # Run tasks concurrently
-    await asyncio.gather(*tasks)
+# def update_max_price_rozn(full_title):
+#     # Находим диск по полному названию
+#     disk = Disk.objects.filter(full_title=full_title).first()
+#
+#     if disk:
+#         # Находим максимальную цену розницы среди поставщиков этого диска
+#         max_price_rozn = DiskSupplier.objects.filter(disk=disk).aggregate(Max('price_rozn'))['price_rozn__max']
+#
+#         if max_price_rozn is not None:
+#             # Обновляем цену розницы у всех поставщиков этого диска
+#             DiskSupplier.objects.filter(disk=disk).update(price_rozn=max_price_rozn)
+#             return max_price_rozn
+#         else:
+#             return "Нет доступных цен розницы для данного диска."
+#     else:
+#         return "Диск с указанным полным названием не найден."

@@ -4081,3 +4081,25 @@ Internal Server Error: /update-price-rozn/
 "POST /update-price-rozn/ HTTP/1.1" 500 88
 Internal Server Error: /update-price-rozn/
 "POST /update-price-rozn/ HTTP/1.1" 500 88
+Internal Server Error: /companies/2/
+Traceback (most recent call last):
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\views.py", line 101, in company_detail
+    get_available_products_for_company(company_id, types, availability, format, new_no_rozn_price)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 177, in get_available_products_for_company
+    save_tires_to_xml_availability(grouped_products, company_id, types, format, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 195, in save_tires_to_xml_availability
+    process_tires(root, grouped_products['tires'], company_id, new_price_no_rozn)
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 436, in process_tires
+    articuls, best_supplier, best_price, total_quantity, best_delivery_period_days, product_supplier, max_price_rozn = process_suppliers(
+                                                                                                                       ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\Documents\shin-service-develop\apps\company\utils\processing.py", line 781, in process_suppliers
+    max_price_rozn = TireSupplier.objects.filter(tire__full_title=product_supplier.disk.full_title).aggregate(
+                                                                  ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TireSupplier' object has no attribute 'disk'
+"POST /companies/2/ HTTP/1.1" 500 124024
